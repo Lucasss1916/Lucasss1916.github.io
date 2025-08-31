@@ -1,3 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on first</title><link>https://lucasss1916.github.io/posts/</link><description>Recent content in Posts on first</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 31 Aug 2025 17:04:19 +0800</lastBuildDate><atom:link href="https://lucasss1916.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>部署blog</title><link>https://lucasss1916.github.io/posts/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</link><pubDate>Sun, 31 Aug 2025 17:04:19 +0800</pubDate><guid>https://lucasss1916.github.io/posts/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</guid><description>&lt;h1 id="1下载安装hugo"&gt;1.下载安装hugo&lt;/h1&gt;
 &lt;p&gt;在macos上安装hugo
-&lt;code&gt;brew install hugo&lt;/code&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;code&gt;brew install hugo&lt;/code&gt;
+查看是否安装完成
+&lt;code&gt;hugo version&lt;/code&gt;
+如果正确输出
+&lt;code&gt;比如v0.133.1+extended darwin/amd64&lt;/code&gt;
+则表示安装成功&lt;/p&gt;
+&lt;h1 id="2创建blog"&gt;2.创建blog&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;hugo new site hugo-blog&lt;/code&gt;
+&lt;code&gt;cd hugo-blog&lt;/code&gt;
+创建主题
+&lt;code&gt;git init&lt;/code&gt;
+&lt;code&gt;git submoudle add https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod&lt;/code&gt;
+修改配置hugo.toml
+baseURL = &amp;ldquo;&lt;a href="https://yourname.github.io/%22" target="_blank"&gt;https://yourname.github.io/"&lt;/a&gt;
+
+languageCode = &amp;ldquo;en-us&amp;rdquo;
+title = &amp;ldquo;My Hugo Blog&amp;rdquo;
+theme = &amp;ldquo;PaperMod&amp;rdquo;
+新建一篇文章
+&lt;code&gt;hugo new posts/hello-world.md&lt;/code&gt;
+本地预览,可通过1313端口访问
+&lt;code&gt;hugo server -D&lt;/code&gt;&lt;/p&gt;</description></item></channel></rss>
