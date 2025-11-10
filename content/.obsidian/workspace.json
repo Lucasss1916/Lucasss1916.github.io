@@ -160,6 +160,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:创建新数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -168,6 +169,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "31d63d8b9ff5b673",
-  "lastOpenFiles": []
+  "active": "40b32519f2f5d98c",
+  "lastOpenFiles": [
+    "posts/使用Hugo和github部署个人blog111.md",
+    "posts/使用Hugo和github部署个人blog - 副本.md"
+  ]
 }
