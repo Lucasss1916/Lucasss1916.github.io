@@ -21,10 +21,13 @@ jobs:
           extended: true
 
       - name: Install Hugo Modules
-        run: hugo mod get -u
+        run: hugo mod get -u ./...
 
       - name: Build site
-        run: hugo --minify
+        run: |
+          hugo --minify
+          echo "" > public/.nojekyll
+          ls -R public  # 调试用，可查看生成文件结构
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
