@@ -2,7 +2,7 @@ name: Deploy Hugo site to GitHub Pages
 
 on:
   push:
-    branches: ["main"] # 推送到 main 自动部署，可改为你的分支
+    branches: ["main"]
 
 jobs:
   build:
@@ -11,14 +11,17 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
-        
+        with:
+          submodules: true  # ✅ 拉取主题子模块
+          fetch-depth: 0    # 推荐，避免构建问题
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: "latest"
-          extended: true   # 你用了 themes，建议开启 extended
+          extended: true
 
-      - name: Build site
+      - name: Build
         run: hugo --minify
 
       - name: Deploy to GitHub Pages
