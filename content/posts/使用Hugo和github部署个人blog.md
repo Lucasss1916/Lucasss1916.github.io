@@ -9,6 +9,7 @@ categories:
 tags:
   - 记录
 draft: false
+type: post
 ---
 # 1.下载安装hugo
 1.在macos上安装hugo      
