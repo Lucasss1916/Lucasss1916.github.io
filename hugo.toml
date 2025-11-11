@@ -1,6 +1,6 @@
 [module]
   [[module.imports]]
-    path = "github.com/g1eny0ung/hugo-theme-dream"
+    path = "github.com/MeiK2333/github-style.git"
     
 baseURL = "https://lucasss1916.github.io"
 languageCode = 'en-us'
