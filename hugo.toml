@@ -1,20 +1,11 @@
-[module]
-  [[module.imports]]
-    path = "github.com/MeiK2333/github-style.git"
-    
 baseURL = "https://lucasss1916.github.io"
-languageCode = 'en-us'
-title = 'Lucas`s blog'
-theme = "dream"
+languageCode = "en-us"
+title = "Lucas`s blog"
+theme = "github-style"
 
 [params]
-avatar = "images/logo.PNG"
-logoWidth = "120px"
-logoHeight = "40px"
-logoLink = "/"
+  author = "Lucas"
+  avatar = "/images/logo.PNG"
+  github = "https://github.com/Lucasss1916"
 
-# 主题配色
-lightTheme = "emerald"
-darkTheme = "forest"
-author = "Lucas"
-headerTitle = "Lucas`s Blog"
+
