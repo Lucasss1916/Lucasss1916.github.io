@@ -2,5 +2,4 @@ module github.com/Lucasss1916/Lucasss1916.github.io
 
 go 1.20
 
-require github.com/g1eny0ung/hugo-theme-dream latest
-
+require github.com/MeiK2333/github-style.git themes/github-style latest
