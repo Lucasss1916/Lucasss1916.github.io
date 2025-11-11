@@ -5,7 +5,8 @@ theme = "github-style"
 
 [params]
   author = "Lucas"
-  avatar = "/images/logo.PNG"
-  github = "https://github.com/Lucasss1916"
+  avatar = "/images/avatar.jpg"
+  headerIcon = "/images/avatar.jpg"
+  github = "Lucasss1916"
 
 
