@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Unity on Lucas`s blog</title><link>https://lucasss1916.github.io/tags/unity/</link><description>Recent content in Unity on Lucas`s blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 14 Aug 2025 15:25:30 +0800</lastBuildDate><atom:link href="https://lucasss1916.github.io/tags/unity/index.xml" rel="self" type="application/rss+xml"/><item><title>Unity穿模问题</title><link>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</link><pubDate>Thu, 14 Aug 2025 15:25:30 +0800</pubDate><guid>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</guid><description>&lt;pre&gt;&lt;code&gt;在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的`boxcollider`来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：
-&lt;/code&gt;&lt;/pre&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Unity on Lucas`s blog</title><link>https://lucasss1916.github.io/tags/unity/</link><description>Recent content in Unity on Lucas`s blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 14 Aug 2025 15:25:30 +0800</lastBuildDate><atom:link href="https://lucasss1916.github.io/tags/unity/index.xml" rel="self" type="application/rss+xml"/><item><title>Unity穿模问题</title><link>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</link><pubDate>Thu, 14 Aug 2025 15:25:30 +0800</pubDate><guid>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的boxcollider来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：&lt;/p&gt;
 &lt;h2 id="1增大碰撞体"&gt;1.增大碰撞体&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;这是最直接，也是最方便的直接拉大碰撞体，不给模型穿模的机会
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="2使用continuous或continuous-dynamic碰撞检测"&gt;2.使用&lt;code&gt;Continuous&lt;/code&gt;或&lt;code&gt;Continuous Dynamic&lt;/code&gt;碰撞检测&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;通过设置Rigidbody组件中的Collision Detection属性
-	Discrete（离散）： 默认值。性能最好，但高速物体容易穿模。
-	Continuous（连续）： 用于防止该物体与其他静态网格碰撞器穿模。性能开销中等。
-	Continuous Dynamic（连续动态）： 用于防止该物体与其他动态物体（也设置了Continuous或Continuous Dynamic）穿模。性能开销最大。
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过设置Rigidbody组件中的Collision Detection属性
+Discrete（离散）： 默认值。性能最好，但高速物体容易穿模。
+Continuous（连续）： 用于防止该物体与其他静态网格碰撞器穿模。性能开销中等。
+Continuous Dynamic（连续动态）： 用于防止该物体与其他动态物体（也设置了Continuous或Continuous Dynamic）穿模。性能开销最大。&lt;/p&gt;
 &lt;h2 id="3优化角色控制器"&gt;3.优化角色控制器&lt;/h2&gt;
 &lt;h2 id="4更改移动逻辑"&gt;4.更改移动逻辑&lt;/h2&gt;
 &lt;h2 id="5图层碰撞矩阵"&gt;5.图层碰撞矩阵&lt;/h2&gt;
