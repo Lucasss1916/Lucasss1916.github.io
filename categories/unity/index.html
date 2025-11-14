@@ -19,11 +19,8 @@ c#
 </a><a class="muted-link mr-3" href=/categories/unity/><svg class="octicon octicon-package" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8.878.392a1.75 1.75.0 00-1.756.0l-5.25 3.045A1.75 1.75.0 001 4.951v6.098c0 .624.332 1.2.872 1.514l5.25 3.045a1.75 1.75.0 001.756.0l5.25-3.045c.54-.313.872-.89.872-1.514V4.951c0-.624-.332-1.2-.872-1.514L8.878.392zM7.875 1.69a.25.25.0 01.25.0l4.63 2.685L8 7.133 3.245 4.375l4.63-2.685zM2.5 5.677v5.372c0 .09.047.171.125.216l4.625 2.683V8.432L2.5 5.677zm6.25 8.271 4.625-2.683a.25.25.0 00.125-.216V5.677L8.75 8.432v5.516z"/></svg>
 unity
 </a><a class="muted-link mr-3" href=/tags/unity/><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>
-unity</a></div><ul><li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source"><div class="col-12 d-inline-block"><div class="d-inline-block mb-1"><h3 class=wb-break-all><a href=https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/>Unity穿模问题</a></h3></div><div><div class="col-12 d-inline-block text-gray mb-2 pr-4"><p>+++
-date = &lsquo;2025-11-14T15:25:30+08:00&rsquo;
-title = &lsquo;Unity穿模问题&rsquo;
-+++
-在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的<code>boxcollider</code>来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：</p><h2 id=1增大碰撞体>1.增大碰撞体</h2><pre><code>这是最直接，也是最方便的直接拉大碰撞体，不给模型穿模的机会
+unity</a></div><ul><li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source"><div class="col-12 d-inline-block"><div class="d-inline-block mb-1"><h3 class=wb-break-all><a href=https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/>Unity穿模问题</a></h3></div><div><div class="col-12 d-inline-block text-gray mb-2 pr-4"><pre><code>在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的`boxcollider`来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：
+</code></pre><h2 id=1增大碰撞体>1.增大碰撞体</h2><pre><code>这是最直接，也是最方便的直接拉大碰撞体，不给模型穿模的机会
 </code></pre><h2 id=2使用continuous或continuous-dynamic碰撞检测>2.使用<code>Continuous</code>或<code>Continuous Dynamic</code>碰撞检测</h2><pre><code>通过设置Rigidbody组件中的Collision Detection属性
 	Discrete（离散）： 默认值。性能最好，但高速物体容易穿模。
 	Continuous（连续）： 用于防止该物体与其他静态网格碰撞器穿模。性能开销中等。
