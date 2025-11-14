@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Lucas`s blog</title><link>https://lucasss1916.github.io/post/</link><description>Recent content in Posts on Lucas`s blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 10 Nov 2025 17:02:19 +0800</lastBuildDate><atom:link href="https://lucasss1916.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>面向对象的三大特点</title><link>https://lucasss1916.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E7%82%B9/</link><pubDate>Mon, 10 Nov 2025 17:02:19 +0800</pubDate><guid>https://lucasss1916.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E7%82%B9/</guid><description>&lt;p&gt;1.封装 (符合开闭原则&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;) &lt;br&gt;
-将数据和方法打包到类中，并对外隐藏内部细节，通过访问修饰符控制暴露的程度。（如private，public，protected）&lt;/p&gt;
-&lt;p&gt;2.继承&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Lucas`s blog</title><link>https://lucasss1916.github.io/post/</link><description>Recent content in Posts on Lucas`s blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 10 Nov 2025 17:02:19 +0800</lastBuildDate><atom:link href="https://lucasss1916.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>面向对象的三大特点</title><link>https://lucasss1916.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E7%82%B9/</link><pubDate>Mon, 10 Nov 2025 17:02:19 +0800</pubDate><guid>https://lucasss1916.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E7%82%B9/</guid><description>&lt;h1 id="1封装-符合开闭原则"&gt;1.封装 (符合开闭原则&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;)&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;将数据和方法打包到类中，并对外隐藏内部细节，通过访问修饰符控制暴露的程度。（如private，public，protected） 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="2继承"&gt;2.继承&lt;/h1&gt;
 &lt;pre&gt;&lt;code&gt;子类可以继承父类的属性和方法，并可以扩展和重写这些功能
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;3.多态&lt;/p&gt;
-&lt;p&gt;[[目录]]&lt;/p&gt;
+&lt;h1 id="3多态"&gt;3.多态&lt;/h1&gt;
 &lt;div class="footnotes" role="doc-endnotes"&gt;
 &lt;hr&gt;
 &lt;ol&gt;
@@ -34,9 +34,8 @@
 新建一篇文章&lt;br&gt;
 &lt;code&gt;hugo new posts/hello-world.md&lt;/code&gt;&lt;br&gt;
 本地预览,可通过1313端口访问&lt;br&gt;
-&lt;code&gt;hugo server -D&lt;/code&gt;&lt;/p&gt;</description></item><item><title/><link>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</link><pubDate>Thu, 14 Aug 2025 15:25:30 +0800</pubDate><guid>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;+++
+&lt;code&gt;hugo server -D&lt;/code&gt;&lt;/p&gt;</description></item><item><title>Unity穿模问题</title><link>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</link><pubDate>Thu, 14 Aug 2025 15:25:30 +0800</pubDate><guid>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;+++
 date = &amp;lsquo;2025-11-14T15:25:30+08:00&amp;rsquo;
-draft = false
 title = &amp;lsquo;Unity穿模问题&amp;rsquo;
 +++
 在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的&lt;code&gt;boxcollider&lt;/code&gt;来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：&lt;/p&gt;
