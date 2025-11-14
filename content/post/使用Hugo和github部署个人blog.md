@@ -5,11 +5,7 @@ lastmod: 2025-08-31T17:04:19+08:00
 author: lucas
 cover: /images/logo.PNG
 categories:
-  - category1
-tags:
-  - 记录
-draft: false
-type: post
+  - blog
 ---
 # 1.下载安装hugo
 1.在macos上安装hugo      
