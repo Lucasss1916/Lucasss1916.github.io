@@ -1,15 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CSharp on Lucas`s blog</title><link>https://lucasss1916.github.io/tags/csharp/</link><description>Recent content in CSharp on Lucas`s blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 10 Nov 2025 17:02:19 +0800</lastBuildDate><atom:link href="https://lucasss1916.github.io/tags/csharp/index.xml" rel="self" type="application/rss+xml"/><item><title>面向对象的三大特点</title><link>https://lucasss1916.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E7%82%B9/</link><pubDate>Mon, 10 Nov 2025 17:02:19 +0800</pubDate><guid>https://lucasss1916.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E7%82%B9/</guid><description>&lt;p&gt;1.封装 (符合开闭原则&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;) &lt;br&gt;
-将数据和方法打包到类中，并对外隐藏内部细节，通过访问修饰符控制暴露的程度。（如private，public，protected）&lt;/p&gt;
-&lt;p&gt;2.继承&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;子类可以继承父类的属性和方法，并可以扩展和重写这些功能
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;3.多态&lt;/p&gt;
-&lt;p&gt;[[目录]]&lt;/p&gt;
-&lt;div class="footnotes" role="doc-endnotes"&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;开闭原则：对于扩展开放，对于修改关闭&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CSharp on Lucas`s blog</title><link>https://lucasss1916.github.io/tags/csharp/</link><description>Recent content in CSharp on Lucas`s blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 19 Nov 2025 21:56:01 +0800</lastBuildDate><atom:link href="https://lucasss1916.github.io/tags/csharp/index.xml" rel="self" type="application/rss+xml"/><item><title>GC</title><link>https://lucasss1916.github.io/post/gc/</link><pubDate>Wed, 19 Nov 2025 21:56:01 +0800</pubDate><guid>https://lucasss1916.github.io/post/gc/</guid><description>&lt;h1 id="1-什么是gc"&gt;1 什么是GC&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;垃圾回收&lt;/strong&gt;是自动内存管理机制，负责自动释放不再使用的内存，防止内存泄漏。&lt;/p&gt;
+&lt;h1 id="2-基本概念"&gt;2 基本概念&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;根对象&lt;/strong&gt;：静态字段、局部变量、CPU寄存器等&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可达性&lt;/strong&gt;：从根对象直接或间接引用的对象&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;代际理论&lt;/strong&gt;：对象生存期越短，越应该被快速回收&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
