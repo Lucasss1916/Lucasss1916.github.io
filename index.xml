@@ -1,25 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lucas`s blog</title><link>https://lucasss1916.github.io/</link><description>Recent content on Lucas`s blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 19 Nov 2025 21:56:01 +0800</lastBuildDate><atom:link href="https://lucasss1916.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GC</title><link>https://lucasss1916.github.io/post/gc/</link><pubDate>Wed, 19 Nov 2025 21:56:01 +0800</pubDate><guid>https://lucasss1916.github.io/post/gc/</guid><description>&lt;h1 id="1-什么是gc"&gt;1 什么是GC&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;垃圾回收&lt;/strong&gt;是自动内存管理机制，负责自动释放不再使用的内存，防止内存泄漏。&lt;/p&gt;
-&lt;h1 id="2-基本概念"&gt;2 基本概念&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;根对象&lt;/strong&gt;：静态字段、局部变量、CPU寄存器等&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;可达性&lt;/strong&gt;：从根对象直接或间接引用的对象&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;代际理论&lt;/strong&gt;：对象生存期越短，越应该被快速回收&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>面向对象的三大特点</title><link>https://lucasss1916.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E7%82%B9/</link><pubDate>Mon, 10 Nov 2025 17:02:19 +0800</pubDate><guid>https://lucasss1916.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E7%82%B9/</guid><description>&lt;h1 id="1封装-符合开闭原则"&gt;1.封装 (符合开闭原则&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;)&lt;/h1&gt;
-&lt;pre&gt;&lt;code&gt;将数据和方法打包到类中，并对外隐藏内部细节，通过访问修饰符控制暴露的程度。（如private，public，protected） 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id="2继承"&gt;2.继承&lt;/h1&gt;
-&lt;pre&gt;&lt;code&gt;子类可以继承父类的属性和方法，并可以扩展和重写这些功能
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id="3多态"&gt;3.多态&lt;/h1&gt;
-&lt;div class="footnotes" role="doc-endnotes"&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;开闭原则：对于扩展开放，对于修改关闭&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>部署blog</title><link>https://lucasss1916.github.io/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</link><pubDate>Sun, 31 Aug 2025 17:04:19 +0800</pubDate><guid>https://lucasss1916.github.io/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</guid><description>&lt;h1 id="1下载安装hugo"&gt;1.下载安装hugo&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lucas`s blog</title><link>https://lucasss1916.github.io/</link><description>Recent content on Lucas`s blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 24 Nov 2025 15:56:01 +0800</lastBuildDate><atom:link href="https://lucasss1916.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>部署blog</title><link>https://lucasss1916.github.io/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</link><pubDate>Sun, 31 Aug 2025 17:04:19 +0800</pubDate><guid>https://lucasss1916.github.io/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</guid><description>&lt;h1 id="1-1下载安装hugo"&gt;1. 1.下载安装hugo&lt;/h1&gt;
 &lt;p&gt;1.在macos上安装hugo &lt;br&gt;
 &lt;code&gt;brew install hugo&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;2.查看是否安装完成&lt;br&gt;
@@ -27,7 +6,7 @@
 &lt;p&gt;3.如果正确输出.&lt;br&gt;
 &lt;code&gt;比如v0.133.1+extended darwin/amd64&lt;/code&gt;&lt;br&gt;
 则表示安装成功.&lt;/p&gt;
-&lt;h1 id="2创建blog"&gt;2.创建blog&lt;/h1&gt;
+&lt;h1 id="2-2创建blog"&gt;2. 2.创建blog&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;hugo new site hugo-blog&lt;/code&gt;&lt;br&gt;
 &lt;code&gt;cd hugo-blog&lt;/code&gt;&lt;br&gt;
 创建主题.&lt;br&gt;
@@ -41,10 +20,50 @@
 新建一篇文章&lt;br&gt;
 &lt;code&gt;hugo new posts/hello-world.md&lt;/code&gt;&lt;br&gt;
 本地预览,可通过1313端口访问&lt;br&gt;
-&lt;code&gt;hugo server -D&lt;/code&gt;&lt;/p&gt;</description></item><item><title>Unity穿模问题</title><link>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</link><pubDate>Thu, 14 Aug 2025 15:25:30 +0800</pubDate><guid>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的boxcollider来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：&lt;/p&gt;
-&lt;h2 id="1增大碰撞体"&gt;1.增大碰撞体&lt;/h2&gt;
+&lt;code&gt;hugo server -D&lt;/code&gt;&lt;/p&gt;</description></item><item><title>GC</title><link>https://lucasss1916.github.io/post/gc/</link><pubDate>Tue, 19 Aug 2025 21:56:01 +0800</pubDate><guid>https://lucasss1916.github.io/post/gc/</guid><description>&lt;h1 id="1-什么是gc"&gt;1. 什么是GC&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;垃圾回收&lt;/strong&gt;是自动内存管理机制，负责自动释放不再使用的内存，防止内存泄漏。&lt;/p&gt;
+&lt;h1 id="2-基本概念"&gt;2. 基本概念&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;根对象&lt;/strong&gt;：静态字段、局部变量、CPU寄存器等&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可达性&lt;/strong&gt;：从根对象直接或间接引用的对象&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;代际理论&lt;/strong&gt;：对象生存期越短，越应该被快速回收&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="3-netunity三代gc"&gt;3. Net/Unity三代GC&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Generation 0 ：新创建的对象15:01&lt;/li&gt;
+&lt;li&gt;Generation 1 ：存货过一次的gc对象&lt;/li&gt;
+&lt;li&gt;Generation 2: 长期存活的对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="4-gc触发时机"&gt;4. GC触发时机&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;第0代满时&lt;/li&gt;
+&lt;li&gt;手动调用GC.Collect（）&lt;/li&gt;
+&lt;li&gt;系统内存不足&lt;/li&gt;
+&lt;li&gt;应用程序卸载域&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="5-主要gc来源"&gt;5. 主要GC来源&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;using UnityEngine;&lt;/code&gt;
+&lt;code&gt;using System.Collections;&lt;/code&gt;
+&lt;code&gt;public class GCExample : MonoBehaviour&lt;/code&gt;
+&lt;code&gt;{&lt;/code&gt;
+&lt;code&gt;void Update()&lt;/code&gt;
+&lt;code&gt;{&lt;/code&gt;
+&lt;code&gt;// 1. 字符串拼接&lt;/code&gt;
+&lt;code&gt;string result = &amp;quot;Score: &amp;quot; + score + &amp;quot; Time: &amp;quot; + time; // 产生GC&lt;/code&gt;
+&lt;code&gt;// 2. 装箱操作&lt;/code&gt;
+&lt;code&gt;int number = 42;&lt;/code&gt;
+&lt;code&gt;object boxed = number; // 装箱，产生GC&lt;/code&gt;
+&lt;code&gt;// 3. LINQ查询&lt;/code&gt;
+&lt;code&gt;var filtered = someList.Where(x =&amp;gt; x &amp;gt; 10).ToList(); // 产生GC&lt;/code&gt;
+&lt;code&gt;// 4. 匿名方法/Lambda&lt;/code&gt;
+&lt;code&gt;someList.ForEach(x =&amp;gt; Debug.Log(x)); // 可能产生GC&lt;/code&gt;
+&lt;code&gt;// 5. 数组分配&lt;/code&gt;
+&lt;code&gt;Vector3[] tempArray = new Vector3[100]; // 产生GC&lt;/code&gt;
+&lt;code&gt;}&lt;/code&gt;
+&lt;code&gt;}&lt;/code&gt;&lt;/p&gt;</description></item><item><title>Unity穿模问题</title><link>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</link><pubDate>Thu, 14 Aug 2025 15:25:30 +0800</pubDate><guid>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的boxcollider来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：&lt;/p&gt;
+&lt;h1 id="1-增大碰撞体1505"&gt;1. 增大碰撞体15:05&lt;/h1&gt;
 &lt;p&gt;这是最直接，也是最方便的直接拉大碰撞体，不给模型穿模的机会&lt;/p&gt;
-&lt;h2 id="2使用continuous或continuous-dynamic碰撞检测"&gt;2.使用&lt;code&gt;Continuous&lt;/code&gt;或&lt;code&gt;Continuous Dynamic&lt;/code&gt;碰撞检测&lt;/h2&gt;
+&lt;h1 id="2-使用continuous或continuous-dynamic碰撞检测"&gt;2. 使用&lt;code&gt;Continuous&lt;/code&gt;或&lt;code&gt;Continuous Dynamic&lt;/code&gt;碰撞检测&lt;/h1&gt;
 &lt;p&gt;通过设置Rigidbody组件中的Collision Detection属性
 Discrete（离散）： 默认值。性能最好，但高速物体容易穿模。
 Continuous（连续）： 用于防止该物体与其他静态网格碰撞器穿模。性能开销中等。
@@ -52,22 +71,35 @@ Continuous Dynamic（连续动态）： 用于防止该物体与其他动态物�
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;建议&lt;/strong&gt;：只给&lt;strong&gt;高速移动的物体&lt;/strong&gt;（如子弹、玩家角色、高速飞行的道具）设置 &lt;code&gt;Continuous Dynamic&lt;/code&gt;，给静态但复杂的网格碰撞器设置 &lt;code&gt;Continuous&lt;/code&gt;。不要滥用，否则会严重影响性能。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="3优化角色控制器"&gt;3.优化角色控制器&lt;/h2&gt;
+&lt;h1 id="3-优化角色控制器"&gt;3. 优化角色控制器&lt;/h1&gt;
 &lt;p&gt;1.如果使用的是&lt;code&gt;CharacterController&lt;/code&gt;则调整&lt;code&gt;slope Limit&lt;/code&gt;（坡度限制）和 &lt;code&gt;step Offset&lt;/code&gt;（台阶高度
 2.使用&lt;code&gt;Rigidbody&lt;/code&gt; + &lt;code&gt;CapsuleCollider&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id="4更改移动逻辑"&gt;4.更改移动逻辑&lt;/h2&gt;
+&lt;h1 id="4-更改移动逻辑"&gt;4. 更改移动逻辑&lt;/h1&gt;
 &lt;p&gt;添加代码判断与物体之间的距离，达到一定距离后，使用代码限制移动
 更高级的方案：&lt;code&gt;Physics.SphereCast&lt;/code&gt; 或 &lt;code&gt;Physics.CapsuleCast&lt;/code&gt;（还没测试过）&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;这些方法比 &lt;code&gt;Raycast&lt;/code&gt; 更精确，因为它们考虑了碰撞体的体积，能更好地模拟角色本身的形状进行预测&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="5图层碰撞矩阵"&gt;5.图层碰撞矩阵&lt;/h2&gt;
+&lt;h1 id="5-图层碰撞矩阵"&gt;5. 图层碰撞矩阵&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;方法&lt;/strong&gt;：进入 &lt;code&gt;Edit -&amp;gt; Project Settings -&amp;gt; Physics&lt;/code&gt;，查看 &lt;code&gt;Layer Collision Matrix&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;使用&lt;/strong&gt;：你可以创建不同的图层（Layer），例如“Player”、“Enemy”、“Environment”、“Ignore Raycast”等。然后在这个矩阵中，取消勾选不需要相互碰撞的图层。例如，你可能不希望两个玩家之间发生物理碰撞，就可以取消Player层与Player层的勾选。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="6优化美术资源"&gt;6.优化美术资源&lt;/h2&gt;
+&lt;h1 id="6-优化美术资源"&gt;6. 优化美术资源&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;不使用meshcollider，不勾选convex（计算成本很高）&lt;/li&gt;
 &lt;li&gt;使用原始碰撞体拼接&lt;/li&gt;
-&lt;/ul&gt;</description></item></channel></rss>
+&lt;/ul&gt;</description></item><item><title>面向对象的三大特点</title><link>https://lucasss1916.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E7%82%B9/</link><pubDate>Tue, 10 Jun 2025 17:02:19 +0800</pubDate><guid>https://lucasss1916.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E7%82%B9/</guid><description>&lt;h1 id="1-封装-符合开闭原则"&gt;1. 封装 (符合开闭原则&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;)&lt;/h1&gt;
+&lt;p&gt;将数据和方法打包到类中，并对外隐藏内部细节，通过访问修饰符控制暴露的程度。（如private，public，protected）&lt;/p&gt;
+&lt;h1 id="2-继承"&gt;2. 继承&lt;/h1&gt;
+&lt;p&gt;子类可以继承父类的属性和方法，并可以扩展和重写这些功能&lt;/p&gt;
+&lt;h1 id="3-多态"&gt;3. 多态&lt;/h1&gt;
+&lt;p&gt;同一操作作用于不同的对象，可以产生不同的执行结果。简单说就是“一个接口，多种实现”。&lt;/p&gt;
+&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;开闭原则：对于扩展开放，对于修改关闭&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item></channel></rss>
