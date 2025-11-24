@@ -61,7 +61,7 @@
 &lt;code&gt;Vector3[] tempArray = new Vector3[100]; // 产生GC&lt;/code&gt;&lt;br&gt;
 &lt;code&gt;}&lt;/code&gt;&lt;br&gt;
 &lt;code&gt;}&lt;/code&gt;&lt;/p&gt;</description></item><item><title>Unity穿模问题</title><link>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</link><pubDate>Thu, 14 Aug 2025 15:25:30 +0800</pubDate><guid>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</guid><description>&lt;p&gt;在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的boxcollider来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：&lt;/p&gt;
-&lt;h1 id="1-增大碰撞体1505"&gt;1. 增大碰撞体15:05&lt;/h1&gt;
+&lt;h1 id="1-增大碰撞体"&gt;1. 增大碰撞体&lt;/h1&gt;
 &lt;p&gt;这是最直接，也是最方便的直接拉大碰撞体，不给模型穿模的机会&lt;/p&gt;
 &lt;h1 id="2-使用continuous或continuous-dynamic碰撞检测"&gt;2. 使用&lt;code&gt;Continuous&lt;/code&gt;或&lt;code&gt;Continuous Dynamic&lt;/code&gt;碰撞检测&lt;/h1&gt;
 &lt;p&gt;通过设置Rigidbody组件中的Collision Detection属性
