@@ -24,25 +24,25 @@ lastmod: 2025-11-24T15:56:01+08:00
 - 系统内存不足
 - 应用程序卸载域
 # 5. 主要GC来源
-`using UnityEngine;`
-`using System.Collections;`
-`public class GCExample : MonoBehaviour`
-`{`
-    `void Update()`
-    `{`
-        `// 1. 字符串拼接`
-        `string result = "Score: " + score + " Time: " + time; // 产生GC`
-        `// 2. 装箱操作`
-        `int number = 42;`
-        `object boxed = number; // 装箱，产生GC`
-        `// 3. LINQ查询`
-        `var filtered = someList.Where(x => x > 10).ToList(); // 产生GC`
-        `// 4. 匿名方法/Lambda`
-        `someList.ForEach(x => Debug.Log(x)); // 可能产生GC`
-        `// 5. 数组分配`
-        `Vector3[] tempArray = new Vector3[100]; // 产生GC`
-    `}`
-`}`
+`using UnityEngine;`  
+`using System.Collections;`  
+`public class GCExample : MonoBehaviour`  
+`{`  
+    `void Update()`  
+    `{`  
+        `// 1. 字符串拼接`  
+        `string result = "Score: " + score + " Time: " + time; // 产生GC`  
+        `// 2. 装箱操作`  
+        `int number = 42;`  
+        `object boxed = number; // 装箱，产生GC`  
+        `// 3. LINQ查询`  
+        `var filtered = someList.Where(x => x > 10).ToList(); // 产生GC`  
+        `// 4. 匿名方法/Lambda`  
+        `someList.ForEach(x => Debug.Log(x)); // 可能产生GC`  
+        `// 5. 数组分配`  
+        `Vector3[] tempArray = new Vector3[100]; // 产生GC`  
+    `}`  
+`}`  
 # 6. GC优化技巧
 ## 6.1. 避免在循环中分配内存
 ## 6.2. 使用对象池，避免频繁的Instantiate/Destory
