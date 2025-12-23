@@ -9,13 +9,13 @@ categories:
   - c#
 cover: /images/logo.PNG
 ---
-# Csharp委托（Delegate）
-## 委托的定义
+# 1. Csharp委托（Delegate）
+## 1.1. 委托的定义
 ```
 public delegate void newDelegate(string message);
 public delegate int CalculateDelegate(int x, int y);
 ```
-## 使用委托
+## 1.2. 使用委托
 ```
     // 声明委托
     delegate void PrintDelegate(string text);
@@ -46,7 +46,7 @@ public delegate int CalculateDelegate(int x, int y);
         Console.WriteLine(message);
     }
 ```
-## 多播委托
+## 1.3. 多播委托
 ```
 class MulticastDelegateExample
 {
@@ -78,7 +78,7 @@ class MulticastDelegateExample
     }
 }
 ```
-## 内置委托类型
+## 1.4. 内置委托类型
 ```
 static void  Main()
 {
@@ -101,4 +101,4 @@ static void  Main()
 	Console.WriteLine($"Even Numbers :{string.Join(",",evenNumbers)}");
 }
 ```
-## 委托作为参数
+## 1.5. 委托作为参数
