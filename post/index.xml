@@ -2,7 +2,87 @@
 &lt;h2 id="委托的定义"&gt;委托的定义&lt;/h2&gt;
 &lt;pre tabindex="0"&gt;&lt;code&gt;public delegate void newDelegate(string message);
 public delegate int CalculateDelegate(int x, int y);
-&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>部署blog</title><link>https://lucasss1916.github.io/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</link><pubDate>Sun, 31 Aug 2025 17:04:19 +0800</pubDate><guid>https://lucasss1916.github.io/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</guid><description>&lt;h1 id="1-1下载安装hugo"&gt;1. 1.下载安装hugo&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="使用委托"&gt;使用委托&lt;/h2&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; // 声明委托
+ delegate void PrintDelegate(string text);
+ 
+ static void Main()
+ {
+ // 1. 传统方式实例化委托
+ PrintDelegate printer = new PrintDelegate(PrintMessage);
+ printer(&amp;#34;Hello, World!&amp;#34;);
+ 
+ // 2. 简化语法（C# 2.0+）
+ PrintDelegate printer2 = PrintMessage;
+ printer2(&amp;#34;Hello from simplified syntax!&amp;#34;);
+ 
+ // 3. 匿名方法（C# 2.0）
+ PrintDelegate printer3 = delegate(string text)
+ {
+ Console.WriteLine(&amp;#34;Anonymous method: &amp;#34; + text);
+ };
+ printer3(&amp;#34;Testing anonymous method&amp;#34;);
+ 
+ // 4. Lambda表达式（C# 3.0+）
+ PrintDelegate printer4 = (text) =&amp;gt; Console.WriteLine(&amp;#34;Lambda: &amp;#34; + text);
+ printer4(&amp;#34;Testing lambda expression&amp;#34;);
+ }
+ static void PrintMessage(string message)
+ {
+ Console.WriteLine(message);
+ }
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="多播委托"&gt;多播委托&lt;/h2&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;class MulticastDelegateExample
+{
+	delegate void ProgressDelegate(int perfect);
+	static void main()
+	{
+		ProgressDelegate progress =null;
+		//添加多个方法到委托
+		progress += UpdateProgressBar;
+		progress += LogProgress;
+		progress += ShowNotification;
+		
+		progress(50);
+		progress -=LogProgess;
+		Console.WriteLine(&amp;#34;\nAfter removing LogProgress: &amp;#34;);
+		progress(75);
+	}
+	static void UpdateProgressBar(int percant)
+	{
+		 Console.writeLine($&amp;#34;Progress bar updated :{percent}%&amp;#34;)
+	}
+	static void LogProgress(int percent)
+ {
+ Console.WriteLine($&amp;#34;Logging progress: {percent}%&amp;#34;);
+ }
+ static void ShowNotification(int percent)
+ {
+ Console.WriteLine($&amp;#34;Notification: Task is {percent}% complete&amp;#34;);
+ }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="内置委托类型"&gt;内置委托类型&lt;/h2&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;static void Main()
+{
+	//1.Action&amp;lt;T&amp;gt; - 无返回值的方法
+	Action&amp;lt;string&amp;gt; action1 = Console.WriteLine;
+	Action&amp;lt;int ,int&amp;gt; action2 =(x,y)=&amp;gt; Console.WriteLine($&amp;#34;sum: {x+y}&amp;#34;);
+	action1(&amp;#34;Hello Action!&amp;#34;);
+	action2(10,20);
+ // 2. Func&amp;lt;T, TResult&amp;gt; - 有返回值的方法
+ Func&amp;lt;int, int, int&amp;gt; add = (x, y) =&amp;gt; x + y;
+ Func&amp;lt;string, string&amp;gt; upper = s =&amp;gt; s.ToUpper();
+ 
+ Console.WriteLine($&amp;#34;Add result: {add(5, 3)}&amp;#34;);
+ Console.WriteLine($&amp;#34;Upper: {upper(&amp;#34;hello&amp;#34;)}&amp;#34;);
+	//3.Predicate&amp;lt;T&amp;gt; - 返回bool的方法
+	Predicate&amp;lt;int&amp;gt; isEven =x =&amp;gt;x % 2 ==0
+	int[] numbers ={1,2,3,4,5};
+	
+	var evenNumbers= Array.FindAll(numbers,isEven);
+	Console.WriteLine($&amp;#34;Even Numbers :{string.Join(&amp;#34;,&amp;#34;,evenNumbers)}&amp;#34;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="委托作为参数"&gt;委托作为参数&lt;/h2&gt;</description></item><item><title>部署blog</title><link>https://lucasss1916.github.io/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</link><pubDate>Sun, 31 Aug 2025 17:04:19 +0800</pubDate><guid>https://lucasss1916.github.io/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</guid><description>&lt;h1 id="1-1下载安装hugo"&gt;1. 1.下载安装hugo&lt;/h1&gt;
 &lt;p&gt;1.在macos上安装hugo&lt;/p&gt;
 &lt;pre tabindex="0"&gt;&lt;code&gt;brew install hugo
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.查看是否安装完成&lt;/p&gt;

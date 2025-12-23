@@ -17,7 +17,84 @@ results
 for <strong>CSharp</strong></div><div class="TableObject-item text-right v-align-top"><a class="issues-reset-query text-normal d-inline-block ml-3" href=https://lucasss1916.github.io//post/><svg class="octicon octicon-x issues-reset-query-icon mt-1" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M3.72 3.72a.75.75.0 011.06.0L8 6.94l3.22-3.22a.75.75.0 111.06 1.06L9.06 8l3.22 3.22a.75.75.0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75.0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75.0 010-1.06z"/></svg>
 Clear filter</a></div></div><ul><li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source"><div class="col-12 d-inline-block"><div class="d-inline-block mb-1"><h3 class=wb-break-all><a href=https://lucasss1916.github.io/post/csharp%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6/>Csharp委托和事件</a></h3></div><div><div class="col-12 d-inline-block text-gray mb-2 pr-4"><h1 id=csharp委托delegate>Csharp委托（Delegate）</h1><h2 id=委托的定义>委托的定义</h2><pre tabindex=0><code>public delegate void newDelegate(string message);
 public delegate int CalculateDelegate(int x, int y);
-</code></pre></div></div><div class="f6 text-gray mt-2"><a class="muted-link mr-3" href=/tags/csharp><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>
+</code></pre><h2 id=使用委托>使用委托</h2><pre tabindex=0><code>    // 声明委托
+    delegate void PrintDelegate(string text);
+    
+    static void Main()
+    {
+        // 1. 传统方式实例化委托
+        PrintDelegate printer = new PrintDelegate(PrintMessage);
+        printer(&#34;Hello, World!&#34;);
+        
+        // 2. 简化语法（C# 2.0+）
+        PrintDelegate printer2 = PrintMessage;
+        printer2(&#34;Hello from simplified syntax!&#34;);
+        
+        // 3. 匿名方法（C# 2.0）
+        PrintDelegate printer3 = delegate(string text)
+        {
+            Console.WriteLine(&#34;Anonymous method: &#34; + text);
+        };
+        printer3(&#34;Testing anonymous method&#34;);
+        
+        // 4. Lambda表达式（C# 3.0+）
+        PrintDelegate printer4 = (text) =&gt; Console.WriteLine(&#34;Lambda: &#34; + text);
+        printer4(&#34;Testing lambda expression&#34;);
+    }
+    static void PrintMessage(string message)
+    {
+        Console.WriteLine(message);
+    }
+</code></pre><h2 id=多播委托>多播委托</h2><pre tabindex=0><code>class MulticastDelegateExample
+{
+	delegate void ProgressDelegate(int perfect);
+	static void main()
+	{
+		ProgressDelegate progress =null;
+		//添加多个方法到委托
+		progress += UpdateProgressBar;
+		progress += LogProgress;
+		progress += ShowNotification;
+		
+		progress(50);
+		progress -=LogProgess;
+		Console.WriteLine(&#34;\nAfter removing LogProgress: &#34;);
+		progress(75);
+	}
+	static void UpdateProgressBar(int percant)
+	{
+		 Console.writeLine($&#34;Progress bar updated :{percent}%&#34;)
+	}
+	static void LogProgress(int percent)
+    {
+        Console.WriteLine($&#34;Logging progress: {percent}%&#34;);
+    }
+    static void ShowNotification(int percent)
+    {
+        Console.WriteLine($&#34;Notification: Task is {percent}% complete&#34;);
+    }
+}
+</code></pre><h2 id=内置委托类型>内置委托类型</h2><pre tabindex=0><code>static void  Main()
+{
+	//1.Action&lt;T&gt; -  无返回值的方法
+	Action&lt;string&gt; action1 = Console.WriteLine;
+	Action&lt;int ,int&gt; action2 =(x,y)=&gt; Console.WriteLine($&#34;sum: {x+y}&#34;);
+	action1(&#34;Hello Action!&#34;);
+	action2(10,20);
+    // 2. Func&lt;T, TResult&gt; - 有返回值的方法
+    Func&lt;int, int, int&gt; add = (x, y) =&gt; x + y;
+    Func&lt;string, string&gt; upper = s =&gt; s.ToUpper();
+    
+    Console.WriteLine($&#34;Add result: {add(5, 3)}&#34;);
+    Console.WriteLine($&#34;Upper: {upper(&#34;hello&#34;)}&#34;);
+	//3.Predicate&lt;T&gt; - 返回bool的方法
+	Predicate&lt;int&gt; isEven =x =&gt;x % 2 ==0
+	int[] numbers ={1,2,3,4,5};
+	
+	var evenNumbers= Array.FindAll(numbers,isEven);
+	Console.WriteLine($&#34;Even Numbers :{string.Join(&#34;,&#34;,evenNumbers)}&#34;);
+}
+</code></pre><h2 id=委托作为参数>委托作为参数</h2></div></div><div class="f6 text-gray mt-2"><a class="muted-link mr-3" href=/tags/csharp><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>
 CSharp
 </a>Created
 <relative-time datetime="Tue, 23 Dec 2025 12:51:00 +0800" class=no-wrap title=" Tue, 23 Dec 2025 12:51:00 +0800">Tue, 23 Dec 2025 12:51:00 +0800</relative-time></div></div></li><li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source"><div class="col-12 d-inline-block"><div class="d-inline-block mb-1"><h3 class=wb-break-all><a href=https://lucasss1916.github.io/post/gc/>GC</a></h3></div><div><div class="col-12 d-inline-block text-gray mb-2 pr-4"><h1 id=1-什么是gc>1. 什么是GC</h1><p><strong>垃圾回收</strong>是自动内存管理机制，负责自动释放不再使用的内存，防止内存泄漏。</p><h1 id=2-基本概念>2. 基本概念</h1><ul><li><strong>根对象</strong>：静态字段、局部变量、CPU寄存器等</li><li><strong>可达性</strong>：从根对象直接或间接引用的对象</li><li><strong>代际理论</strong>：对象生存期越短，越应该被快速回收</li></ul><h1 id=3-netunity三代gc>3. Net/Unity三代GC</h1><ul><li>Generation 0 ：新创建的对象15:01</li><li>Generation 1 ：存货过一次的gc对象</li><li>Generation 2: 长期存活的对象</li></ul><h1 id=4-gc触发时机>4. GC触发时机</h1><ul><li>第0代满时</li><li>手动调用GC.Collect（）</li><li>系统内存不足</li><li>应用程序卸载域</li></ul><h1 id=5-主要gc来源>5. 主要GC来源</h1><p><code>using UnityEngine;</code><br><code>using System.Collections;</code><br><code>public class GCExample : MonoBehaviour</code><br><code>{</code><br><code>void Update()</code><br><code>{</code><br><code>// 1. 字符串拼接</code><br><code>string result = "Score: " + score + " Time: " + time; // 产生GC</code><br><code>// 2. 装箱操作</code><br><code>int number = 42;</code><br><code>object boxed = number; // 装箱，产生GC</code><br><code>// 3. LINQ查询</code><br><code>var filtered = someList.Where(x => x > 10).ToList(); // 产生GC</code><br><code>// 4. 匿名方法/Lambda</code><br><code>someList.ForEach(x => Debug.Log(x)); // 可能产生GC</code><br><code>// 5. 数组分配</code><br><code>Vector3[] tempArray = new Vector3[100]; // 产生GC</code><br><code>}</code><br><code>}</code></p></div></div><div class="f6 text-gray mt-2"><a class="muted-link mr-3" href=/tags/csharp><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>

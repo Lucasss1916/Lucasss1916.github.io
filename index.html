@@ -15,7 +15,84 @@ Posts
 <span class=Counter>5</span></a></nav></div><div><div class=position-relative><div class=mt-4><div class=js-pinned-items-reorder-container><h2 class="f4 mb-2 text-normal">Popular posts</h2><ol class="d-flex flex-wrap list-style-none gutter-condensed mb-4 js-pinned-items-reorder-list"><li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch"><div class="Box pinned-item-list-item d-flex p-3 width-full js-pinned-item-list-item public source reorderable sortable-button-item"><div class=pinned-item-list-item-content><div class="d-flex width-full flex-items-center position-relative"><svg class="octicon octicon-repo mr-2 text-gray flex-shrink-0" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5.0 014.5.0h8.75a.75.75.0 01.75.75v12.5a.75.75.0 01-.75.75h-2.5a.75.75.0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75.0 01-1.072 1.05A2.495 2.495.0 012 11.5v-9zm10.5-1V9h-8c-.356.0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25.0 00.4.2l1.45-1.087a.25.25.0 01.3.0L8.6 15.7a.25.25.0 00.4-.2v-3.25A.25.25.0 008.75 12h-3.5a.25.25.0 00-.25.25z"/></svg>
 <a class="text-bold flex-auto min-width-0" href=https://lucasss1916.github.io/post/csharp%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6/><span class=repo title=Csharp委托和事件>Csharp委托和事件</span></a></div><div name=summary class="pinned-item-desc text-gray text-small d-block mt-2 mb-3"><h1 id=csharp委托delegate>Csharp委托（Delegate）</h1><h2 id=委托的定义>委托的定义</h2><pre tabindex=0><code>public delegate void newDelegate(string message);
 public delegate int CalculateDelegate(int x, int y);
-</code></pre></div><p class="mb-0 f6 text-gray"><a href=/tags/csharp class="pinned-item-meta muted-link"><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>
+</code></pre><h2 id=使用委托>使用委托</h2><pre tabindex=0><code>    // 声明委托
+    delegate void PrintDelegate(string text);
+    
+    static void Main()
+    {
+        // 1. 传统方式实例化委托
+        PrintDelegate printer = new PrintDelegate(PrintMessage);
+        printer(&#34;Hello, World!&#34;);
+        
+        // 2. 简化语法（C# 2.0+）
+        PrintDelegate printer2 = PrintMessage;
+        printer2(&#34;Hello from simplified syntax!&#34;);
+        
+        // 3. 匿名方法（C# 2.0）
+        PrintDelegate printer3 = delegate(string text)
+        {
+            Console.WriteLine(&#34;Anonymous method: &#34; + text);
+        };
+        printer3(&#34;Testing anonymous method&#34;);
+        
+        // 4. Lambda表达式（C# 3.0+）
+        PrintDelegate printer4 = (text) =&gt; Console.WriteLine(&#34;Lambda: &#34; + text);
+        printer4(&#34;Testing lambda expression&#34;);
+    }
+    static void PrintMessage(string message)
+    {
+        Console.WriteLine(message);
+    }
+</code></pre><h2 id=多播委托>多播委托</h2><pre tabindex=0><code>class MulticastDelegateExample
+{
+	delegate void ProgressDelegate(int perfect);
+	static void main()
+	{
+		ProgressDelegate progress =null;
+		//添加多个方法到委托
+		progress += UpdateProgressBar;
+		progress += LogProgress;
+		progress += ShowNotification;
+		
+		progress(50);
+		progress -=LogProgess;
+		Console.WriteLine(&#34;\nAfter removing LogProgress: &#34;);
+		progress(75);
+	}
+	static void UpdateProgressBar(int percant)
+	{
+		 Console.writeLine($&#34;Progress bar updated :{percent}%&#34;)
+	}
+	static void LogProgress(int percent)
+    {
+        Console.WriteLine($&#34;Logging progress: {percent}%&#34;);
+    }
+    static void ShowNotification(int percent)
+    {
+        Console.WriteLine($&#34;Notification: Task is {percent}% complete&#34;);
+    }
+}
+</code></pre><h2 id=内置委托类型>内置委托类型</h2><pre tabindex=0><code>static void  Main()
+{
+	//1.Action&lt;T&gt; -  无返回值的方法
+	Action&lt;string&gt; action1 = Console.WriteLine;
+	Action&lt;int ,int&gt; action2 =(x,y)=&gt; Console.WriteLine($&#34;sum: {x+y}&#34;);
+	action1(&#34;Hello Action!&#34;);
+	action2(10,20);
+    // 2. Func&lt;T, TResult&gt; - 有返回值的方法
+    Func&lt;int, int, int&gt; add = (x, y) =&gt; x + y;
+    Func&lt;string, string&gt; upper = s =&gt; s.ToUpper();
+    
+    Console.WriteLine($&#34;Add result: {add(5, 3)}&#34;);
+    Console.WriteLine($&#34;Upper: {upper(&#34;hello&#34;)}&#34;);
+	//3.Predicate&lt;T&gt; - 返回bool的方法
+	Predicate&lt;int&gt; isEven =x =&gt;x % 2 ==0
+	int[] numbers ={1,2,3,4,5};
+	
+	var evenNumbers= Array.FindAll(numbers,isEven);
+	Console.WriteLine($&#34;Even Numbers :{string.Join(&#34;,&#34;,evenNumbers)}&#34;);
+}
+</code></pre><h2 id=委托作为参数>委托作为参数</h2></div><p class="mb-0 f6 text-gray"><a href=/tags/csharp class="pinned-item-meta muted-link"><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>
 CSharp</a></p></div></div></li><li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch"><div class="Box pinned-item-list-item d-flex p-3 width-full js-pinned-item-list-item public source reorderable sortable-button-item"><div class=pinned-item-list-item-content><div class="d-flex width-full flex-items-center position-relative"><svg class="octicon octicon-repo mr-2 text-gray flex-shrink-0" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5.0 014.5.0h8.75a.75.75.0 01.75.75v12.5a.75.75.0 01-.75.75h-2.5a.75.75.0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75.0 01-1.072 1.05A2.495 2.495.0 012 11.5v-9zm10.5-1V9h-8c-.356.0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25.0 00.4.2l1.45-1.087a.25.25.0 01.3.0L8.6 15.7a.25.25.0 00.4-.2v-3.25A.25.25.0 008.75 12h-3.5a.25.25.0 00-.25.25z"/></svg>
 <a class="text-bold flex-auto min-width-0" href=https://lucasss1916.github.io/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/><span class=repo title=部署blog>部署blog</span></a></div><div name=summary class="pinned-item-desc text-gray text-small d-block mt-2 mb-3"><h1 id=1-1下载安装hugo>1. 1.下载安装hugo</h1><p>1.在macos上安装hugo</p><pre tabindex=0><code>brew install hugo
 </code></pre><p>2.查看是否安装完成</p><pre tabindex=0><code>hugo version
