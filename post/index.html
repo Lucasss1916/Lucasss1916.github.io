@@ -21,9 +21,9 @@ unity
 </a><a class="muted-link mr-3" href=/tags/csharp/><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>
 csharp
 </a><a class="muted-link mr-3" href=/tags/unity/><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>
-unity</a></div><ul><li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source"><div class="col-12 d-inline-block"><div class="d-inline-block mb-1"><h3 class=wb-break-all><a href=https://lucasss1916.github.io/post/csharp%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6/>Csharp委托和事件</a></h3></div><div><div class="col-12 d-inline-block text-gray mb-2 pr-4"><h1 id=csharp委托delegate>Csharp委托（Delegate）</h1><h2 id=委托的定义>委托的定义</h2><pre tabindex=0><code>public delegate void newDelegate(string message);
+unity</a></div><ul><li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source"><div class="col-12 d-inline-block"><div class="d-inline-block mb-1"><h3 class=wb-break-all><a href=https://lucasss1916.github.io/post/csharp%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6/>Csharp委托和事件</a></h3></div><div><div class="col-12 d-inline-block text-gray mb-2 pr-4"><h1 id=1-csharp委托delegate>1. Csharp委托（Delegate）</h1><h2 id=11-委托的定义>1.1. 委托的定义</h2><pre tabindex=0><code>public delegate void newDelegate(string message);
 public delegate int CalculateDelegate(int x, int y);
-</code></pre><h2 id=使用委托>使用委托</h2><pre tabindex=0><code>    // 声明委托
+</code></pre><h2 id=12-使用委托>1.2. 使用委托</h2><pre tabindex=0><code>    // 声明委托
     delegate void PrintDelegate(string text);
     
     static void Main()
@@ -51,7 +51,7 @@ public delegate int CalculateDelegate(int x, int y);
     {
         Console.WriteLine(message);
     }
-</code></pre><h2 id=多播委托>多播委托</h2><pre tabindex=0><code>class MulticastDelegateExample
+</code></pre><h2 id=13-多播委托>1.3. 多播委托</h2><pre tabindex=0><code>class MulticastDelegateExample
 {
 	delegate void ProgressDelegate(int perfect);
 	static void main()
@@ -80,7 +80,7 @@ public delegate int CalculateDelegate(int x, int y);
         Console.WriteLine($&#34;Notification: Task is {percent}% complete&#34;);
     }
 }
-</code></pre><h2 id=内置委托类型>内置委托类型</h2><pre tabindex=0><code>static void  Main()
+</code></pre><h2 id=14-内置委托类型>1.4. 内置委托类型</h2><pre tabindex=0><code>static void  Main()
 {
 	//1.Action&lt;T&gt; -  无返回值的方法
 	Action&lt;string&gt; action1 = Console.WriteLine;
@@ -100,7 +100,7 @@ public delegate int CalculateDelegate(int x, int y);
 	var evenNumbers= Array.FindAll(numbers,isEven);
 	Console.WriteLine($&#34;Even Numbers :{string.Join(&#34;,&#34;,evenNumbers)}&#34;);
 }
-</code></pre><h2 id=委托作为参数>委托作为参数</h2></div></div><div class="f6 text-gray mt-2"><a class="muted-link mr-3" href=/tags/csharp><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>
+</code></pre><h2 id=15-委托作为参数>1.5. 委托作为参数</h2></div></div><div class="f6 text-gray mt-2"><a class="muted-link mr-3" href=/tags/csharp><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>
 CSharp
 </a>Created
 <relative-time datetime="Tue, 23 Dec 2025 12:51:00 +0800" class=no-wrap title=" Tue, 23 Dec 2025 12:51:00 +0800">Tue, 23 Dec 2025 12:51:00 +0800</relative-time></div></div></li><li class="col-12 d-flex width-full py-4 border-bottom color-border-secondary public source"><div class="col-12 d-inline-block"><div class="d-inline-block mb-1"><h3 class=wb-break-all><a href=https://lucasss1916.github.io/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/>部署blog</a></h3></div><div><div class="col-12 d-inline-block text-gray mb-2 pr-4"><h1 id=1-1下载安装hugo>1. 1.下载安装hugo</h1><p>1.在macos上安装hugo</p><pre tabindex=0><code>brew install hugo
