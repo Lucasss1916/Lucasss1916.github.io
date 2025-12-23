@@ -31,7 +31,8 @@ cd hugo-blog
 创建主题 
 ```
 git init 
-git submoudle add https://github.com/adityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.git
+git submoudle add 
+	https://github.com/adityatelange/hugo-PaperMod.git
 themes/PaperMod   
 ```  
 修改配置hugo.toml   
