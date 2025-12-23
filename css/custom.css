@@ -65,6 +65,85 @@
   hyphens: auto !important;
 }
 
+/* 额外强制补丁：针对卡片容器内任意 .Box/.pinned-item-list-item-content 的 pre/code，确保不超过父容器 */
+.Box pre,
+.Box pre code,
+.Box code,
+.pinned-item-list-item-content pre,
+.pinned-item-list-item-content pre code,
+.pinned-item-list-item-content code {
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  overflow-wrap: anywhere !important;
+  max-width: 100% !important;
+  width: auto !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+/* 更强力规则：把所有卡片内的 code 元素变为块级并强制在父容器内换行 */
+.pinned-item-desc code,
+.pinned-item-desc pre code,
+.pinned-item-list-item-content code,
+.Box code {
+  display: block !important;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  overflow-wrap: anywhere !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+/* 确保卡片容器不会被子元素撑开 */
+.Box,
+.pinned-item-list-item,
+.pinned-item-list-item-content {
+  overflow-x: hidden !important;
+}
+
+/* 最后的兜底：全局强制 code/inline-code 在页面主体内换行，防止任何未覆盖到的 inline code 溢出 */
+.application-main code,
+.container-xl code,
+.container code,
+main code,
+pre code,
+code {
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  overflow-wrap: anywhere !important;
+  hyphens: auto !important;
+  max-width: 100% !important;
+  display: inline-block !important;
+  box-sizing: border-box !important;
+}
+
+/* 更强力的 modern fallback：针对主页卡片中有 tabindex 的 pre/code，限制 inline 大小并允许任意断行 */
+.pinned-item-desc pre[tabindex] , .pinned-item-desc pre[tabindex] code,
+.pinned-item-list-item-content pre[tabindex], .pinned-item-list-item-content pre[tabindex] code {
+  white-space: pre-wrap !important;
+  -webkit-line-break: anywhere !important;
+  line-break: anywhere !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  max-inline-size: 100% !important; /* modern property */
+  inline-size: 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+/* 如果仍然遇到极端长的无分隔字符串，允许浏览器在任何位置换行（最后手段） */
+.pinned-item-desc pre[tabindex] code::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  word-break: break-all;
+}
+
 /* 5. 引用块样式 (保留) */
 blockquote {
   border-left: 4px solid var(--secondary-color);

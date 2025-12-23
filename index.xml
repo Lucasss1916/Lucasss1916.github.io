@@ -15,7 +15,8 @@ public delegate int CalculateDelegate(int x, int y);
 cd hugo-blog
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建主题&lt;/p&gt;
 &lt;pre tabindex="0"&gt;&lt;code&gt;git init 
-git submoudle add https://github.com/adityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.git
+git submoudle add 
+	https://github.com/adityatelange/hugo-PaperMod.git
 themes/PaperMod 
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改配置hugo.toml&lt;/p&gt;
 &lt;pre tabindex="0"&gt;&lt;code class="language-baseURL" data-lang="baseURL"&gt;languageCode = &amp;#34;en-us&amp;#34;` 
