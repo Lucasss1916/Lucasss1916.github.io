@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='http://localhost:1313/css/light.css' />
     <link rel="stylesheet" href='http://localhost:1313/css/dark.css' />
     <link rel="stylesheet" href='http://localhost:1313/css/syntax.css' />
-    <title>部署blog - Lucas`s blog</title>
+    <title>Csharp委托和事件 - Lucas`s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/icon.ico'>
     
@@ -21,33 +21,17 @@
 
     
     <meta name="description"
-  content="1. 1.下载安装hugo 1.在macos上安装hugo
-brew install hugo 2.查看是否安装完成
-hugo version 3.如果正确输出.
-比如v0.133.1&#43;extended darwin/amd64 则表示安装成功.
-2. 2.创建blog hugo new site hugo-blog cd hugo-blog 创建主题
-git init git submoudle add https://github.com/adityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.git themes/PaperMod 修改配置hugo.toml
-languageCode = &#34;en-us&#34;` title = &#34;My Hugo Blog&#34; theme = &#34;PaperMod&#34; 新建一篇文章
-hugo new posts/hello-world.md 本地预览,可通过1313端口访问
-hugo server -D " />
+  content="Csharp委托（Delegate） 委托的定义 public delegate void newDelegate(string message); public delegate int CalculateDelegate(int x, int y); " />
 <meta name="keywords"
   content='' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="http://localhost:1313/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/" />
+<link rel="canonical" href="http://localhost:1313/post/csharp%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="部署blog - Lucas`s blog" />
+<meta name="twitter:title" content="Csharp委托和事件 - Lucas`s blog" />
 <meta name="twitter:description"
-  content="1. 1.下载安装hugo 1.在macos上安装hugo
-brew install hugo 2.查看是否安装完成
-hugo version 3.如果正确输出.
-比如v0.133.1&#43;extended darwin/amd64 则表示安装成功.
-2. 2.创建blog hugo new site hugo-blog cd hugo-blog 创建主题
-git init git submoudle add https://github.com/adityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.git themes/PaperMod 修改配置hugo.toml
-languageCode = &#34;en-us&#34;` title = &#34;My Hugo Blog&#34; theme = &#34;PaperMod&#34; 新建一篇文章
-hugo new posts/hello-world.md 本地预览,可通过1313端口访问
-hugo server -D " />
+  content="Csharp委托（Delegate） 委托的定义 public delegate void newDelegate(string message); public delegate int CalculateDelegate(int x, int y); " />
 <meta name="twitter:site" content="http://localhost:1313/" />
 <meta name="twitter:creator" content="lucas" />
 <meta name="twitter:image"
@@ -55,25 +39,17 @@ hugo server -D " />
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="部署blog - Lucas`s blog">
+<meta property="og:title" content="Csharp委托和事件 - Lucas`s blog">
 <meta property="og:description"
-  content="1. 1.下载安装hugo 1.在macos上安装hugo
-brew install hugo 2.查看是否安装完成
-hugo version 3.如果正确输出.
-比如v0.133.1&#43;extended darwin/amd64 则表示安装成功.
-2. 2.创建blog hugo new site hugo-blog cd hugo-blog 创建主题
-git init git submoudle add https://github.com/adityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.git themes/PaperMod 修改配置hugo.toml
-languageCode = &#34;en-us&#34;` title = &#34;My Hugo Blog&#34; theme = &#34;PaperMod&#34; 新建一篇文章
-hugo new posts/hello-world.md 本地预览,可通过1313端口访问
-hugo server -D " />
-<meta property="og:url" content="http://localhost:1313/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/" />
-<meta property="og:site_name" content="部署blog" />
+  content="Csharp委托（Delegate） 委托的定义 public delegate void newDelegate(string message); public delegate int CalculateDelegate(int x, int y); " />
+<meta property="og:url" content="http://localhost:1313/post/csharp%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6/" />
+<meta property="og:site_name" content="Csharp委托和事件" />
 <meta property="og:image"
   content="http://localhost:1313/images/logo.PNG">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2025-08-31 17:04:19 &#43;0800 CST" />
+<meta property="article:published_time" content="2025-12-23 12:51:00 &#43;0800 CST" />
 
 
 
@@ -169,13 +145,13 @@ hugo server -D " />
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="http://localhost:1313/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/">部署blog</a>
+                    <a href="http://localhost:1313/post/csharp%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6/">Csharp委托和事件</a>
                   </strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Sun, 31 Aug 2025 17:04:19 &#43;0800"
+                  Created <relative-time datetime="Tue, 23 Dec 2025 12:51:00 &#43;0800"
                     class="no-wrap">
-                    Sun, 31 Aug 2025 17:04:19 &#43;0800</relative-time>
+                    Tue, 23 Dec 2025 12:51:00 &#43;0800</relative-time>
 
                   
                 </div>
@@ -206,11 +182,22 @@ hugo server -D " />
                         </div>
                       </div>
                     </details-menu>
-                      156 Words
+                      35 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/csharp">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      CSharp
+                    </a>
+                    
                     
                   </div>
                 </div>
@@ -218,29 +205,10 @@ hugo server -D " />
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><h1 id="1-1下载安装hugo">1. 1.下载安装hugo</h1>
-<p>1.在macos上安装hugo</p>
-<pre tabindex="0"><code>brew install hugo
-</code></pre><p>2.查看是否安装完成</p>
-<pre tabindex="0"><code>hugo version
-</code></pre><p>3.如果正确输出.</p>
-<pre tabindex="0"><code>比如v0.133.1+extended darwin/amd64
-</code></pre><p>则表示安装成功.</p>
-<h1 id="2-2创建blog">2. 2.创建blog</h1>
-<pre tabindex="0"><code>hugo new site hugo-blog  
-cd hugo-blog
-</code></pre><p>创建主题</p>
-<pre tabindex="0"><code>git init 
-git submoudle add https://github.com/adityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.git
-themes/PaperMod   
-</code></pre><p>修改配置hugo.toml</p>
-<pre tabindex="0"><code class="language-baseURL" data-lang="baseURL">languageCode = &#34;en-us&#34;`  
-title = &#34;My Hugo Blog&#34;   
-theme = &#34;PaperMod&#34;
-</code></pre><p>新建一篇文章</p>
-<pre tabindex="0"><code>hugo new posts/hello-world.md
-</code></pre><p>本地预览,可通过1313端口访问</p>
-<pre tabindex="0"><code>hugo server -D
+                <article class="markdown-body entry-content container-lg"><h1 id="csharp委托delegate">Csharp委托（Delegate）</h1>
+<h2 id="委托的定义">委托的定义</h2>
+<pre tabindex="0"><code>public delegate void newDelegate(string message);
+public delegate int CalculateDelegate(int x, int y);
 </code></pre></article>
               </div>
             </div>

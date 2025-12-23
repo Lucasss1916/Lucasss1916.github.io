@@ -1,0 +1,81 @@
+/* =========================================
+   Github-Style 主题：首页溢出终极修复版
+   (针对 .pinned-item-desc 结构定制)
+   ========================================= */
+
+/* 1. 基础变量 (保持主题原样) */
+:root {
+  --primary-color: #24292e;
+  --secondary-color: #0366d6;
+  --border-color: #e1e4e8;
+}
+
+/* 2. 核心修复：针对 .pinned-item-desc 容器 */
+/* 你的 HTML 结构显示内容在 .pinned-item-desc 中，必须先限制它 */
+.pinned-item-desc {
+    width: 100% !important;      /* 强制宽度 100% */
+    max-width: 100% !important;  /* 绝不允许超过父容器 */
+    display: block !important;   /* 确保作为块级元素处理 */
+    overflow: hidden !important; /* 万一还有溢出，直接隐藏，保证不炸版 */
+    box-sizing: border-box !important;
+}
+
+/* 3. 代码块溢出处理：主页框内强制换行（覆盖主题样式，防止溢出容器） */
+.pinned-item-desc pre,
+.pinned-item-desc code,
+.pinned-item-desc .markdown-body pre,
+.highlight pre,
+.markdown-body pre {
+  /* 强制换行以适应外层盒子 */
+  white-space: pre-wrap !important;    /* 允许换行并保留空白 */
+  word-break: break-word !important;   /* 更温和的断词（优先） */
+  word-break: break-all !important;    /* 必要时强制断开长单词/链接 */
+  overflow-wrap: anywhere !important;  /* 现代浏览器断行补充 */
+
+  /* 防止横向滚动撑破父容器 */
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+
+  /* 视觉样式 */
+  background-color: #f6f8fa;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+/* 说明：如果将来需要恢复横向滚动，把上面的规则改回 `white-space: pre; overflow-x: auto;` */
+
+/* 4. Flex 布局补丁 */
+/* 针对外层列表项，防止 Flex 子元素计算宽度时忽略 min-width */
+.pinned-item-list-item,
+.pinned-item-list-item-content {
+    min-width: 0 !important;     /* 关键：允许 Flex/Grid 容器压缩子元素 */
+    max-width: 100% !important;
+}
+
+/* 强制作用于框内所有文字节点，防止任意子元素（如 span、a）造成不换行溢出 */
+.pinned-item-desc,
+.pinned-item-desc * {
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  hyphens: auto !important;
+}
+
+/* 5. 引用块样式 (保留) */
+blockquote {
+  border-left: 4px solid var(--secondary-color);
+  padding-left: 1em;
+  color: #6a737d;
+  margin-left: 0;
+}
+/* 5. 移动端额外保护 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+    overflow-x: hidden; /* 防止整个页面左右晃动 */
+  }
+}

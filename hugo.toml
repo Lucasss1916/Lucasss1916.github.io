@@ -8,5 +8,7 @@ theme = "github-style"
   avatar = "/images/avatar.jpg"
   headerIcon = "/images/avatar.jpg"
   github = "Lucasss1916"
-
+  customCSS = ["css/custom.css"]
+  customJS = ["js/custom.js"]
+  favicon = "/icon.ico"
 

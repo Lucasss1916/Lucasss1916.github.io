@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Lucas`s blog</title>
+    <link>http://localhost:1313/categories/blog/</link>
+    <description>Recent content in Blog on Lucas`s blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 31 Aug 2025 17:04:19 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>部署blog</title>
+      <link>http://localhost:1313/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</link>
+      <pubDate>Sun, 31 Aug 2025 17:04:19 +0800</pubDate>
+      <guid>http://localhost:1313/post/%E4%BD%BF%E7%94%A8hugo%E5%92%8Cgithub%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BAblog/</guid>
+      <description>&lt;h1 id=&#34;1-1下载安装hugo&#34;&gt;1. 1.下载安装hugo&lt;/h1&gt;&#xA;&lt;p&gt;1.在macos上安装hugo&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;brew install hugo&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.查看是否安装完成&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo version&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.如果正确输出.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;比如v0.133.1+extended darwin/amd64&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;则表示安装成功.&lt;/p&gt;&#xA;&lt;h1 id=&#34;2-2创建blog&#34;&gt;2. 2.创建blog&lt;/h1&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo new site hugo-blog  &#xA;cd hugo-blog&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建主题&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git init &#xA;git submoudle add https://github.com/adityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.gitdityatelange/hugo-PaperMod.git&#xA;themes/PaperMod   &#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改配置hugo.toml&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-baseURL&#34; data-lang=&#34;baseURL&#34;&gt;languageCode = &amp;#34;en-us&amp;#34;`  &#xA;title = &amp;#34;My Hugo Blog&amp;#34;   &#xA;theme = &amp;#34;PaperMod&amp;#34;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;新建一篇文章&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo new posts/hello-world.md&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;本地预览,可通过1313端口访问&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo server -D&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+  </channel>
+</rss>
