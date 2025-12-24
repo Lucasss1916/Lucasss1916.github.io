@@ -8,6 +8,7 @@ lastmod: 2025-12-23T12:51:00+08:00
 categories:
   - c#
 cover: /images/logo.PNG
+summary: 委托和事件
 ---
 # 1. Csharp委托（Delegate）
 ## 1.1. 委托的定义

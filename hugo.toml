@@ -1,14 +1,104 @@
-baseURL = "https://lucasss1916.github.io"
-languageCode = "en-us"
-title = "Lucas`s blog"
-theme = "github-style"
+baseURL = "https://lucasss1916.github.io/"
+title = "Lucas的博客"
+author = "Lucas"
+copyright = "Lucas"
+pagination.pagerSize = 10
+languageCode = "zh-cn"
+theme = "tailwind"
+
+# 忽略特定警告
+ignoreLogs = ['warning-goldmark-raw-html']
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # 允许原始 HTML
+      xhtml = true
+  
+  [markup.highlight]
+    style = "github"
+    lineNos = true
+  
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
 
 [params]
-  author = "Lucas"
-  avatar = "/images/avatar.jpg"
-  headerIcon = "/images/avatar.jpg"
-  github = "Lucasss1916"
-  customCSS = ["css/custom.css"]
-  customJS = ["js/custom.js"]
-  favicon = "/icon.ico"
+  contentTypeName = "post"
+  showAuthor = true
+  
+  [params.header]
+    logo = "/images/avatar.jpg"
+    sticky = true
+  
+  [params.footer]
+    since = 2024
+    poweredby = true
+  
+  [params.author]
+    name = "Lucas"
+    image = "/images/avatar.jpg"
+    description = "开发者，技术爱好者"
+  
 
+  
+  [params.taxonomies.icons]
+    categories = "category-2"
+    tags = "hash"
+    series = "list"
+
+# 菜单配置
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "首页"
+    pageRef = "/"
+    weight = 10
+
+  [[menu.main]]
+    identifier = "posts"
+    name = "文章"
+    pageRef = "/post"
+    weight = 20
+
+  [[menu.main]]
+    identifier = "categories"
+    name = "分类"
+    pageRef = "/categories"
+    weight = 30
+
+  [[menu.main]]
+    identifier = "tags"
+    name = "标签"
+    pageRef = "/tags"
+    weight = 40
+
+  [[menu.main]]
+    identifier = "about"
+    name = "关于"
+    pageRef = "/about"
+    weight = 50
+
+# 分类系统
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+# 输出设置（去掉 JSON）
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+
+# 搜索功能
+[services.search]
+  enable = true
+
+# 部署到 GitHub Pages 的设置
+[deployment]
+  [[deployment.targets]]
+    name = "github-pages"
+    URL = "git@github.com:Lucasss1916/lucasss1916.github.io.git"
+    branch = "main"

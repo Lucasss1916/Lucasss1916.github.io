@@ -1,70 +1,54 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh-cn" dir="ltr">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <script type="application/javascript" src='http://localhost:1313/js/theme-mode.js'></script>
-    <link rel="stylesheet" href='http://localhost:1313/css/frameworks.min.css' />
-    <link rel="stylesheet" href='http://localhost:1313/css/github.min.css' />
-    <link rel="stylesheet" href='http://localhost:1313/css/github-style.css' />
-    <link rel="stylesheet" href='http://localhost:1313/css/light.css' />
-    <link rel="stylesheet" href='http://localhost:1313/css/dark.css' />
-    <link rel="stylesheet" href='http://localhost:1313/css/syntax.css' />
-    <title>Unity穿模问题 - Lucas`s blog</title>
-    
-    <link rel="icon" type="image/x-icon" href='/icon.ico'>
-    
-    <meta name="theme-color" content="#1e2327">
-
-    
-    
-
-    
-    <meta name="description"
+  <title>Unity穿模问题 :: Lucas的博客 - Example site for hugo-theme-tailwind</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
   content="在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的boxcollider来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：
 1. 增大碰撞体 这是最直接，也是最方便的直接拉大碰撞体，不给模型穿模的机会
 2. 使用Continuous或Continuous Dynamic碰撞检测 通过设置Rigidbody组件中的Collision Detection属性 Discrete（离散）： 默认值。性能最好，但高速物体容易穿模。 Continuous（连续）： 用于防止该物体与其他静态网格碰撞器穿模。性能开销中等。 Continuous Dynamic（连续动态）： 用于防止该物体与其他动态物体（也设置了Continuous或Continuous Dynamic）穿模。性能开销最大。
 建议：只给高速移动的物体（如子弹、玩家角色、高速飞行的道具）设置 Continuous Dynamic，给静态但复杂的网格碰撞器设置 Continuous。不要滥用，否则会严重影响性能。 3. 优化角色控制器 1.如果使用的是CharacterController则调整slope Limit（坡度限制）和 step Offset（台阶高度 2.使用Rigidbody &#43; CapsuleCollider
 4. 更改移动逻辑 添加代码判断与物体之间的距离，达到一定距离后，使用代码限制移动 更高级的方案：Physics.SphereCast 或 Physics.CapsuleCast（还没测试过）
-这些方法比 Raycast 更精确，因为它们考虑了碰撞体的体积，能更好地模拟角色本身的形状进行预测 5. 图层碰撞矩阵 方法：进入 Edit -&gt; Project Settings -&gt; Physics，查看 Layer Collision Matrix。 使用：你可以创建不同的图层（Layer），例如“Player”、“Enemy”、“Environment”、“Ignore Raycast”等。然后在这个矩阵中，取消勾选不需要相互碰撞的图层。例如，你可能不希望两个玩家之间发生物理碰撞，就可以取消Player层与Player层的勾选。 6. 优化美术资源 不使用meshcollider，不勾选convex（计算成本很高） 使用原始碰撞体拼接 " />
-<meta name="keywords"
-  content='' />
-<meta name="robots" content="noodp" />
+这些方法比 Raycast 更精确，因为它们考虑了碰撞体的体积，能更好地模拟角色本身的形状进行预测 5. 图层碰撞矩阵 方法：进入 Edit -&gt; Project Settings -&gt; Physics，查看 Layer Collision Matrix。 使用：你可以创建不同的图层（Layer），例如“Player”、“Enemy”、“Environment”、“Ignore Raycast”等。然后在这个矩阵中，取消勾选不需要相互碰撞的图层。例如，你可能不希望两个玩家之间发生物理碰撞，就可以取消Player层与Player层的勾选。 6. 优化美术资源 不使用meshcollider，不勾选convex（计算成本很高） 使用原始碰撞体拼接 "
+/>
+<meta
+  name="keywords"
+  content="hugo, tailwind, tailwindcss, hugo theme, hugo theme tailwind"
+/>
+<meta name="robots" content="noodp" /><link rel="manifest" href="/manifest.json" /><meta property="og:url" content="http://localhost:1313/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/">
+  <meta property="og:site_name" content="Lucas的博客">
+  <meta property="og:title" content="Unity穿模问题">
+  <meta property="og:description" content="在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的boxcollider来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：
+1. 增大碰撞体 这是最直接，也是最方便的直接拉大碰撞体，不给模型穿模的机会
+2. 使用Continuous或Continuous Dynamic碰撞检测 通过设置Rigidbody组件中的Collision Detection属性 Discrete（离散）： 默认值。性能最好，但高速物体容易穿模。 Continuous（连续）： 用于防止该物体与其他静态网格碰撞器穿模。性能开销中等。 Continuous Dynamic（连续动态）： 用于防止该物体与其他动态物体（也设置了Continuous或Continuous Dynamic）穿模。性能开销最大。
+建议：只给高速移动的物体（如子弹、玩家角色、高速飞行的道具）设置 Continuous Dynamic，给静态但复杂的网格碰撞器设置 Continuous。不要滥用，否则会严重影响性能。 3. 优化角色控制器 1.如果使用的是CharacterController则调整slope Limit（坡度限制）和 step Offset（台阶高度 2.使用Rigidbody &#43; CapsuleCollider
+4. 更改移动逻辑 添加代码判断与物体之间的距离，达到一定距离后，使用代码限制移动 更高级的方案：Physics.SphereCast 或 Physics.CapsuleCast（还没测试过）
+这些方法比 Raycast 更精确，因为它们考虑了碰撞体的体积，能更好地模拟角色本身的形状进行预测 5. 图层碰撞矩阵 方法：进入 Edit -&gt; Project Settings -&gt; Physics，查看 Layer Collision Matrix。 使用：你可以创建不同的图层（Layer），例如“Player”、“Enemy”、“Environment”、“Ignore Raycast”等。然后在这个矩阵中，取消勾选不需要相互碰撞的图层。例如，你可能不希望两个玩家之间发生物理碰撞，就可以取消Player层与Player层的勾选。 6. 优化美术资源 不使用meshcollider，不勾选convex（计算成本很高） 使用原始碰撞体拼接">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-08-14T15:25:30+08:00">
+    <meta property="article:modified_time" content="2025-08-14T15:25:30+08:00">
+    <meta property="article:tag" content="Unity">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Unity穿模问题">
+  <meta name="twitter:description" content="在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的boxcollider来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：
+1. 增大碰撞体 这是最直接，也是最方便的直接拉大碰撞体，不给模型穿模的机会
+2. 使用Continuous或Continuous Dynamic碰撞检测 通过设置Rigidbody组件中的Collision Detection属性 Discrete（离散）： 默认值。性能最好，但高速物体容易穿模。 Continuous（连续）： 用于防止该物体与其他静态网格碰撞器穿模。性能开销中等。 Continuous Dynamic（连续动态）： 用于防止该物体与其他动态物体（也设置了Continuous或Continuous Dynamic）穿模。性能开销最大。
+建议：只给高速移动的物体（如子弹、玩家角色、高速飞行的道具）设置 Continuous Dynamic，给静态但复杂的网格碰撞器设置 Continuous。不要滥用，否则会严重影响性能。 3. 优化角色控制器 1.如果使用的是CharacterController则调整slope Limit（坡度限制）和 step Offset（台阶高度 2.使用Rigidbody &#43; CapsuleCollider
+4. 更改移动逻辑 添加代码判断与物体之间的距离，达到一定距离后，使用代码限制移动 更高级的方案：Physics.SphereCast 或 Physics.CapsuleCast（还没测试过）
+这些方法比 Raycast 更精确，因为它们考虑了碰撞体的体积，能更好地模拟角色本身的形状进行预测 5. 图层碰撞矩阵 方法：进入 Edit -&gt; Project Settings -&gt; Physics，查看 Layer Collision Matrix。 使用：你可以创建不同的图层（Layer），例如“Player”、“Enemy”、“Environment”、“Ignore Raycast”等。然后在这个矩阵中，取消勾选不需要相互碰撞的图层。例如，你可能不希望两个玩家之间发生物理碰撞，就可以取消Player层与Player层的勾选。 6. 优化美术资源 不使用meshcollider，不勾选convex（计算成本很高） 使用原始碰撞体拼接">
+
+
 <link rel="canonical" href="http://localhost:1313/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/" />
 
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Unity穿模问题 - Lucas`s blog" />
-<meta name="twitter:description"
-  content="在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的boxcollider来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：
-1. 增大碰撞体 这是最直接，也是最方便的直接拉大碰撞体，不给模型穿模的机会
-2. 使用Continuous或Continuous Dynamic碰撞检测 通过设置Rigidbody组件中的Collision Detection属性 Discrete（离散）： 默认值。性能最好，但高速物体容易穿模。 Continuous（连续）： 用于防止该物体与其他静态网格碰撞器穿模。性能开销中等。 Continuous Dynamic（连续动态）： 用于防止该物体与其他动态物体（也设置了Continuous或Continuous Dynamic）穿模。性能开销最大。
-建议：只给高速移动的物体（如子弹、玩家角色、高速飞行的道具）设置 Continuous Dynamic，给静态但复杂的网格碰撞器设置 Continuous。不要滥用，否则会严重影响性能。 3. 优化角色控制器 1.如果使用的是CharacterController则调整slope Limit（坡度限制）和 step Offset（台阶高度 2.使用Rigidbody &#43; CapsuleCollider
-4. 更改移动逻辑 添加代码判断与物体之间的距离，达到一定距离后，使用代码限制移动 更高级的方案：Physics.SphereCast 或 Physics.CapsuleCast（还没测试过）
-这些方法比 Raycast 更精确，因为它们考虑了碰撞体的体积，能更好地模拟角色本身的形状进行预测 5. 图层碰撞矩阵 方法：进入 Edit -&gt; Project Settings -&gt; Physics，查看 Layer Collision Matrix。 使用：你可以创建不同的图层（Layer），例如“Player”、“Enemy”、“Environment”、“Ignore Raycast”等。然后在这个矩阵中，取消勾选不需要相互碰撞的图层。例如，你可能不希望两个玩家之间发生物理碰撞，就可以取消Player层与Player层的勾选。 6. 优化美术资源 不使用meshcollider，不勾选convex（计算成本很高） 使用原始碰撞体拼接 " />
-<meta name="twitter:site" content="http://localhost:1313/" />
-<meta name="twitter:creator" content="" />
-<meta name="twitter:image"
-  content="http://localhost:1313/">
-
-
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Unity穿模问题 - Lucas`s blog">
-<meta property="og:description"
-  content="在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的boxcollider来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：
-1. 增大碰撞体 这是最直接，也是最方便的直接拉大碰撞体，不给模型穿模的机会
-2. 使用Continuous或Continuous Dynamic碰撞检测 通过设置Rigidbody组件中的Collision Detection属性 Discrete（离散）： 默认值。性能最好，但高速物体容易穿模。 Continuous（连续）： 用于防止该物体与其他静态网格碰撞器穿模。性能开销中等。 Continuous Dynamic（连续动态）： 用于防止该物体与其他动态物体（也设置了Continuous或Continuous Dynamic）穿模。性能开销最大。
-建议：只给高速移动的物体（如子弹、玩家角色、高速飞行的道具）设置 Continuous Dynamic，给静态但复杂的网格碰撞器设置 Continuous。不要滥用，否则会严重影响性能。 3. 优化角色控制器 1.如果使用的是CharacterController则调整slope Limit（坡度限制）和 step Offset（台阶高度 2.使用Rigidbody &#43; CapsuleCollider
-4. 更改移动逻辑 添加代码判断与物体之间的距离，达到一定距离后，使用代码限制移动 更高级的方案：Physics.SphereCast 或 Physics.CapsuleCast（还没测试过）
-这些方法比 Raycast 更精确，因为它们考虑了碰撞体的体积，能更好地模拟角色本身的形状进行预测 5. 图层碰撞矩阵 方法：进入 Edit -&gt; Project Settings -&gt; Physics，查看 Layer Collision Matrix。 使用：你可以创建不同的图层（Layer），例如“Player”、“Enemy”、“Environment”、“Ignore Raycast”等。然后在这个矩阵中，取消勾选不需要相互碰撞的图层。例如，你可能不希望两个玩家之间发生物理碰撞，就可以取消Player层与Player层的勾选。 6. 优化美术资源 不使用meshcollider，不勾选convex（计算成本很高） 使用原始碰撞体拼接 " />
-<meta property="og:url" content="http://localhost:1313/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/" />
-<meta property="og:site_name" content="Unity穿模问题" />
-<meta property="og:image"
-  content="http://localhost:1313/">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-
-<meta property="article:published_time" content="2025-08-14 15:25:30 &#43;0800 CST" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="stylesheet" href="/css/index.d6c3044e2ccd17f959e01250645c77d28de7db3e6614a18e762198e9bf30fb5b.css">
 
 
 
@@ -73,154 +57,260 @@
 
 
 
-
-
-
-</head>
-
-
-<body>
-  <div style="position: relative">
-  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
-    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="http://localhost:1313/">
-        <img class="octicon" height="32" width="32" src="/images/avatar.jpg">
-      </a>
-    </div>
-    <div class="Header-item d-md-none">
-      <button class="Header-link btn-link js-details-target" type="button"
-        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
-        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
-          <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
-          </path>
-        </svg>
-      </button>
-    </div>
-    <div style="display: none;" id="header-search"
-      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
-      <div
-        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
-        <div class="position-relative">
-          
-          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
-            autocomplete="off">
-            <label
-              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
-              <input type="text"
-                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
-                name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:http://localhost:1313/">
-            </label>
-          </form>
-          
-        </div>
-      </div>
-    </div>
-
-    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="http://localhost:1313/">
-        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/avatar.jpg">
-      </a>
-    </div>
-    <div class="Header-item" style="margin-right: 0;">
-      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
-        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
-          version="1.1" width="16" height="16">
-          <path fill-rule="evenodd" clip-rule="evenodd"
-            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
-          </path>
-        </svg>
-      </a>
-    </div>
-  </header>
-</div>
-
-  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
-</div>
 
   
-<div class="application-main">
-  <div>
-  <main>
-    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
-      <div class="px-0">
-        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
-          <div class="flex-auto min-width-0 width-fit mr-3">
-            <div class="d-flex">
-              <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="http://localhost:1313/">
-                  <img class=" avatar-user"
-                    src="/images/avatar.jpg"
-                    width="32" height="32"></a>
-              </div>
-              <div class="d-flex flex-column">
-                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
-                  <span class="author">
-                    <a href="http://localhost:1313/">Lucas</a>
-                  </span>
-                  <span class="path-divider">/</span>
-                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="http://localhost:1313/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/">Unity穿模问题</a>
-                  </strong>
-                </h1>
-                <div class="note m-0">
-                  Created <relative-time datetime="Thu, 14 Aug 2025 15:25:30 &#43;0800"
-                    class="no-wrap">
-                    Thu, 14 Aug 2025 15:25:30 &#43;0800</relative-time>
+  
 
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+</head>
+<body class="flex flex-col min-h-screen w-full bg-slate-50 dark:bg-gray-800">
+    
+<div class="fixed right-0 top-0 z-50 flex items-center justify-center bg-gray-200 p-2 text-sm uppercase text-black sm:bg-red-200 md:bg-yellow-200 lg:bg-green-200 xl:bg-blue-200 2xl:bg-pink-200">
+  <span class="block sm:hidden">all</span>
+  <span class="hidden sm:block md:hidden">sm</span>
+  <span class="hidden md:block lg:hidden">md</span>
+  <span class="hidden lg:block xl:hidden">lg</span>
+  <span class="hidden xl:block 2xl:hidden">xl</span>
+  <span class="hidden 2xl:block">2xl</span>
+</div>
+
+  <header class="flex flex-none justify-center z-10 bg-slate-50 dark:bg-gray-800 sticky top-0">
+    <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3">
+  <div class="flex-none ml-2 md:ml-0">
+    <a href="/" class="">
+      <img class="h-12 w-12 rounded-full object-cover bg-gray-100" src="/images/avatar.jpg" alt="logo">
+    </a>
+  </div>
+  
+  <div class="flex-1"></div>
+  <div class="flex-none">
+    
+
+
+
+<nav class="h-full static">
+  <button id="navbar-menu-toggle" type="button" class="inline-flex items-center p-2 text-sm text-slate-800 dark:text-slate-200 rounded-lg md:hidden" aria-controls="navbar-menu" aria-expanded="false">
+    <span class="sr-only">Open main menu</span>
+    <i class="w-8 h-8">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 6l16 0" />
+  <path d="M4 12l16 0" />
+  <path d="M4 18l16 0" />
+</svg>
+
+    </i>
+  </button>
+  <div class="absolute md:static top-16 left-0 right-0 z-50 hidden w-full md:block md:w-auto" id="navbar-menu">
+    <ul class="flex flex-col mx-2 md:mx-0 md:flex-row md:border-0 rounded-xs md:rounded-full px-3 text-base font-medium text-slate-800 dark:text-slate-200 shadow-lg bg-white dark:bg-gray-600 shadow-slate-800/5 dark:shadow-slate-200/5 ring-1 ring-slate-900/5 dark:ring-slate-100/5">
+    
+        <li id="home" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/" title="首页">首页</a>
+        </li>
+      
+    
+        <li id="posts" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600 text-emerald-600"
+            href="/post/" title="文章">文章</a>
+        </li>
+      
+    
+        <li id="categories" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/categories/" title="分类">分类</a>
+        </li>
+      
+    
+        <li id="tags" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/tags/" title="标签">标签</a>
+        </li>
+      
+    
+        <li id="about" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/about/" title="关于">关于</a>
+        </li>
+      
+    
+    </ul>
+  </div>
+</nav>
+
+
+  </div>
+  
+  <div class="flex-none mx-1"></div>
+  
+  <div class="flex-none md:hidden">
+    <a href=/search/ class="inline-flex items-center p-2 text-sm text-slate-800 dark:text-slate-200 rounded-lg" aria-controls="navbar-menu" aria-expanded="false">
+      <span class="sr-only">Search</span>
+      <i class="w-8 h-8">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+    <path d="M21 21l-6 -6" />
+</svg>
+
+      </i>
+    </a>
+  </div>
+  <div class="darkmode-toggle flex flex-none mr-2 md:mr-0">
+    <label for="darkmode-toggle" class="relative flex items-center gap-1 px-3 cursor-pointer rounded-full bg-gray-100 dark:bg-gray-600" title="Toggle dark mode">
+      <input name="darkmode-toggle" id="darkmode-toggle" type="checkbox" class="sr-only peer" aria-label="Toggle dark mode">
+      <div class="absolute z-10 w-15 h-8 rounded-full bg-white dark:bg-gray-700"></div>
+      <i class="h-6 w-6 z-20 ml-1 flex-none rounded-full bg-yellow-400 place-self-center peer-checked:invisible">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brightness-down" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+   <path d="M12 5l0 .01"></path>
+   <path d="M17 7l0 .01"></path>
+   <path d="M19 12l0 .01"></path>
+   <path d="M17 17l0 .01"></path>
+   <path d="M12 19l0 .01"></path>
+   <path d="M7 17l0 .01"></path>
+   <path d="M5 12l0 .01"></path>
+   <path d="M7 7l0 .01"></path>
+</svg>
+
+      </i>
+      <i class="h-6 w-6 z-20 mr-1 flex-none rounded-full place-self-center invisible peer-checked:visible">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+   <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path>
+   <path d="M19 11h2m-1 -1v2"></path>
+</svg>
+
+      </i>
+    </label>
+  </div>
+</div>
+
+  </header>
+  <main class="flex flex-auto justify-center">
+    
+<div id="progress" class="fixed top-0 left-0 w-full h-1 bg-blue-500"></div>
+<div class="w-full max-w-4xl lg:max-w-5xl">
+  <div class="flex flex-col mt-6 mx-2 md:mx-0 rounded-lg overflow-hidden shadow-md bg-white dark:bg-gray-700">
+    <div>
+      <a href="/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/">
+        
+      </a>
     </div>
+    <div class="flex flex-col gap-y-3 p-6">
+      <h1 class="text-4xl font-semibold text-slate-800 dark:text-slate-100">
+        <a href="/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/">Unity穿模问题</a>
+      </h1>
 
-    <div class="container-lg px-3 new-discussion-timeline">
-      <div class="repository-content gist-content">
-        <div>
-          <div class="js-gist-file-update-container js-task-list-container file-box">
-            <div id="file-pytest" class="file my-2">
-              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
-                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
-                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
-                    
-                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
-                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
-                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
-                      </svg>
-                    </summary>
-                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
-                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
-                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
-                        </div>
-                      </div>
-                    </details-menu>
-                      877 Words
-                    
+      
+      
+  <ul class="flex flex-row flex-wrap text-slate-500 dark:text-slate-300">
+    
+      
+      <li>
+        <a href="/categories/unity/"
+          class="text-sm mr-2 px-2 py-1 rounded-sm border border-emerald-800 bg-emerald-800 text-slate-50">
+          Unity
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories/c%23/"
+          class="text-sm mr-2 px-2 py-1 rounded-sm border border-emerald-800 bg-emerald-800 text-slate-50">
+          C#
+        </a>
+      </li>
+      
+    
+    
+      
+      <li>
+        <a href="/tags/unity/"
+          class="flex flex-row text-sm mr-2 py-1">
+          <i class="h-5 w-5 flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M5 9l14 0"></path>
+   <path d="M5 15l14 0"></path>
+   <path d="M11 4l-4 16"></path>
+   <path d="M17 4l-4 16"></path>
+</svg>
 
-                  </div>
-                  <div class="file-actions flex-order-2 pt-0">
-                    
-                    
-                    <a class="muted-link mr-3" href="/tags/unity">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      unity
-                    </a>
-                    
-                    
-                  </div>
-                </div>
-              </div>
+          </i>
+          <span class="ml-0">Unity</span>
+        </a>
+      </li>
+      
+    
+  </ul>
 
 
-              <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的boxcollider来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：</p>
+
+      <div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-slate-500 dark:text-slate-300">
+  
+  
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"></path>
+   <path d="M16 3v4"></path>
+   <path d="M8 3v4"></path>
+   <path d="M4 11h16"></path>
+   <path d="M11 15h1"></path>
+   <path d="M12 15v3"></path>
+</svg>
+
+    </i>
+    <time datetime="2025-08-14T15:25:30&#43;08:00">
+      2025-08-14
+    </time>
+  </div>
+
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hourglass-high" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M6.5 7h11"></path>
+   <path d="M6 20v-2a6 6 0 1 1 12 0v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1z"></path>
+   <path d="M6 4v2a6 6 0 1 0 12 0v-2a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1z"></path>
+</svg>
+
+    </i>
+    <span>
+      One minute to read
+    </span>
+  </div>
+</div>
+
+      <div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-slate-500 dark:text-slate-300">
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+    class="icon icon-tabler icons-tabler-outline icon-tabler-user">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+    </i>
+    <span>Lucas</span>
+  </div>
+</div>
+
+      
+        
+        <section class="prose prose-slate dark:prose-invert w-full max-w-4xl lg:max-w-5xl mt-6">
+          <h2>Table of Contents</h2>
+          <aside><nav id="TableOfContents"></nav></aside>
+        </section>
+        
+      
+
+      <article class="mt-6 w-full max-w-4xl lg:max-w-5xl prose prose-slate dark:prose-invert prose-quoteless post-content">
+        <p>在测试的时候突然发现，人物摄像头会穿过其他模型直接透过去，在游戏里应该是个比较常见的问题，一开始通过放大模型的boxcollider来防止穿模，但是感觉还有更好的处理办法，询问DS老师，发现有以下几个方法：</p>
 <h1 id="1-增大碰撞体">1. 增大碰撞体</h1>
 <p>这是最直接，也是最方便的直接拉大碰撞体，不给模型穿模的机会</p>
 <h1 id="2-使用continuous或continuous-dynamic碰撞检测">2. 使用<code>Continuous</code>或<code>Continuous Dynamic</code>碰撞检测</h1>
@@ -250,53 +340,61 @@ Continuous Dynamic（连续动态）： 用于防止该物体与其他动态物�
 <li>不使用meshcollider，不勾选convex（计算成本很高）</li>
 <li>使用原始碰撞体拼接</li>
 </ul>
-</article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      </article>
+
+      
+
+
+
+
     </div>
+  </div>
+</div>
+
   </main>
-</div>
-<script type="application/javascript" src='http://localhost:1313/js/toc.js'></script>
-<link rel="stylesheet" href='http://localhost:1313/css/toc.css' />
-
+  <footer class="flex flex-none justify-center">
+    <section class="flex flex-col md:flex-row mx-2 md:mx-0 gap-2 md:gap-0 justify-between w-full max-w-4xl lg:max-w-5xl py-6 text-slate-500 dark:text-slate-300">
+  <div class="flex flex-row">
+    
   
-</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-  <div class="footer container-xl width-full p-responsive">
-  <div
-    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="http://localhost:1313/">
-      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
-        <path fill-rule="evenodd"
-          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
-        </path>
-      </svg>
-    </a>
-    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
-      
-      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
-      
-      <li class="mr-3 mr-lg-0">GitHub and the Invertocat logo are trademarks of <a href="https://github.com/">GitHub, Inc.</a></li>
-    </ul>
+
   </div>
-  <div class="d-flex flex-justify-center pb-6">
-    <span class="f6 text-gray-light"></span>
+  <div class="grow"></div>
+  <div class="flex flex-row">
+    <i class="h-6 w-6 flex-none"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+   <path d="M14 9.75a3.016 3.016 0 0 0 -4.163 .173a2.993 2.993 0 0 0 0 4.154a3.016 3.016 0 0 0 4.163 .173"></path>
+</svg>
+</i> 2024 - 2025 Lucas
+    
   </div>
+  
+  <div class="flex flex-row">
+    <span class="ml-0 pl-0 md:ml-2 md:pl-2 border-l-0 md:border-l border-slate-300 dark:border-slate-400">
+      Powered by <a href="https://gohugo.io" target="_blank" rel="noopener" class="underline">Hugo</a> <span class="text-red-600">&hearts;</span> <a href="https://github.com/tomowang/hugo-theme-tailwind" target="_blank" rel="noopener" class="underline">Tailwind</a>
+    </span>
+  </div>
+  
+</section>
+
+  </footer>
+  <script src="/main.js"></script>
 
 
-</div>
+
 
 </body>
-
-<script type="application/javascript" src="http://localhost:1313/js/github-style.js"></script>
-
-
-
-
-
-
-
 </html>

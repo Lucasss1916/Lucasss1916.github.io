@@ -6,8 +6,9 @@ author: lucas
 cover: /images/logo.PNG
 categories:
   - blog
+summary: hugo部署
 ---
-# 1. 1.下载安装hugo
+# 1.下载安装hugo
 1.在macos上安装hugo      
 ```
 brew install hugo
@@ -23,7 +24,7 @@ hugo version
 比如v0.133.1+extended darwin/amd64
 ```  
 则表示安装成功.  
-# 2. 2.创建blog
+# 2.创建blog
 ```
 hugo new site hugo-blog  
 cd hugo-blog

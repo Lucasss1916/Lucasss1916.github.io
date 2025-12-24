@@ -2,6 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-12-24T11:23:00+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/about/</loc>
+    <lastmod>2025-12-24T11:23:00+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/c%23/</loc>
     <lastmod>2025-12-23T12:51:00+08:00</lastmod>
   </url><url>
@@ -12,9 +18,6 @@
     <lastmod>2025-12-23T12:51:00+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/csharp%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6/</loc>
-    <lastmod>2025-12-23T12:51:00+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
     <lastmod>2025-12-23T12:51:00+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/</loc>
@@ -43,5 +46,39 @@
   </url><url>
     <loc>http://localhost:1313/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E7%82%B9/</loc>
     <lastmod>2025-11-24T15:32:01+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/manifest.json</loc>
+  </url><url>
+    <loc>http://localhost:1313/search/_index.de/</loc>
+    <priority>0.1</priority>
+  </url><url>
+    <loc>http://localhost:1313/search/</loc>
+    <priority>0.1</priority>
+  </url><url>
+    <loc>http://localhost:1313/search/_index.es/</loc>
+    <priority>0.1</priority>
+  </url><url>
+    <loc>http://localhost:1313/search/_index.fr/</loc>
+    <priority>0.1</priority>
+  </url><url>
+    <loc>http://localhost:1313/search/_index.hi/</loc>
+    <priority>0.1</priority>
+  </url><url>
+    <loc>http://localhost:1313/search/_index.jp/</loc>
+    <priority>0.1</priority>
+  </url><url>
+    <loc>http://localhost:1313/search/_index.nl/</loc>
+    <priority>0.1</priority>
+  </url><url>
+    <loc>http://localhost:1313/search/_index.pl/</loc>
+    <priority>0.1</priority>
+  </url><url>
+    <loc>http://localhost:1313/search/_index.ru/</loc>
+    <priority>0.1</priority>
+  </url><url>
+    <loc>http://localhost:1313/search/_index.zh-cn/</loc>
+    <priority>0.1</priority>
+  </url><url>
+    <loc>http://localhost:1313/series/</loc>
   </url>
 </urlset>

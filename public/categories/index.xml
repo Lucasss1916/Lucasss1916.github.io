@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Lucas`s blog</title>
+    <title>Categories on Lucas的博客</title>
     <link>http://localhost:1313/categories/</link>
-    <description>Recent content in Categories on Lucas`s blog</description>
+    <description>Recent content in Categories on Lucas的博客</description>
     <generator>Hugo</generator>
-    <language>en-us</language>
+    <language>zh-cn</language>
+    <managingEditor>user@example.com (Lucas)</managingEditor>
+    <webMaster>user@example.com (Lucas)</webMaster>
+    <copyright>Lucas</copyright>
     <lastBuildDate>Tue, 23 Dec 2025 12:51:00 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C#</title>
       <link>http://localhost:1313/categories/c%23/</link>
-      <pubDate>Tue, 23 Dec 2025 12:51:00 +0800</pubDate>
+      <pubDate>Tue, 23 Dec 2025 12:51:00 +0800</pubDate><author>user@example.com (Lucas)</author>
       <guid>http://localhost:1313/categories/c%23/</guid>
       <description></description>
     </item>
     <item>
       <title>Blog</title>
       <link>http://localhost:1313/categories/blog/</link>
-      <pubDate>Sun, 31 Aug 2025 17:04:19 +0800</pubDate>
+      <pubDate>Sun, 31 Aug 2025 17:04:19 +0800</pubDate><author>user@example.com (Lucas)</author>
       <guid>http://localhost:1313/categories/blog/</guid>
       <description></description>
     </item>
     <item>
       <title>Unity</title>
       <link>http://localhost:1313/categories/unity/</link>
-      <pubDate>Thu, 14 Aug 2025 15:25:30 +0800</pubDate>
+      <pubDate>Thu, 14 Aug 2025 15:25:30 +0800</pubDate><author>user@example.com (Lucas)</author>
       <guid>http://localhost:1313/categories/unity/</guid>
       <description></description>
     </item>
