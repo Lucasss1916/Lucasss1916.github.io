@@ -38,20 +38,80 @@
 
 
   
-</head>
-<body class="flex flex-col min-h-screen w-full bg-slate-50 dark:bg-gray-800">
+  
+  <style>
+     
+    .fixed.right-0.top-0, .tailwind-size-indicator { display: none !important; }
     
-<div class="fixed right-0 top-0 z-50 flex items-center justify-center bg-gray-200 p-2 text-sm uppercase text-black sm:bg-red-200 md:bg-yellow-200 lg:bg-green-200 xl:bg-blue-200 2xl:bg-pink-200">
-  <span class="block sm:hidden">all</span>
-  <span class="hidden sm:block md:hidden">sm</span>
-  <span class="hidden md:block lg:hidden">md</span>
-  <span class="hidden lg:block xl:hidden">lg</span>
-  <span class="hidden xl:block 2xl:hidden">xl</span>
-  <span class="hidden 2xl:block">2xl</span>
-</div>
+    body {
+      background: transparent !important;
+      position: relative;
+      width: 100%;
+      overflow-x: hidden; 
+    }
+    
+     
+    .wallpaper-bg {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: -20;
+      object-fit: cover;
+      opacity: 0.25;  
+      transition: opacity 0.8s ease;
+    }
+    .dark .wallpaper-bg { opacity: 0.15; }  
+    
+    .bg-overlay {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: -19;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .dark .bg-overlay {
+      background: linear-gradient(135deg, rgba(17,24,39,0.4) 0%, rgba(17,24,39,0.2) 50%, transparent 100%);
+    }
 
-  <header class="flex flex-none justify-center z-10 bg-slate-50 dark:bg-gray-800 sticky top-0">
-    <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3">
+     
+     
+    .header-transparent {
+      background-color: transparent !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+    }
+    .dark .header-transparent { border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+
+     
+    article, aside, .bg-white, .bg-slate-50, .content-glass {
+      background-color: rgba(255, 255, 255, 0.85) !important;  
+      backdrop-filter: blur(12px);
+      border-radius: 0.5rem;  
+    }
+     
+    .dark article, .dark aside, .dark .bg-white, .dark .bg-gray-700, .dark .content-glass {
+      background-color: rgba(31, 41, 55, 0.85) !important;  
+      color: #e2e8f0;  
+    }
+  </style>
+</head>
+
+<body class="flex flex-col min-h-screen w-full bg-transparent text-slate-900 dark:text-slate-100">
+  
+  <div class="fixed inset-0 -z-20">
+    <img 
+      src="https://wallhaven.991600.xyz/"
+      alt="Background"
+      class="wallpaper-bg"
+      id="wallpaper-bg"
+      loading="eager"
+      crossorigin="anonymous"
+    />
+    <div class="bg-overlay"></div>
+  </div>
+  
+  <header class="flex flex-none justify-center z-10 header-transparent sticky top-0">
+    <div class="w-full max-w-7xl flex justify-center"> <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3">
   <div class="flex-none ml-2 md:ml-0">
     <a href="/" class="">
       <img class="h-12 w-12 rounded-full object-cover bg-gray-100" src="/images/avatar.jpg" alt="logo">
@@ -164,9 +224,14 @@
   </div>
 </div>
 
+    </div>
   </header>
-  <main class="flex flex-auto justify-center">
+  
+  <main class="flex-grow w-full py-8 px-4">
     
+    <div class="relative w-full max-w-7xl mx-auto flex flex-col items-center">
+      
+      
 
   
   
@@ -821,9 +886,15 @@
 
   </div>
 
+      
+    </div>
+
   </main>
-  <footer class="flex flex-none justify-center">
-    <section class="flex flex-col md:flex-row mx-2 md:mx-0 gap-2 md:gap-0 justify-between w-full max-w-4xl lg:max-w-5xl py-6 text-slate-500 dark:text-slate-300">
+  
+  <footer class="flex flex-none justify-center py-6 w-full">
+    <div class="w-full max-w-7xl mx-auto px-4 flex justify-center">
+       <div class="content-glass px-6 py-4 w-full max-w-5xl text-center"> 
+          <section class="flex flex-col md:flex-row mx-2 md:mx-0 gap-2 md:gap-0 justify-between w-full max-w-4xl lg:max-w-5xl py-6 text-slate-500 dark:text-slate-300">
   <div class="flex flex-row">
     
   
@@ -859,11 +930,60 @@
   
 </section>
 
+       </div>
+    </div>
   </footer>
+  
   <script src="/main.js"></script>
 
 
 
 
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const bgImage = document.getElementById('wallpaper-bg');
+      if (!bgImage) return;
+      
+      
+      function setOpacity() {
+        const isDark = document.documentElement.classList.contains('dark');
+        bgImage.style.opacity = isDark ? '0.15' : '0.25'; 
+      }
+
+      bgImage.addEventListener('load', function() {
+        this.style.opacity = ''; 
+        setOpacity();
+      });
+      
+      bgImage.addEventListener('error', function() {
+        this.src = 'https://source.unsplash.com/random/1920x1080/?nature,gradient';
+      });
+      
+      bgImage.style.cursor = 'pointer';
+      bgImage.addEventListener('click', function() {
+        this.style.opacity = '0';
+        setTimeout(() => {
+          const timestamp = new Date().getTime();
+          this.src = `https://wallhaven.991600.xyz/?t=${timestamp}`;
+        }, 300);
+      });
+      
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.attributeName === 'class') {
+            setOpacity();
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
+      
+      setOpacity();
+    });
+  </script>
 </body>
 </html>

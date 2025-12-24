@@ -16,7 +16,7 @@
       <link>http://localhost:1313/about/</link>
       <pubDate>Wed, 24 Dec 2025 11:23:00 +0800</pubDate><author>user@example.com (Lucas)</author>
       <guid>http://localhost:1313/about/</guid>
-      <description>&lt;h2 id=&#34;关于我&#34;&gt;关于我&lt;/h2&gt;&#xA;&lt;p&gt;这里写你的个人介绍&amp;hellip;&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;关于我&#34;&gt;关于我&lt;/h2&gt;&#xA;&lt;p&gt;这是lucas的个人博客，记录我的学习生活&lt;/p&gt;</description>
     </item>
     <item>
       <title>Csharp委托和事件</title>
