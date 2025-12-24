@@ -1,52 +1,173 @@
-{{ define "head" }}
-  {{ partial "jsonld.html" . }}
-{{ end }}
-
-{{ define "main" }}
-<div id="progress" class="fixed top-0 left-0 w-full h-1 bg-blue-500 z-50"></div>
-
-<div class="w-full max-w-4xl lg:max-w-5xl">
+<!DOCTYPE html>
+<html lang="{{ or site.Language.LanguageCode site.Language.Lang }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<head>
+  {{ block "title" . }}
+    {{- $title := "" -}}
+    {{- $siteTitle := $.Site.Title -}}
+    {{- $subtitle := $.Site.Params.Subtitle -}}
+    {{- $mainTitle := $siteTitle -}}
+    {{- if $subtitle -}}
+      {{- $mainTitle = printf "%s - %s" $siteTitle $subtitle -}}
+    {{- end -}}
+    {{- if .IsHome -}}
+      {{- $title = $mainTitle -}}
+    {{- else -}}
+      {{- $title = printf "%s :: %s" .Title $mainTitle -}}
+    {{- end -}}
+    <title>{{- $title -}}</title>
+  {{ end }}
   
-  <div class="content-glass flex flex-col mt-6 mx-2 md:mx-0 rounded-lg overflow-hidden shadow-md">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  {{ $style := resources.Get "css/index.css" }}
+  {{ if $style }}
+    {{ $style = $style | resources.PostCSS }}
+    {{ if hugo.IsProduction }}
+      {{ $style = $style | minify | fingerprint }}
+    {{ end }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+  {{ end }}
+  
+  {{ partial "head.html" . | default "" }} {{ block "head" . }}{{ end }}
+  
+  <style>
+    /* 强制隐藏干扰布局的元素 */
+    .fixed.right-0.top-0, .tailwind-size-indicator { display: none !important; }
     
-    <div>
-      <a href="{{ .RelPermalink }}">
-        {{ partial "block/image.html" . }}
-      </a>
-    </div>
+    body {
+      background: transparent !important;
+      position: relative;
+      width: 100%;
+      overflow-x: hidden; 
+    }
+    
+    /* === 壁纸设置 === */
+    .wallpaper-bg {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: -20;
+      object-fit: cover;
+      opacity: 0.25; /* 浅色模式透明度 */
+      transition: opacity 0.8s ease;
+    }
+    .dark .wallpaper-bg { opacity: 0.15; } /* 深色模式更暗一点 */
+    
+    .bg-overlay {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: -19;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .dark .bg-overlay {
+      background: linear-gradient(135deg, rgba(17,24,39,0.4) 0%, rgba(17,24,39,0.2) 50%, transparent 100%);
+    }
 
-    <div class="flex flex-col gap-y-3 p-6">
-      
-      <h1 class="text-4xl font-semibold text-slate-800 dark:text-slate-100">
-        <a href="{{ .RelPermalink }}">{{ .Title | .RenderString }}</a>
-      </h1>
+    /* === 磨砂玻璃样式 === */
+    /* 头部导航 */
+    .header-transparent {
+      background-color: transparent !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+    }
+    .dark .header-transparent { border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
 
-      {{ with .Description }}
-      <h2 class="my-4 text-large text-slate-600 dark:text-slate-300">
-        {{ . | $.Page.RenderString }}
-      </h2>
-      {{ end }}
+    /* 所有文章卡片、侧边栏背景强制统一 */
+    article, aside, .bg-white, .bg-slate-50, .content-glass {
+      background-color: rgba(255, 255, 255, 0.85) !important; 
+      backdrop-filter: blur(12px);
+      border-radius: 0.5rem; 
+    }
+    /* 深色模式背景 */
+    .dark article, .dark aside, .dark .bg-white, .dark .bg-gray-700, .dark .content-glass {
+      background-color: rgba(31, 41, 55, 0.85) !important; 
+      color: #e2e8f0; 
+    }
+  </style>
+</head>
 
-      {{ partial "block/taxonomies.html" .}}
-      {{ partial "block/time.html" . }}
-      {{ partial "block/author.html" . }}
-
-      {{ if or .Params.Toc $.Site.Params.Toc }}
-        {{ if ne .Params.Toc false }}
-        <section class="prose prose-slate dark:prose-invert w-full max-w-none mt-6">
-          <h2 class="text-xl font-bold mb-2">{{ T "table_of_contents" }}</h2>
-          <aside>{{ .TableOfContents }}</aside>
-        </section>
-        {{ end }}
-      {{ end }}
-
-      <article class="mt-6 w-full max-w-none prose prose-slate dark:prose-invert prose-quoteless post-content">
-        {{ .Content | safeHTML }}
-      </article>
-
-      {{ partial "comments.html" . }}
-
-    </div>
+<body class="flex flex-col min-h-screen w-full bg-transparent text-slate-900 dark:text-slate-100">
+  
+  <div class="fixed inset-0 -z-20">
+    <img 
+      src="https://wallhaven.991600.xyz/"
+      alt="Background"
+      class="wallpaper-bg"
+      id="wallpaper-bg"
+      loading="eager"
+      crossorigin="anonymous"
+    />
+    <div class="bg-overlay"></div>
   </div>
-</div>
-{{ end }}
+  
+  <header class="flex flex-none justify-center z-10 header-transparent sticky top-0">
+    <div class="w-full max-w-7xl flex justify-center"> 
+        {{ partial "header.html" . }}
+    </div>
+  </header>
+  
+  <main class="flex-grow w-full py-8 px-4">
+    <div class="relative w-full max-w-7xl mx-auto flex flex-col items-center">
+      {{ block "main" . }}{{ end }}
+    </div>
+  </main>
+  
+  <footer class="flex flex-none justify-center py-6 w-full">
+    <div class="w-full max-w-7xl mx-auto px-4 flex justify-center">
+       <div class="content-glass px-6 py-4 w-full max-w-5xl text-center"> 
+          {{ partial "footer.html" . }}
+       </div>
+    </div>
+  </footer>
+  
+  {{ partial "extended_footer.html" . }}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const bgImage = document.getElementById('wallpaper-bg');
+      if (!bgImage) return;
+      
+      function setOpacity() {
+        const isDark = document.documentElement.classList.contains('dark');
+        bgImage.style.opacity = isDark ? '0.15' : '0.25'; 
+      }
+
+      bgImage.addEventListener('load', function() {
+        this.style.opacity = ''; 
+        setOpacity();
+      });
+      
+      bgImage.addEventListener('error', function() {
+        this.src = 'https://source.unsplash.com/random/1920x1080/?nature,gradient';
+      });
+      
+      bgImage.style.cursor = 'pointer';
+      bgImage.addEventListener('click', function() {
+        this.style.opacity = '0';
+        setTimeout(() => {
+          const timestamp = new Date().getTime();
+          this.src = `https://wallhaven.991600.xyz/?t=${timestamp}`;
+        }, 300);
+      });
+      
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.attributeName === 'class') {
+            setOpacity();
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
+      
+      setOpacity();
+    });
+  </script>
+</body>
+</html>
