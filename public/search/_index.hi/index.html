@@ -4,41 +4,16 @@
   
 <title>Search</title>
 
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta
-  name="description"
-  content=""
-/>
-<meta
-  name="keywords"
-  content="hugo, tailwind, tailwindcss, hugo theme, hugo theme tailwind"
-/>
-<meta name="robots" content="noodp" /><link rel="manifest" href="/manifest.json" /><meta property="og:url" content="http://localhost:1313/search/_index.hi/">
-  <meta property="og:site_name" content="Lucas的博客">
-  <meta property="og:title" content="Lucas的博客">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="search">
-
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Lucas的博客">
-
-
-<link rel="canonical" href="http://localhost:1313/search/_index.hi/" />
-
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="stylesheet" href="/css/index.d6c3044e2ccd17f959e01250645c77d28de7db3e6614a18e762198e9bf30fb5b.css">
-
-
-
-
-
-
-
-
-
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <link rel="stylesheet" href="/css/index.css" />
+  
+  
   <link rel="preload" href="/search/_index.hi/index.json" as="fetch" crossorigin="anonymous">
   
   <style>
@@ -58,42 +33,62 @@
       width: 100vw; height: 100vh;
       z-index: -20;
       object-fit: cover;
-      opacity: 0.25;  
+      opacity: 1; 
       transition: opacity 0.8s ease;
     }
-    .dark .wallpaper-bg { opacity: 0.15; }  
     
     .bg-overlay {
       position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
       z-index: -19;
-      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+      background: rgba(255, 255, 255, 0.2);
       pointer-events: none;
     }
     .dark .bg-overlay {
-      background: linear-gradient(135deg, rgba(17,24,39,0.4) 0%, rgba(17,24,39,0.2) 50%, transparent 100%);
+      background: rgba(0, 0, 0, 0.3);
     }
 
-     
      
     .header-transparent {
-      background-color: transparent !important;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      width: 100%;
+      background-color: rgba(255, 255, 255, 0.5) !important; 
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
-    .dark .header-transparent { border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    .dark .header-transparent { 
+      background-color: rgba(30, 41, 59, 0.5) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+    }
 
-     
-    article, aside, .bg-white, .bg-slate-50, .content-glass {
-      background-color: rgba(255, 255, 255, 0.85) !important;  
-      backdrop-filter: blur(12px);
-      border-radius: 0.5rem;  
+    .content-glass {
+      background-color: rgba(255, 255, 255, 0.6) !important; 
+      backdrop-filter: blur(20px); 
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 1rem; 
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1); 
     }
-     
-    .dark article, .dark aside, .dark .bg-white, .dark .bg-gray-700, .dark .content-glass {
-      background-color: rgba(31, 41, 55, 0.85) !important;  
-      color: #e2e8f0;  
+    
+    .dark .content-glass {
+      background-color: rgba(30, 41, 59, 0.6) !important; 
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e2e8f0; 
+    }
+
+    article, aside, .bg-white, .bg-slate-50 {
+      background-color: transparent !important; 
+      box-shadow: none !important; 
+      border: none !important;
+    }
+    
+    .dark article, .dark aside, .dark .bg-white, .dark .bg-gray-700 {
+      background-color: transparent !important;
+      color: #e2e8f0; 
+    }
+    
+    .prose pre {
+      background-color: #1e293b !important;
+      opacity: 0.9;
     }
   </style>
 </head>
@@ -113,7 +108,8 @@
   </div>
   
   <header class="flex flex-none justify-center z-10 header-transparent sticky top-0">
-    <div class="w-full max-w-7xl flex justify-center"> <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3">
+    <div class="w-full max-w-7xl flex justify-center"> 
+        <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3">
   <div class="flex-none ml-2 md:ml-0">
     <a href="/" class="">
       <img class="h-12 w-12 rounded-full object-cover bg-gray-100" src="/images/avatar.jpg" alt="logo">
@@ -230,9 +226,7 @@
   </header>
   
   <main class="flex-grow w-full py-8 px-4">
-    
     <div class="relative w-full max-w-7xl mx-auto flex flex-col items-center">
-      
       
 <div class="w-full max-w-4xl lg:max-w-5xl">
   <form class="my-4 mx-2 md:mx-0" action="./" method="get">
@@ -284,14 +278,12 @@
 </script><script src="/search.8e503ab86cfb777c80a72eeaf087451ab246bc8cd58e584b6c384f3b313b28e4.js"></script>
 
 
-      
     </div>
-
   </main>
   
-  <footer class="flex flex-none justify-center py-6 w-full">
+  <footer class="flex flex-none justify-center py-8 w-full">
     <div class="w-full max-w-7xl mx-auto px-4 flex justify-center">
-       <div class="content-glass px-6 py-4 w-full max-w-5xl text-center"> 
+       <div class="content-glass px-6 py-4 w-full max-w-5xl text-center" style="background-color: rgba(255,255,255,0.4) !important;"> 
           <section class="flex flex-col md:flex-row mx-2 md:mx-0 gap-2 md:gap-0 justify-between w-full max-w-4xl lg:max-w-5xl py-6 text-slate-500 dark:text-slate-300">
   <div class="flex flex-row">
     
@@ -343,17 +335,8 @@
       const bgImage = document.getElementById('wallpaper-bg');
       if (!bgImage) return;
       
-      
-      function setOpacity() {
-        const isDark = document.documentElement.classList.contains('dark');
-        bgImage.style.opacity = isDark ? '0.15' : '0.25'; 
-      }
+      bgImage.style.opacity = '1';
 
-      bgImage.addEventListener('load', function() {
-        this.style.opacity = ''; 
-        setOpacity();
-      });
-      
       bgImage.addEventListener('error', function() {
         this.src = 'https://source.unsplash.com/random/1920x1080/?nature,gradient';
       });
@@ -367,20 +350,9 @@
         }, 300);
       });
       
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (mutation.attributeName === 'class') {
-            setOpacity();
-          }
-        });
+      bgImage.addEventListener('load', function() {
+        this.style.opacity = '1';
       });
-      
-      observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ['class']
-      });
-      
-      setOpacity();
     });
   </script>
 </body>

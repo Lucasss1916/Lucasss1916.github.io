@@ -3,40 +3,16 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>Unity :: Lucas的博客 - Example site for hugo-theme-tailwind</title>
   
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta
-  name="description"
-  content=""
-/>
-<meta
-  name="keywords"
-  content="hugo, tailwind, tailwindcss, hugo theme, hugo theme tailwind"
-/>
-<meta name="robots" content="noodp" /><link rel="manifest" href="/manifest.json" /><meta property="og:url" content="http://localhost:1313/tags/unity/">
-  <meta property="og:site_name" content="Lucas的博客">
-  <meta property="og:title" content="Unity">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="website">
-
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Unity">
-
-
-<link rel="canonical" href="http://localhost:1313/tags/unity/" />
-
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="stylesheet" href="/css/index.d6c3044e2ccd17f959e01250645c77d28de7db3e6614a18e762198e9bf30fb5b.css">
-
-
-
-
-
-
-
-
-
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <link rel="stylesheet" href="/css/index.css" />
+  
+  
   
   
   <style>
@@ -56,47 +32,106 @@
       width: 100vw; height: 100vh;
       z-index: -20;
       object-fit: cover;
-      opacity: 0.25;  
+      opacity: 1; 
       transition: opacity 0.8s ease;
     }
-    .dark .wallpaper-bg { opacity: 0.15; }  
     
     .bg-overlay {
       position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
       z-index: -19;
-      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+      background: rgba(0, 0, 0, 0.1); 
       pointer-events: none;
     }
     .dark .bg-overlay {
-      background: linear-gradient(135deg, rgba(17,24,39,0.4) 0%, rgba(17,24,39,0.2) 50%, transparent 100%);
+      background: rgba(0, 0, 0, 0.4);
     }
 
      
+    .bg-white, .bg-slate-50, .bg-gray-50, 
+    .bg-zinc-50, .bg-neutral-50, 
+    article, .content-glass {
+      background-color: rgba(255, 255, 255, 0.75) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      border-radius: 0.75rem;
+    }
+
+    aside {
+      background-color: rgba(255, 255, 255, 0.75) !important;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 1rem !important; 
+      overflow: hidden !important;
+      padding: 1rem 0; 
+      margin-top: 2rem;
+    }
+
      
     .header-transparent {
-      background-color: transparent !important;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      width: 100%;
+      background-color: rgba(255, 255, 255, 0.6) !important;
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
-    .dark .header-transparent { border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
 
      
-    article, aside, .bg-white, .bg-slate-50, .content-glass {
-      background-color: rgba(255, 255, 255, 0.85) !important;  
-      backdrop-filter: blur(12px);
-      border-radius: 0.5rem;  
+    header nav ul,
+    header label[for="darkmode-toggle"] {
+      background-color: rgba(255, 255, 255, 0.5) !important; 
+      backdrop-filter: blur(8px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
     }
+    header a img {
+      background-color: transparent !important;
+    }
+
      
-    .dark article, .dark aside, .dark .bg-white, .dark .bg-gray-700, .dark .content-glass {
-      background-color: rgba(31, 41, 55, 0.85) !important;  
-      color: #e2e8f0;  
+    .bg-slate-100, .bg-gray-100, .bg-zinc-100,
+    .bg-slate-200, .bg-gray-200, .bg-zinc-200 {
+      background-color: rgba(255, 255, 255, 0.5) !important; 
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.5rem;
+    }
+
+     
+    .dark .bg-white, .dark .bg-gray-700, 
+    .dark article, .dark .content-glass, .dark aside {
+      background-color: rgba(30, 41, 59, 0.75) !important; 
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e2e8f0; 
+    }
+    .dark .header-transparent {
+      background-color: rgba(15, 23, 42, 0.6) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .dark header nav ul,
+    .dark header label[for="darkmode-toggle"] {
+      background-color: rgba(30, 41, 59, 0.6) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .bg-white .bg-white, 
+    .content-glass .bg-white,
+    .dark .bg-gray-700 .dark .bg-gray-700 {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+    }
+    
+    .prose pre, .highlight {
+      background-color: #1e293b !important;
+      opacity: 1 !important;
+      border: 1px solid rgba(255,255,255,0.1);
     }
   </style>
 </head>
 
-<body class="flex flex-col min-h-screen w-full bg-transparent text-slate-900 dark:text-slate-100">
+<body class="flex flex-col min-h-screen w-full bg-transparent text-slate-900 dark:text-slate-100" style="padding-bottom: 100px;">
   
   <div class="fixed inset-0 -z-20">
     <img 
@@ -111,7 +146,8 @@
   </div>
   
   <header class="flex flex-none justify-center z-10 header-transparent sticky top-0">
-    <div class="w-full max-w-7xl flex justify-center"> <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3">
+    <div class="w-full max-w-7xl flex justify-center"> 
+        <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3">
   <div class="flex-none ml-2 md:ml-0">
     <a href="/" class="">
       <img class="h-12 w-12 rounded-full object-cover bg-gray-100" src="/images/avatar.jpg" alt="logo">
@@ -228,9 +264,7 @@
   </header>
   
   <main class="flex-grow w-full py-8 px-4">
-    
     <div class="relative w-full max-w-7xl mx-auto flex flex-col items-center">
-      
       
 
   
@@ -484,14 +518,12 @@
 
   </div>
 
-      
     </div>
-
   </main>
   
-  <footer class="flex flex-none justify-center py-6 w-full">
-    <div class="w-full max-w-7xl mx-auto px-4 flex justify-center">
-       <div class="content-glass px-6 py-4 w-full max-w-5xl text-center"> 
+  <footer style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 50; display: flex; justify-content: center; padding-bottom: 16px; pointer-events: none;">
+    <div class="w-full max-w-7xl px-4 flex justify-center" style="pointer-events: auto;">
+       <div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color: rgba(255,255,255,0.4) !important; backdrop-filter: blur(15px);"> 
           <section class="flex flex-col md:flex-row mx-2 md:mx-0 gap-2 md:gap-0 justify-between w-full max-w-4xl lg:max-w-5xl py-6 text-slate-500 dark:text-slate-300">
   <div class="flex flex-row">
     
@@ -543,17 +575,8 @@
       const bgImage = document.getElementById('wallpaper-bg');
       if (!bgImage) return;
       
-      
-      function setOpacity() {
-        const isDark = document.documentElement.classList.contains('dark');
-        bgImage.style.opacity = isDark ? '0.15' : '0.25'; 
-      }
+      bgImage.style.opacity = '1';
 
-      bgImage.addEventListener('load', function() {
-        this.style.opacity = ''; 
-        setOpacity();
-      });
-      
       bgImage.addEventListener('error', function() {
         this.src = 'https://source.unsplash.com/random/1920x1080/?nature,gradient';
       });
@@ -567,20 +590,9 @@
         }, 300);
       });
       
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (mutation.attributeName === 'class') {
-            setOpacity();
-          }
-        });
+      bgImage.addEventListener('load', function() {
+        this.style.opacity = '1';
       });
-      
-      observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ['class']
-      });
-      
-      setOpacity();
     });
   </script>
 </body>

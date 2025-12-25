@@ -16,11 +16,20 @@
     {{- end -}}
     <title>{{- $title -}}</title>
   {{ end }}
-  {{ partial "head.html" . }}
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  {{ $style := resources.Get "css/index.css" }}
+  {{ if $style }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+  {{ end }}
+  
   {{ block "head" . }}{{ end }}
   
   <style>
-    /* 强制隐藏干扰布局的元素 */
+    /* 隐藏干扰元素 */
     .fixed.right-0.top-0, .tailwind-size-indicator { display: none !important; }
     
     body {
@@ -36,47 +45,106 @@
       width: 100vw; height: 100vh;
       z-index: -20;
       object-fit: cover;
-      opacity: 0.25; /* 浅色模式透明度 */
+      opacity: 1; 
       transition: opacity 0.8s ease;
     }
-    .dark .wallpaper-bg { opacity: 0.15; } /* 深色模式更暗一点 */
     
     .bg-overlay {
       position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
       z-index: -19;
-      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+      background: rgba(0, 0, 0, 0.1); 
       pointer-events: none;
     }
     .dark .bg-overlay {
-      background: linear-gradient(135deg, rgba(17,24,39,0.4) 0%, rgba(17,24,39,0.2) 50%, transparent 100%);
+      background: rgba(0, 0, 0, 0.4);
     }
 
-    /* === 磨砂玻璃样式 === */
-    /* 头部导航 */
-    .header-transparent {
-      background-color: transparent !important;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      width: 100%;
-    }
-    .dark .header-transparent { border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-
-    /* 所有文章卡片、侧边栏背景强制统一 */
-    article, aside, .bg-white, .bg-slate-50, .content-glass {
-      background-color: rgba(255, 255, 255, 0.85) !important; /* 85% 白色 */
+    /* === 全局毛玻璃样式 === */
+    .bg-white, .bg-slate-50, .bg-gray-50, 
+    .bg-zinc-50, .bg-neutral-50, 
+    article, .content-glass {
+      background-color: rgba(255, 255, 255, 0.75) !important;
       backdrop-filter: blur(12px);
-      border-radius: 0.5rem; /* 圆角统一 */
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      border-radius: 0.75rem;
     }
-    /* 深色模式背景 */
-    .dark article, .dark aside, .dark .bg-white, .dark .bg-gray-700, .dark .content-glass {
-      background-color: rgba(31, 41, 55, 0.85) !important; /* 85% 深灰 */
-      color: #e2e8f0; /* 强制文字颜色变亮 */
+
+    aside {
+      background-color: rgba(255, 255, 255, 0.75) !important;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 1rem !important; 
+      overflow: hidden !important;
+      padding: 1rem 0; 
+      margin-top: 2rem;
+    }
+
+    /* Header 样式 */
+    .header-transparent {
+      background-color: rgba(255, 255, 255, 0.6) !important;
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Header 内部元素透明化 */
+    header nav ul,
+    header label[for="darkmode-toggle"] {
+      background-color: rgba(255, 255, 255, 0.5) !important; 
+      backdrop-filter: blur(8px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+    }
+    header a img {
+      background-color: transparent !important;
+    }
+
+    /* 小组件 */
+    .bg-slate-100, .bg-gray-100, .bg-zinc-100,
+    .bg-slate-200, .bg-gray-200, .bg-zinc-200 {
+      background-color: rgba(255, 255, 255, 0.5) !important; 
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.5rem;
+    }
+
+    /* 深色模式适配 */
+    .dark .bg-white, .dark .bg-gray-700, 
+    .dark article, .dark .content-glass, .dark aside {
+      background-color: rgba(30, 41, 59, 0.75) !important; 
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e2e8f0; 
+    }
+    .dark .header-transparent {
+      background-color: rgba(15, 23, 42, 0.6) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .dark header nav ul,
+    .dark header label[for="darkmode-toggle"] {
+      background-color: rgba(30, 41, 59, 0.6) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .bg-white .bg-white, 
+    .content-glass .bg-white,
+    .dark .bg-gray-700 .dark .bg-gray-700 {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+    }
+    
+    .prose pre, .highlight {
+      background-color: #1e293b !important;
+      opacity: 1 !important;
+      border: 1px solid rgba(255,255,255,0.1);
     }
   </style>
 </head>
 
-<body class="flex flex-col min-h-screen w-full bg-transparent text-slate-900 dark:text-slate-100">
+<body class="flex flex-col min-h-screen w-full bg-transparent text-slate-900 dark:text-slate-100" style="padding-bottom: 100px;">
   
   <div class="fixed inset-0 -z-20">
     <img 
@@ -91,23 +159,20 @@
   </div>
   
   <header class="flex flex-none justify-center z-10 header-transparent sticky top-0">
-    <div class="w-full max-w-7xl flex justify-center"> {{ partial "header.html" . }}
+    <div class="w-full max-w-7xl flex justify-center"> 
+        {{ partial "header.html" . }}
     </div>
   </header>
   
   <main class="flex-grow w-full py-8 px-4">
-    
     <div class="relative w-full max-w-7xl mx-auto flex flex-col items-center">
-      
       {{ block "main" . }}{{ end }}
-      
     </div>
-
   </main>
   
-  <footer class="flex flex-none justify-center py-6 w-full">
-    <div class="w-full max-w-7xl mx-auto px-4 flex justify-center">
-       <div class="content-glass px-6 py-4 w-full max-w-5xl text-center"> 
+  <footer style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 50; display: flex; justify-content: center; padding-bottom: 16px; pointer-events: none;">
+    <div class="w-full max-w-7xl px-4 flex justify-center" style="pointer-events: auto;">
+       <div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color: rgba(255,255,255,0.4) !important; backdrop-filter: blur(15px);"> 
           {{ partial "footer.html" . }}
        </div>
     </div>
@@ -120,17 +185,8 @@
       const bgImage = document.getElementById('wallpaper-bg');
       if (!bgImage) return;
       
-      // 这里的逻辑保持不变，用于控制壁纸透明度
-      function setOpacity() {
-        const isDark = document.documentElement.classList.contains('dark');
-        bgImage.style.opacity = isDark ? '0.15' : '0.25'; 
-      }
+      bgImage.style.opacity = '1';
 
-      bgImage.addEventListener('load', function() {
-        this.style.opacity = ''; 
-        setOpacity();
-      });
-      
       bgImage.addEventListener('error', function() {
         this.src = 'https://source.unsplash.com/random/1920x1080/?nature,gradient';
       });
@@ -144,20 +200,9 @@
         }, 300);
       });
       
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (mutation.attributeName === 'class') {
-            setOpacity();
-          }
-        });
+      bgImage.addEventListener('load', function() {
+        this.style.opacity = '1';
       });
-      
-      observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ['class']
-      });
-      
-      setOpacity();
     });
   </script>
 </body>

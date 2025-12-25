@@ -1,0 +1,71 @@
+{{ define "head" }}
+  {{ partial "jsonld.html" . }}
+{{ end }}
+
+{{ define "main" }}
+<div id="progress" class="fixed top-0 left-0 w-full h-1 bg-blue-500 z-50"></div>
+
+<style>
+  .tag-solid-btn {
+    /* 浅色模式：淡灰色实心背景，深灰色边框 */
+    background-color: #f1f5f9 !important; 
+    border: 1px solid #cbd5e1 !important;
+    color: #334155 !important;
+    opacity: 1 !important; /* 强制不透明 */
+    backdrop-filter: none !important; /* 去掉模糊 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+  }
+  
+  /* Hover 效果：稍微变暗一点 */
+  .tag-solid-btn:hover {
+    background-color: #e2e8f0 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+  }
+
+  /* 深色模式适配 */
+  .dark .tag-solid-btn {
+    background-color: #1e293b !important; /* 深蓝灰实心 */
+    border: 1px solid #475569 !important;
+    color: #e2e8f0 !important;
+  }
+  .dark .tag-solid-btn:hover {
+    background-color: #334155 !important;
+  }
+</style>
+
+<div class="w-full max-w-4xl lg:max-w-5xl">
+  
+  <div class="content-glass flex flex-col mt-6 mx-2 md:mx-0 rounded-lg overflow-hidden shadow-md p-6 mb-8">
+    
+    <h1 class="text-4xl font-semibold text-slate-800 dark:text-slate-100 mb-6">
+      {{ $type := .Type }}
+      <a href="{{ .RelPermalink }}">{{ T (printf "taxonomies.%s" $type) | safeHTML }}</a>
+    </h1>
+
+    <ul style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 24px; margin-top: 20px;">
+      {{ range $key, $value := .Data.Terms.ByCount }}
+        {{ $term := .Term }}
+        {{ $count := .Count }}
+        {{ with $.Site.GetPage (printf "/%s/%s" $type $term) }}
+          <li class="">
+            <a href="{{ .RelPermalink }}"
+               class="tag-solid-btn flex flex-row items-center px-5 py-3 rounded-lg transition-all"
+               style="display: flex; align-items: center; text-decoration: none;">
+              
+              <span class="text-lg mr-3 font-medium" style="white-space: nowrap;">
+                {{ .LinkTitle }}
+              </span>
+              
+              <span class="self-center rounded-full text-xs px-2 py-0.5 bg-red-400 text-white font-bold shadow-sm">
+                {{ $count }}
+              </span>
+            </a>
+          </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+    
+  </div>
+</div>
+{{ end }}
