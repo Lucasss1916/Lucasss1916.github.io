@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "about.md",
+                "file": "post/学习Quaternion.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "about"
+              "title": "学习Quaternion"
             }
           }
         ]
@@ -171,14 +171,15 @@
   },
   "active": "31d63d8b9ff5b673",
   "lastOpenFiles": [
-    "about.md.bak",
     "post/Csharp委托和事件.md",
+    "post/学习Quaternion.md",
+    "about.md",
+    "about.md.bak",
     "post/使用Hugo和github部署个人blog.md",
     "post/面向对象的三大特点.md",
     "post/unity穿模问题.md",
     "post/GC.md",
     "post/GC.md.bak",
-    "about.md",
     "posts/使用Hugo和github部署个人blog111.md",
     "posts/使用Hugo和github部署个人blog - 副本.md"
   ]
