@@ -1,12 +1,14 @@
 ---
 title: 部署blog
-date: 2025-08-31T17:04:19+08:00
-lastmod: 2025-08-31T17:04:19+08:00
+date: 2025-05-03T17:04:19+08:00
+lastmod: 2025-05-03T17:04:19+08:00
 author: lucas
 cover: /images/logo.PNG
 categories:
   - blog
 summary: hugo部署
+tags:
+  - blog
 ---
 # 1.下载安装hugo
 1.在macos上安装hugo      

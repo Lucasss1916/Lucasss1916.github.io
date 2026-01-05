@@ -1,6 +1,6 @@
 ---
 title: Csharp委托和事件
-date: 2025-12-23T12:51:00+08:00
+date: 2025-10-22T12:51:00+08:00
 tags:
   - CSharp
 author: lucas

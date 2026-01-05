@@ -1,10 +1,9 @@
 ---
 tags:
   - unity
-date: 2025-08-14T15:25:30+08:00
+date: 2025-07-14T15:25:30+08:00
 categories:
   - unity
-  - c#
 title: Unity穿模问题
 summary: 穿模
 ---
