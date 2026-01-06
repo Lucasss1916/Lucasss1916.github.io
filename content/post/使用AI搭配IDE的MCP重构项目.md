@@ -35,3 +35,5 @@ JetBrains的IDE提供内置的MCP server功能，通过MCP协议，ai模型可�
 - IDE 修改所有引用了该变量的文件。
 ### 1.3.4. 返回结果
 Claude 返回消息："已成功将 `uid` 重命名为 `userUniqueId`，并更新了 15 处引用。"
+
+
