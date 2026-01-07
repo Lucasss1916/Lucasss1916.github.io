@@ -1,1 +1,105 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Unity on Lucas的博客</title><link>https://lucasss1916.github.io/tags/unity/</link><description>Recent content in Unity on Lucas的博客</description><generator>Hugo</generator><language>zh-cn</language><managingEditor>user@example.com (Lucas)</managingEditor><webMaster>user@example.com (Lucas)</webMaster><copyright>Lucas</copyright><lastBuildDate>Tue, 06 Jan 2026 16:44:11 +0800</lastBuildDate><atom:link href="https://lucasss1916.github.io/tags/unity/index.xml" rel="self" type="application/rss+xml"/><item><title>学习Dotween</title><link>https://lucasss1916.github.io/post/%E5%AD%A6%E4%B9%A0dotween/</link><pubDate>Tue, 19 Aug 2025 17:00:19 +0800</pubDate><author>user@example.com (Lucas)</author><guid>https://lucasss1916.github.io/post/%E5%AD%A6%E4%B9%A0dotween/</guid><description>Dotween</description></item><item><title>Unity穿模问题</title><link>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 14 Jul 2025 15:25:30 +0800</pubDate><author>user@example.com (Lucas)</author><guid>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</guid><description>穿模</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Unity on Lucas的博客</title><link>https://lucasss1916.github.io/tags/unity/</link><description>Recent content in Unity on Lucas的博客</description><generator>Hugo</generator><language>zh-cn</language><managingEditor>user@example.com (Lucas)</managingEditor><webMaster>user@example.com (Lucas)</webMaster><copyright>Lucas</copyright><lastBuildDate>Wed, 07 Jan 2026 16:01:00 +0800</lastBuildDate><atom:link href="https://lucasss1916.github.io/tags/unity/index.xml" rel="self" type="application/rss+xml"/><item><title>游戏向shader的学习路线</title><link>https://lucasss1916.github.io/post/%E6%B8%B8%E6%88%8F%E5%90%91shader%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</link><pubDate>Wed, 07 Jan 2026 16:01:00 +0800</pubDate><author>user@example.com (Lucas)</author><guid>https://lucasss1916.github.io/post/%E6%B8%B8%E6%88%8F%E5%90%91shader%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</guid><description>&lt;p&gt;ChatGPT提供的学习路线&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;看懂大部分 Unity 游戏 Shader&lt;/li&gt;
+&lt;li&gt;自己实现常见游戏效果&lt;/li&gt;
+&lt;li&gt;知道效果该用 Shader、还是粒子、还是后处理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="阶段0"&gt;阶段0&lt;/h1&gt;
+&lt;h2 id="需要储备的基础知识可以学习的补肾但一定要会"&gt;需要储备的基础知识，可以学习的补肾，但一定要会&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;向量：flaot2 float3 float4&lt;/li&gt;
+&lt;li&gt;dot normalize length&lt;/li&gt;
+&lt;li&gt;lerp clamp saturate&lt;/li&gt;
+&lt;li&gt;基本三角函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="阶段1"&gt;阶段1&lt;/h1&gt;
+&lt;h2 id="unlit-shader"&gt;Unlit Shader&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;学习目标&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;理解shader在“干什么”&lt;/li&gt;
+&lt;li&gt;建立“GPU思维”&lt;/li&gt;
+&lt;li&gt;会写简单视觉变化
+&lt;strong&gt;必须会的效果&lt;/strong&gt;：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;纯色/渐变&lt;/li&gt;
+&lt;li&gt;UV操作
+&lt;ul&gt;
+&lt;li&gt;平移/缩放&lt;/li&gt;
+&lt;li&gt;滚动纹理（水流，能量条）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;基于时间的动画&lt;/li&gt;
+&lt;li&gt;遮罩
+&lt;ul&gt;
+&lt;li&gt;圆形/条形&lt;/li&gt;
+&lt;li&gt;血条，冷却条，范围提示&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="阶段2"&gt;阶段2&lt;/h1&gt;
+&lt;h2 id="基础光照"&gt;基础光照&lt;/h2&gt;
+&lt;p&gt;游戏光照≠真实光照
+必须手写的光照模型&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Lambert 理解：明暗分界线 、模型体积感&lt;/li&gt;
+&lt;li&gt;Blinn-Phong 理解： 高光位置 、材质区分感&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="阶段3"&gt;阶段3&lt;/h1&gt;
+&lt;h2 id="贴图"&gt;贴图&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;albedo/Normal/Mask
+&lt;ul&gt;
+&lt;li&gt;为什么法线贴图是紫色&lt;/li&gt;
+&lt;li&gt;为什么要normal * 2-1&lt;/li&gt;
+&lt;li&gt;Mask一张图塞4个通道&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;法线贴图 + 光照
+&lt;ul&gt;
+&lt;li&gt;TBN是干嘛的&lt;/li&gt;
+&lt;li&gt;不用手推矩阵，但直到意义
+&lt;strong&gt;游戏常用技巧&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;用贴图假装细节&lt;/li&gt;
+&lt;li&gt;不用增加面数&lt;/li&gt;
+&lt;li&gt;不增加计算&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="阶段4"&gt;阶段4&lt;/h1&gt;
+&lt;h2 id="游戏shader的灵魂技巧"&gt;游戏shader的“灵魂技巧”&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;必学效果&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Fresnel
+&lt;ul&gt;
+&lt;li&gt;角色边缘光&lt;/li&gt;
+&lt;li&gt;技能轮廓&lt;/li&gt;
+&lt;li&gt;能量护盾&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Rim Light
+&lt;ul&gt;
+&lt;li&gt;强化轮廓&lt;/li&gt;
+&lt;li&gt;提升角色可读性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Dissolve（溶解）
+&lt;ul&gt;
+&lt;li&gt;出生/消失&lt;/li&gt;
+&lt;li&gt;传送&lt;/li&gt;
+&lt;li&gt;技能效果&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Distortion（扭曲）
+&lt;ul&gt;
+&lt;li&gt;热浪&lt;/li&gt;
+&lt;li&gt;能量波&lt;/li&gt;
+&lt;li&gt;空气震荡&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="阶段5"&gt;阶段5&lt;/h1&gt;
+&lt;h2 id="透明-半透明特效shader"&gt;透明 、半透明、特效shader&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;必须理解&lt;/strong&gt;：&lt;/p&gt;</description></item><item><title>记录学习片元着色器</title><link>https://lucasss1916.github.io/post/%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0%E7%89%87%E5%85%83%E7%9D%80%E8%89%B2%E5%99%A8/</link><pubDate>Wed, 07 Jan 2026 15:57:49 +0800</pubDate><author>user@example.com (Lucas)</author><guid>https://lucasss1916.github.io/post/%E8%AE%B0%E5%BD%95%E5%AD%A6%E4%B9%A0%E7%89%87%E5%85%83%E7%9D%80%E8%89%B2%E5%99%A8/</guid><description>从0开始学习shader，学习片元着色器</description></item><item><title>学习Dotween</title><link>https://lucasss1916.github.io/post/%E5%AD%A6%E4%B9%A0dotween/</link><pubDate>Tue, 19 Aug 2025 17:00:19 +0800</pubDate><author>user@example.com (Lucas)</author><guid>https://lucasss1916.github.io/post/%E5%AD%A6%E4%B9%A0dotween/</guid><description>Dotween</description></item><item><title>Unity穿模问题</title><link>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 14 Jul 2025 15:25:30 +0800</pubDate><author>user@example.com (Lucas)</author><guid>https://lucasss1916.github.io/post/unity%E7%A9%BF%E6%A8%A1%E9%97%AE%E9%A2%98/</guid><description>穿模</description></item></channel></rss>
