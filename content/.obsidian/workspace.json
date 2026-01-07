@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "post/学习Dotween.md",
+                "file": "post/游戏向shader的学习路线.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "学习Dotween"
+              "title": "游戏向shader的学习路线"
             }
           }
         ]
@@ -171,8 +171,10 @@
   },
   "active": "31d63d8b9ff5b673",
   "lastOpenFiles": [
-    "post/学习Quaternion.md",
+    "post/记录学习片元着色器.md",
+    "post/游戏向shader的学习路线.md",
     "post/学习Dotween.md",
+    "post/学习Quaternion.md",
     "post/使用AI搭配IDE的MCP重构项目.md",
     "about.md.bak",
     "sedsPglUw",
