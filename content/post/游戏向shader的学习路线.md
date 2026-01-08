@@ -9,7 +9,7 @@ tags:
 categories:
   - 学习
   - unity
-summary: ""
+summary: shader的学习路线
 featured_image: ""
 lastmod: 2026-01-07T16:01:00+08:00
 ---
