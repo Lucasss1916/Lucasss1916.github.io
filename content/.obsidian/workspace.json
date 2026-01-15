@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "post/使用AI搭配IDE的MCP重构项目.md",
+                "file": "post/游戏向shader的学习路线.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "使用AI搭配IDE的MCP重构项目"
+              "title": "游戏向shader的学习路线"
             }
           }
         ]
@@ -171,12 +171,13 @@
   },
   "active": "31d63d8b9ff5b673",
   "lastOpenFiles": [
-    "post/面向对象的三大特点.md",
     "post/记录学习片元着色器.md",
-    "post/学习Dotween.md",
     "post/学习Quaternion.md",
+    "post/学习Dotween.md",
     "post/使用Hugo和github部署个人blog.md",
     "post/使用AI搭配IDE的MCP重构项目.md",
+    "post/架构设计.md",
+    "post/面向对象的三大特点.md",
     "post/游戏向shader的学习路线.md",
     "about.md.bak",
     "sedsPglUw",

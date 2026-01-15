@@ -18,7 +18,7 @@ ChatGPT提供的学习路线
 - 自己实现常见游戏效果
 - 知道效果该用 Shader、还是粒子、还是后处理
 # 阶段0
-## 需要储备的基础知识，可以学习的补肾，但一定要会
+## 需要储备的基础知识，可以学习的不深，但一定要会
 - 向量：flaot2 float3 float4
 - dot normalize length
 - lerp clamp saturate
