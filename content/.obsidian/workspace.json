@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "post/记录学习片元着色器.md",
+                "file": "post/Async和Await.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "记录学习片元着色器"
+              "title": "Async和Await"
             }
           }
         ]
@@ -160,7 +160,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:创建新数据库": false,
+      "bases:新建数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -171,6 +171,9 @@
   },
   "active": "31d63d8b9ff5b673",
   "lastOpenFiles": [
+    "post/Csharp委托和事件.md",
+    "post/Singletion单例模式.md",
+    "post/Async和Await.md",
     "post/架构设计.md",
     "post/游戏向shader的学习路线.md",
     "post/记录学习片元着色器.md",
@@ -184,7 +187,6 @@
     "about.md",
     "post/unity穿模问题.md",
     "post/GC.md",
-    "post/Csharp委托和事件.md",
     "post/GC.md.bak",
     "posts/使用Hugo和github部署个人blog111.md",
     "posts/使用Hugo和github部署个人blog - 副本.md"
