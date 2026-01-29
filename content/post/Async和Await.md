@@ -284,6 +284,23 @@ public class AwaitableParallel : MonoBehaviour
         Debug.Log("任务1完成");
     }
     
-    async Awaitable 
+    async Awaitable Task2Async()
+    {
+        await Awaitable.WaitForSecondsAsync(2f);
+        Debug.Log("任务2完成");
+    }
+    
+    async Awaitable Task3Async()
+    {
+        await Awaitable.WaitForSecondsAsync(1.5f);
+        Debug.Log("任务3完成");
+    }
+    
+    async Awaitable<string> DownloadAsync(string url)
+    {
+        await Awaitable.WaitForSecondsAsync(1f);
+        return $"数据来自 {url}";
+    }
+}
 
 ```
