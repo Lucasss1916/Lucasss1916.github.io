@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="{{ or site.Language.LanguageCode site.Language.Lang }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<head>
+  {{ block "title" . }}
+    {{- $title := "" -}}
+    {{- $siteTitle := $.Site.Title -}}
+    {{- $subtitle := $.Site.Params.Subtitle -}}
+    {{- $mainTitle := $siteTitle -}}
+    {{- if $subtitle -}}
+      {{- $mainTitle = printf "%s - %s" $siteTitle $subtitle -}}
+    {{- end -}}
+    {{- if .IsHome -}}
+      {{- $title = $mainTitle -}}
+    {{- else -}}
+      {{- $title = printf "%s :: %s" .Title $mainTitle -}}
+    {{- end -}}
+    <title>{{- $title -}}</title>
+  {{ end }}
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  {{ $style := resources.Get "css/index.css" }}
+  {{ if $style }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+  {{ end }}
+  
+  {{ block "head" . }}{{ end }}
+  
+  <style>
+    /* 隐藏干扰元素 */
+    .fixed.right-0.top-0, .tailwind-size-indicator { display: none !important; }
+    
+    body {
+      background: transparent !important;
+      position: relative;
+      width: 100%;
+      overflow-x: hidden; 
+    }
+    
+    /* === 壁纸设置 === */
+    .wallpaper-bg {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: -20;
+      object-fit: cover;
+      opacity: 1; 
+      transition: opacity 0.8s ease;
+    }
+    
+    .bg-overlay {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: -19;
+      background: rgba(0, 0, 0, 0.1); 
+      pointer-events: none;
+    }
+    .dark .bg-overlay {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    /* === 全局毛玻璃样式 === */
+    .bg-white, .bg-slate-50, .bg-gray-50, 
+    .bg-zinc-50, .bg-neutral-50, 
+    article, .content-glass {
+      background-color: rgba(255, 255, 255, 0.75) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      border-radius: 0.75rem;
+    }
+
+    aside {
+      background-color: rgba(255, 255, 255, 0.75) !important;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 1rem !important; 
+      overflow: hidden !important;
+      padding: 1rem 0; 
+      margin-top: 2rem;
+    }
+
+    /* Header 样式 */
+    .header-transparent {
+      background-color: rgba(255, 255, 255, 0.6) !important;
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Header 内部元素透明化 */
+    header nav ul,
+    header label[for="darkmode-toggle"] {
+      background-color: rgba(255, 255, 255, 0.5) !important; 
+      backdrop-filter: blur(8px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+    }
+    header a img {
+      background-color: transparent !important;
+    }
+
+    /* 小组件 */
+    .bg-slate-100, .bg-gray-100, .bg-zinc-100,
+    .bg-slate-200, .bg-gray-200, .bg-zinc-200 {
+      background-color: rgba(255, 255, 255, 0.5) !important; 
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.5rem;
+    }
+
+    /* 深色模式适配 */
+    .dark .bg-white, .dark .bg-gray-700, 
+    .dark article, .dark .content-glass, .dark aside {
+      background-color: rgba(30, 41, 59, 0.75) !important; 
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e2e8f0; 
+    }
+    .dark .header-transparent {
+      background-color: rgba(15, 23, 42, 0.6) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .dark header nav ul,
+    .dark header label[for="darkmode-toggle"] {
+      background-color: rgba(30, 41, 59, 0.6) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .bg-white .bg-white, 
+    .content-glass .bg-white,
+    .dark .bg-gray-700 .dark .bg-gray-700 {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+    }
+    
+    .prose pre, .highlight {
+      background-color: #1e293b !important;
+      opacity: 1 !important;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+
+<body class="flex flex-col min-h-screen w-full bg-transparent text-slate-900 dark:text-slate-100" style="padding-bottom: 100px;">
+  
+  <div class="fixed inset-0 -z-20">
+    <img 
+      src="https://wallhaven.991600.xyz/"
+      alt="Background"
+      class="wallpaper-bg"
+      id="wallpaper-bg"
+      loading="eager"
+      crossorigin="anonymous"
+    />
+    <div class="bg-overlay"></div>
+  </div>
+  
+  <header class="flex flex-none justify-center z-10 header-transparent sticky top-0">
+    <div class="w-full max-w-7xl flex justify-center"> 
+        {{ partial "header.html" . }}
+    </div>
+  </header>
+  
+  <main class="flex-grow w-full py-8 px-4">
+    <div class="relative w-full max-w-7xl mx-auto flex flex-col items-center">
+      {{ block "main" . }}{{ end }}
+    </div>
+  </main>
+  
+  <footer style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 50; display: flex; justify-content: center; padding-bottom: 16px; pointer-events: none;">
+    <div class="w-full max-w-7xl px-4 flex justify-center" style="pointer-events: auto;">
+       <div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color: rgba(255,255,255,0.4) !important; backdrop-filter: blur(15px);"> 
+          {{ partial "footer.html" . }}
+       </div>
+    </div>
+  </footer>
+  
+  {{ partial "extended_footer.html" . }}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const bgImage = document.getElementById('wallpaper-bg');
+      if (!bgImage) return;
+      
+      bgImage.style.opacity = '1';
+
+      bgImage.addEventListener('error', function() {
+        this.src = 'https://source.unsplash.com/random/1920x1080/?nature,gradient';
+      });
+      
+      bgImage.style.cursor = 'pointer';
+      bgImage.addEventListener('click', function() {
+        this.style.opacity = '0';
+        setTimeout(() => {
+          const timestamp = new Date().getTime();
+          this.src = `https://wallhaven.991600.xyz/?t=${timestamp}`;
+        }, 300);
+      });
+      
+      bgImage.addEventListener('load', function() {
+        this.style.opacity = '1';
+      });
+    });
+  </script>
+</body>
+</html>
