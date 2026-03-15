@@ -1,71 +1,61 @@
 /* =========================================
-   Github-Style 主题：首页溢出终极修复版
-   (针对 .pinned-item-desc 结构定制)
+   统一主题色彩系统
+   基于 Slate 色调，深浅模式一致
    ========================================= */
 
-/* 1. 基础变量 (保持主题原样) */
+/* 1. 基础变量 */
 :root {
-  --primary-color: #24292e;
-  --secondary-color: #0366d6;
-  --border-color: #e1e4e8;
+  --primary-color: #1e293b;
+  --secondary-color: #3b82f6;
+  --border-color: #e2e8f0;
+}
+.dark {
+  --primary-color: #f1f5f9;
+  --secondary-color: #60a5fa;
+  --border-color: #334155;
 }
 
-/* 2. 核心修复：针对 .pinned-item-desc 容器 */
-/* 你的 HTML 结构显示内容在 .pinned-item-desc 中，必须先限制它 */
+/* 2. 代码块溢出修复 */
 .pinned-item-desc {
-    width: 100% !important;      /* 强制宽度 100% */
-    max-width: 100% !important;  /* 绝不允许超过父容器 */
-    display: block !important;   /* 确保作为块级元素处理 */
-    overflow: hidden !important; /* 万一还有溢出，直接隐藏，保证不炸版 */
-    box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
 }
 
-/* 3. 代码块溢出处理：主页框内强制换行（覆盖主题样式，防止溢出容器） */
 .pinned-item-desc pre,
 .pinned-item-desc code,
 .pinned-item-desc .markdown-body pre,
 .highlight pre,
 .markdown-body pre {
-  /* 强制换行以适应外层盒子 */
-  white-space: pre-wrap !important;    /* 允许换行并保留空白 */
-  word-break: break-word !important;   /* 更温和的断词（优先） */
-  word-break: break-all !important;    /* 必要时强制断开长单词/链接 */
-  overflow-wrap: anywhere !important;  /* 现代浏览器断行补充 */
-
-  /* 防止横向滚动撑破父容器 */
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
   overflow-x: hidden !important;
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
-
-  /* 视觉样式 */
-  background-color: #f6f8fa;
-  border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 12px;
   margin-top: 8px;
   margin-bottom: 8px;
 }
 
-/* 说明：如果将来需要恢复横向滚动，把上面的规则改回 `white-space: pre; overflow-x: auto;` */
-
-/* 4. Flex 布局补丁 */
-/* 针对外层列表项，防止 Flex 子元素计算宽度时忽略 min-width */
+/* 3. Flex 布局补丁 */
 .pinned-item-list-item,
 .pinned-item-list-item-content {
-    min-width: 0 !important;     /* 关键：允许 Flex/Grid 容器压缩子元素 */
-    max-width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
 }
 
-/* 强制作用于框内所有文字节点，防止任意子元素（如 span、a）造成不换行溢出 */
 .pinned-item-desc,
 .pinned-item-desc * {
   word-break: break-word !important;
   overflow-wrap: anywhere !important;
-  hyphens: auto !important;
 }
 
-/* 额外强制补丁：针对卡片容器内任意 .Box/.pinned-item-list-item-content 的 pre/code，确保不超过父容器 */
+/* 4. 卡片内代码溢出修复 */
 .Box pre,
 .Box pre code,
 .Box code,
@@ -76,34 +66,17 @@
   word-break: break-all !important;
   overflow-wrap: anywhere !important;
   max-width: 100% !important;
-  width: auto !important;
   box-sizing: border-box !important;
   overflow-x: hidden !important;
 }
 
-/* 更强力规则：把所有卡片内的 code 元素变为块级并强制在父容器内换行 */
-.pinned-item-desc code,
-.pinned-item-desc pre code,
-.pinned-item-list-item-content code,
-.Box code {
-  display: block !important;
-  white-space: pre-wrap !important;
-  word-break: break-all !important;
-  overflow-wrap: anywhere !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  overflow-x: hidden !important;
-}
-
-/* 确保卡片容器不会被子元素撑开 */
 .Box,
 .pinned-item-list-item,
 .pinned-item-list-item-content {
   overflow-x: hidden !important;
 }
 
-/* 最后的兜底：全局强制 code/inline-code 在页面主体内换行，防止任何未覆盖到的 inline code 溢出 */
+/* 5. 全局 code 换行 */
 .application-main code,
 .container-xl code,
 .container code,
@@ -113,48 +86,26 @@ code {
   white-space: pre-wrap !important;
   word-break: break-all !important;
   overflow-wrap: anywhere !important;
-  hyphens: auto !important;
   max-width: 100% !important;
   display: inline-block !important;
   box-sizing: border-box !important;
 }
 
-/* 更强力的 modern fallback：针对主页卡片中有 tabindex 的 pre/code，限制 inline 大小并允许任意断行 */
-.pinned-item-desc pre[tabindex] , .pinned-item-desc pre[tabindex] code,
-.pinned-item-list-item-content pre[tabindex], .pinned-item-list-item-content pre[tabindex] code {
-  white-space: pre-wrap !important;
-  -webkit-line-break: anywhere !important;
-  line-break: anywhere !important;
-  word-break: break-word !important;
-  overflow-wrap: anywhere !important;
-  max-inline-size: 100% !important; /* modern property */
-  inline-size: 100% !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  display: block !important;
-  box-sizing: border-box !important;
-  overflow-x: hidden !important;
-}
-
-/* 如果仍然遇到极端长的无分隔字符串，允许浏览器在任何位置换行（最后手段） */
-.pinned-item-desc pre[tabindex] code::after {
-  content: "";
-  display: inline-block;
-  width: 0;
-  word-break: break-all;
-}
-
-/* 5. 引用块样式 (保留) */
+/* 6. 引用块 */
 blockquote {
   border-left: 4px solid var(--secondary-color);
   padding-left: 1em;
-  color: #6a737d;
+  color: #64748b;
   margin-left: 0;
 }
-/* 5. 移动端额外保护 */
+.dark blockquote {
+  color: #94a3b8;
+}
+
+/* 7. 移动端保护 */
 @media (max-width: 768px) {
   .container {
     padding: 0 15px;
-    overflow-x: hidden; /* 防止整个页面左右晃动 */
+    overflow-x: hidden;
   }
 }
