@@ -7,30 +7,30 @@
 
 <style>
   .tag-solid-btn {
-    /* 浅色模式：淡灰色实心背景，深灰色边框 */
-    background-color: #f1f5f9 !important; 
-    border: 1px solid #cbd5e1 !important;
-    color: #334155 !important;
-    opacity: 1 !important; /* 强制不透明 */
-    backdrop-filter: none !important; /* 去掉模糊 */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
-  }
-  
-  /* Hover 效果：稍微变暗一点 */
-  .tag-solid-btn:hover {
-    background-color: #e2e8f0 !important;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: var(--bg-widget, #f8fafc) !important;
+    border: 1px solid var(--border-color, #e2e8f0) !important;
+    color: var(--text-primary, #334155) !important;
+    opacity: 1 !important;
+    backdrop-filter: none !important;
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.06)) !important;
+    transition: all 0.25s ease;
   }
 
-  /* 深色模式适配 */
+  .tag-solid-btn:hover {
+    background-color: var(--border-light, #f1f5f9) !important;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.08)) !important;
+    color: var(--accent, #3b82f6) !important;
+  }
+
   .dark .tag-solid-btn {
-    background-color: #1e293b !important; /* 深蓝灰实心 */
-    border: 1px solid #475569 !important;
-    color: #e2e8f0 !important;
+    background-color: var(--bg-widget, #162032) !important;
+    border: 1px solid var(--border-color, #334155) !important;
+    color: var(--text-primary, #e2e8f0) !important;
   }
   .dark .tag-solid-btn:hover {
-    background-color: #334155 !important;
+    background-color: #253348 !important;
+    color: var(--accent, #60a5fa) !important;
   }
 </style>
 

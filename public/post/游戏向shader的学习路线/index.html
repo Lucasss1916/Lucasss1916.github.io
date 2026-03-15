@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>游戏向shader的学习路线 :: Lucas的博客 - Example site for hugo-theme-tailwind</title>
+  
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <link rel="stylesheet" href="/css/index.css" />
+  
+  
+  
+  
+
+  
+  <style>
+     
+    .fixed.right-0.top-0, .tailwind-size-indicator { display: none !important; }
+
+     
+    :root {
+      --bg-page: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-header: rgba(255, 255, 255, 0.85);
+      --bg-footer: rgba(255, 255, 255, 0.9);
+      --bg-sidebar: #ffffff;
+      --bg-widget: #f8fafc;
+      --bg-code: #1e293b;
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --border-color: #e2e8f0;
+      --border-light: #f1f5f9;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+    }
+    .dark {
+      --bg-page: #0f172a;
+      --bg-card: #1e293b;
+      --bg-header: rgba(15, 23, 42, 0.9);
+      --bg-footer: rgba(15, 23, 42, 0.95);
+      --bg-sidebar: #1e293b;
+      --bg-widget: #162032;
+      --bg-code: #0d1424;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --border-color: #334155;
+      --border-light: #1e293b;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --accent: #60a5fa;
+      --accent-hover: #93c5fd;
+    }
+
+     
+    body, header, footer, article, aside, main,
+    .content-glass, .bg-white, .bg-gray-700,
+    nav ul, label[for="darkmode-toggle"],
+    h1, h2, h3, h4, p, a, span, li, div,
+    .tag-solid-btn, .prose pre, .highlight {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body {
+      background-color: var(--bg-page) !important;
+      color: var(--text-primary);
+      position: relative;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+     
+    .bg-white, .bg-slate-50, .bg-gray-50,
+    .bg-zinc-50, .bg-neutral-50,
+    article, .content-glass {
+      background-color: var(--bg-card) !important;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      border-radius: 0.75rem;
+    }
+
+     
+    aside {
+      background-color: var(--bg-sidebar) !important;
+      border: 1px solid var(--border-color);
+      border-radius: 1rem !important;
+      overflow: hidden !important;
+      padding: 1rem 0;
+      margin-top: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+     
+    .site-header {
+      background-color: var(--bg-header) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+    header nav ul,
+    header label[for="darkmode-toggle"] {
+      background-color: var(--bg-widget) !important;
+      border: 1px solid var(--border-color) !important;
+      box-shadow: none !important;
+    }
+    header a img {
+      background-color: transparent !important;
+    }
+
+     
+    .bg-slate-100, .bg-gray-100, .bg-zinc-100,
+    .bg-slate-200, .bg-gray-200, .bg-zinc-200 {
+      background-color: var(--bg-widget) !important;
+      border: 1px solid var(--border-light);
+      border-radius: 0.5rem;
+    }
+
+     
+    .dark .bg-white, .dark .bg-gray-700,
+    .dark article, .dark .content-glass, .dark aside {
+      background-color: var(--bg-card) !important;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+     
+    .bg-white .bg-white,
+    .content-glass .bg-white,
+    .dark .bg-gray-700 .dark\:bg-gray-700 {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+     
+    .prose pre, .highlight {
+      background-color: var(--bg-code) !important;
+      opacity: 1 !important;
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+    }
+
+     
+    a:hover {
+      color: var(--accent);
+    }
+    .prose a {
+      color: var(--accent);
+    }
+    .prose a:hover {
+      color: var(--accent-hover);
+    }
+  </style>
+</head>
+
+<body class="flex flex-col min-h-screen w-full text-slate-900 dark:text-slate-100" style="padding-bottom: 100px;">
+
+  <header class="flex flex-none justify-center z-10 site-header sticky top-0">
+    <div class="w-full max-w-7xl flex justify-center"> 
+        <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3">
+  <div class="flex-none ml-2 md:ml-0">
+    <a href="/" class="">
+      <img class="h-12 w-12 rounded-full object-cover bg-gray-100" src="/images/avatar.jpg" alt="logo">
+    </a>
+  </div>
+  
+  <div class="flex-1"></div>
+  <div class="flex-none">
+    
+
+
+
+<nav class="h-full static">
+  <button id="navbar-menu-toggle" type="button" class="inline-flex items-center p-2 text-sm text-slate-800 dark:text-slate-200 rounded-lg md:hidden" aria-controls="navbar-menu" aria-expanded="false">
+    <span class="sr-only">Open main menu</span>
+    <i class="w-8 h-8">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 6l16 0" />
+  <path d="M4 12l16 0" />
+  <path d="M4 18l16 0" />
+</svg>
+
+    </i>
+  </button>
+  <div class="absolute md:static top-16 left-0 right-0 z-50 hidden w-full md:block md:w-auto" id="navbar-menu">
+    <ul class="flex flex-col mx-2 md:mx-0 md:flex-row md:border-0 rounded-xs md:rounded-full px-3 text-base font-medium text-slate-800 dark:text-slate-200 shadow-lg bg-white dark:bg-gray-600 shadow-slate-800/5 dark:shadow-slate-200/5 ring-1 ring-slate-900/5 dark:ring-slate-100/5">
+    
+        <li id="home" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/" title="首页">首页</a>
+        </li>
+      
+    
+        <li id="posts" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600 text-emerald-600"
+            href="/post/" title="文章">文章</a>
+        </li>
+      
+    
+        <li id="categories" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/categories/" title="分类">分类</a>
+        </li>
+      
+    
+        <li id="tags" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/tags/" title="标签">标签</a>
+        </li>
+      
+    
+        <li id="about" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/about/" title="关于">关于</a>
+        </li>
+      
+    
+    </ul>
+  </div>
+</nav>
+
+
+  </div>
+  
+  <div class="flex-none mx-1"></div>
+  
+  <div class="flex-none md:hidden">
+    <a href=/search/ class="inline-flex items-center p-2 text-sm text-slate-800 dark:text-slate-200 rounded-lg" aria-controls="navbar-menu" aria-expanded="false">
+      <span class="sr-only">Search</span>
+      <i class="w-8 h-8">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+    <path d="M21 21l-6 -6" />
+</svg>
+
+      </i>
+    </a>
+  </div>
+  <div class="darkmode-toggle flex flex-none mr-2 md:mr-0">
+    <label for="darkmode-toggle" class="relative flex items-center gap-1 px-3 cursor-pointer rounded-full bg-gray-100 dark:bg-gray-600" title="Toggle dark mode">
+      <input name="darkmode-toggle" id="darkmode-toggle" type="checkbox" class="sr-only peer" aria-label="Toggle dark mode">
+      <div class="absolute z-10 w-15 h-8 rounded-full bg-white dark:bg-gray-700"></div>
+      <i class="h-6 w-6 z-20 ml-1 flex-none rounded-full bg-yellow-400 place-self-center peer-checked:invisible">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brightness-down" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+   <path d="M12 5l0 .01"></path>
+   <path d="M17 7l0 .01"></path>
+   <path d="M19 12l0 .01"></path>
+   <path d="M17 17l0 .01"></path>
+   <path d="M12 19l0 .01"></path>
+   <path d="M7 17l0 .01"></path>
+   <path d="M5 12l0 .01"></path>
+   <path d="M7 7l0 .01"></path>
+</svg>
+
+      </i>
+      <i class="h-6 w-6 z-20 mr-1 flex-none rounded-full place-self-center invisible peer-checked:visible">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+   <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path>
+   <path d="M19 11h2m-1 -1v2"></path>
+</svg>
+
+      </i>
+    </label>
+  </div>
+</div>
+
+    </div>
+  </header>
+  
+  <main class="flex-grow w-full py-8 px-4">
+    <div class="relative w-full max-w-7xl mx-auto flex flex-col items-center">
+      
+<div id="progress" class="fixed top-0 left-0 w-full h-1 bg-blue-500 z-50"></div>
+
+<div class="w-full max-w-4xl lg:max-w-5xl">
+  
+  <div class="content-glass flex flex-col mt-6 mx-2 md:mx-0 rounded-lg overflow-hidden mb-8">
+    
+    <div>
+      <a href="/post/%E6%B8%B8%E6%88%8F%E5%90%91shader%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">
+        
+      </a>
+    </div>
+
+    <div class="flex flex-col gap-y-3 p-6">
+      
+      <h1 class="text-4xl font-semibold text-slate-800 dark:text-slate-100">
+        <a href="/post/%E6%B8%B8%E6%88%8F%E5%90%91shader%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">游戏向shader的学习路线</a>
+      </h1>
+
+      
+
+      
+  <ul class="flex flex-row flex-wrap text-slate-500 dark:text-slate-300">
+    
+      
+      <li>
+        <a href="/categories/%E5%AD%A6%E4%B9%A0/"
+          class="text-sm mr-2 px-2 py-1 rounded-sm border border-emerald-800 bg-emerald-800 text-slate-50">
+          学习
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories/unity/"
+          class="text-sm mr-2 px-2 py-1 rounded-sm border border-emerald-800 bg-emerald-800 text-slate-50">
+          Unity
+        </a>
+      </li>
+      
+    
+    
+      
+      <li>
+        <a href="/tags/%E5%AD%A6%E4%B9%A0/"
+          class="flex flex-row text-sm mr-2 py-1">
+          <i class="h-5 w-5 flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M5 9l14 0"></path>
+   <path d="M5 15l14 0"></path>
+   <path d="M11 4l-4 16"></path>
+   <path d="M17 4l-4 16"></path>
+</svg>
+
+          </i>
+          <span class="ml-0">学习</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tags/unity/"
+          class="flex flex-row text-sm mr-2 py-1">
+          <i class="h-5 w-5 flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M5 9l14 0"></path>
+   <path d="M5 15l14 0"></path>
+   <path d="M11 4l-4 16"></path>
+   <path d="M17 4l-4 16"></path>
+</svg>
+
+          </i>
+          <span class="ml-0">Unity</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tags/shader/"
+          class="flex flex-row text-sm mr-2 py-1">
+          <i class="h-5 w-5 flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M5 9l14 0"></path>
+   <path d="M5 15l14 0"></path>
+   <path d="M11 4l-4 16"></path>
+   <path d="M17 4l-4 16"></path>
+</svg>
+
+          </i>
+          <span class="ml-0">Shader</span>
+        </a>
+      </li>
+      
+    
+  </ul>
+
+
+      <div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-slate-500 dark:text-slate-300">
+  
+  
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"></path>
+   <path d="M16 3v4"></path>
+   <path d="M8 3v4"></path>
+   <path d="M4 11h16"></path>
+   <path d="M11 15h1"></path>
+   <path d="M12 15v3"></path>
+</svg>
+
+    </i>
+    <time datetime="2026-01-07T16:01:00&#43;08:00">
+      2026-01-07
+    </time>
+  </div>
+
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hourglass-high" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M6.5 7h11"></path>
+   <path d="M6 20v-2a6 6 0 1 1 12 0v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1z"></path>
+   <path d="M6 4v2a6 6 0 1 0 12 0v-2a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1z"></path>
+</svg>
+
+    </i>
+    <span>
+      One minute to read
+    </span>
+  </div>
+</div>
+
+      <div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-slate-500 dark:text-slate-300">
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+    class="icon icon-tabler icons-tabler-outline icon-tabler-user">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+    </i>
+    <span>Lucas</span>
+  </div>
+</div>
+
+      
+        
+        <section class="prose prose-slate dark:prose-invert w-full max-w-none mt-6 bg-transparent">
+          <h2 class="text-xl font-bold mb-2">Table of Contents</h2>
+          <aside class="bg-transparent"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#需要储备的基础知识可以学习的不深但一定要会">需要储备的基础知识，可以学习的不深，但一定要会</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#unlit-shader">Unlit Shader</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#基础光照">基础光照</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#贴图">贴图</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#游戏shader的灵魂技巧">游戏shader的“灵魂技巧”</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#透明-半透明特效shader">透明 、半透明、特效shader</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#后处理">后处理</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#shader-graph">Shader Graph</a></li>
+  </ul>
+</nav></aside>
+        </section>
+        
+      
+
+      <article class="mt-6 w-full max-w-none prose prose-slate dark:prose-invert prose-quoteless post-content bg-transparent">
+        <p>ChatGPT提供的学习路线</p>
+<ul>
+<li>看懂大部分 Unity 游戏 Shader</li>
+<li>自己实现常见游戏效果</li>
+<li>知道效果该用 Shader、还是粒子、还是后处理</li>
+</ul>
+<h1 id="阶段0">阶段0</h1>
+<h2 id="需要储备的基础知识可以学习的不深但一定要会">需要储备的基础知识，可以学习的不深，但一定要会</h2>
+<ul>
+<li>向量：flaot2 float3 float4</li>
+<li>dot normalize length</li>
+<li>lerp clamp saturate</li>
+<li>基本三角函数</li>
+</ul>
+<h1 id="阶段1">阶段1</h1>
+<h2 id="unlit-shader">Unlit Shader</h2>
+<p><strong>学习目标</strong>：</p>
+<ul>
+<li>理解shader在“干什么”</li>
+<li>建立“GPU思维”</li>
+<li>会写简单视觉变化
+<strong>必须会的效果</strong>：</li>
+</ul>
+<ol>
+<li>纯色/渐变</li>
+<li>UV操作
+<ul>
+<li>平移/缩放</li>
+<li>滚动纹理（水流，能量条）</li>
+</ul>
+</li>
+<li>基于时间的动画</li>
+<li>遮罩
+<ul>
+<li>圆形/条形</li>
+<li>血条，冷却条，范围提示</li>
+</ul>
+</li>
+</ol>
+<h1 id="阶段2">阶段2</h1>
+<h2 id="基础光照">基础光照</h2>
+<p>游戏光照≠真实光照
+必须手写的光照模型</p>
+<ol>
+<li>Lambert 理解：明暗分界线 、模型体积感</li>
+<li>Blinn-Phong 理解： 高光位置 、材质区分感</li>
+</ol>
+<h1 id="阶段3">阶段3</h1>
+<h2 id="贴图">贴图</h2>
+<ol>
+<li>albedo/Normal/Mask
+<ul>
+<li>为什么法线贴图是紫色</li>
+<li>为什么要normal * 2-1</li>
+<li>Mask一张图塞4个通道</li>
+</ul>
+</li>
+<li>法线贴图 + 光照
+<ul>
+<li>TBN是干嘛的</li>
+<li>不用手推矩阵，但直到意义
+<strong>游戏常用技巧</strong></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>用贴图假装细节</li>
+<li>不用增加面数</li>
+<li>不增加计算</li>
+</ul>
+<h1 id="阶段4">阶段4</h1>
+<h2 id="游戏shader的灵魂技巧">游戏shader的“灵魂技巧”</h2>
+<p><strong>必学效果</strong></p>
+<ol>
+<li>Fresnel
+<ul>
+<li>角色边缘光</li>
+<li>技能轮廓</li>
+<li>能量护盾</li>
+</ul>
+</li>
+<li>Rim Light
+<ul>
+<li>强化轮廓</li>
+<li>提升角色可读性</li>
+</ul>
+</li>
+<li>Dissolve（溶解）
+<ul>
+<li>出生/消失</li>
+<li>传送</li>
+<li>技能效果</li>
+</ul>
+</li>
+<li>Distortion（扭曲）
+<ul>
+<li>热浪</li>
+<li>能量波</li>
+<li>空气震荡</li>
+</ul>
+</li>
+</ol>
+<h1 id="阶段5">阶段5</h1>
+<h2 id="透明-半透明特效shader">透明 、半透明、特效shader</h2>
+<p><strong>必须理解</strong>：</p>
+<ul>
+<li>Alpha Blend</li>
+<li>Additive</li>
+<li>Depth
+<strong>游戏特效核心</strong>：</li>
+<li>粒子+shader</li>
+<li>BillBoard</li>
+<li>UV动画</li>
+<li>soft particle</li>
+</ul>
+<h1 id="阶段6">阶段6</h1>
+<h2 id="后处理">后处理</h2>
+<p><strong>必学后处理</strong></p>
+<ul>
+<li>Bloom（亮部扩散）</li>
+<li>Color Grading （色调）</li>
+<li>Vignette</li>
+<li>简单Blur</li>
+</ul>
+<h1 id="阶段7">阶段7</h1>
+<h2 id="shader-graph">Shader Graph</h2>
+<ul>
+<li>用 Graph 快速试效果</li>
+<li>读生成的 HLSL</li>
+<li>自己改关键逻辑</li>
+</ul>
+
+      </article>
+
+      <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+         
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+  
+  <footer style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 50; display: flex; justify-content: center; padding-bottom: 16px; pointer-events: none;">
+    <div class="w-full max-w-7xl px-4 flex justify-center" style="pointer-events: auto;">
+       <div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color: var(--bg-footer) !important; backdrop-filter: blur(12px); border: 1px solid var(--border-color);">
+          <section class="flex flex-col md:flex-row mx-2 md:mx-0 gap-2 md:gap-0 justify-between w-full max-w-4xl lg:max-w-5xl py-6 text-slate-500 dark:text-slate-300">
+  <div class="flex flex-row">
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+  <div class="grow"></div>
+  <div class="flex flex-row">
+    <i class="h-6 w-6 flex-none"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+   <path d="M14 9.75a3.016 3.016 0 0 0 -4.163 .173a2.993 2.993 0 0 0 0 4.154a3.016 3.016 0 0 0 4.163 .173"></path>
+</svg>
+</i> 2024 - 2026 Lucas
+    
+  </div>
+  
+  <div class="flex flex-row">
+    <span class="ml-0 pl-0 md:ml-2 md:pl-2 border-l-0 md:border-l border-slate-300 dark:border-slate-400">
+      Powered by <a href="https://gohugo.io" target="_blank" rel="noopener" class="underline">Hugo</a> <span class="text-red-600">&hearts;</span> <a href="https://github.com/tomowang/hugo-theme-tailwind" target="_blank" rel="noopener" class="underline">Tailwind</a>
+    </span>
+  </div>
+  
+</section>
+
+       </div>
+    </div>
+  </footer>
+  
+  <script src="/main.js"></script>
+
+
+
+
+
+</body>
+</html>

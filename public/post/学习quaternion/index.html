@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>学习Quaternion :: Lucas的博客 - Example site for hugo-theme-tailwind</title>
+  
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <link rel="stylesheet" href="/css/index.css" />
+  
+  
+  
+  
+
+  
+  <style>
+     
+    .fixed.right-0.top-0, .tailwind-size-indicator { display: none !important; }
+
+     
+    :root {
+      --bg-page: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-header: rgba(255, 255, 255, 0.85);
+      --bg-footer: rgba(255, 255, 255, 0.9);
+      --bg-sidebar: #ffffff;
+      --bg-widget: #f8fafc;
+      --bg-code: #1e293b;
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --border-color: #e2e8f0;
+      --border-light: #f1f5f9;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+    }
+    .dark {
+      --bg-page: #0f172a;
+      --bg-card: #1e293b;
+      --bg-header: rgba(15, 23, 42, 0.9);
+      --bg-footer: rgba(15, 23, 42, 0.95);
+      --bg-sidebar: #1e293b;
+      --bg-widget: #162032;
+      --bg-code: #0d1424;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --border-color: #334155;
+      --border-light: #1e293b;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --accent: #60a5fa;
+      --accent-hover: #93c5fd;
+    }
+
+     
+    body, header, footer, article, aside, main,
+    .content-glass, .bg-white, .bg-gray-700,
+    nav ul, label[for="darkmode-toggle"],
+    h1, h2, h3, h4, p, a, span, li, div,
+    .tag-solid-btn, .prose pre, .highlight {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body {
+      background-color: var(--bg-page) !important;
+      color: var(--text-primary);
+      position: relative;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+     
+    .bg-white, .bg-slate-50, .bg-gray-50,
+    .bg-zinc-50, .bg-neutral-50,
+    article, .content-glass {
+      background-color: var(--bg-card) !important;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      border-radius: 0.75rem;
+    }
+
+     
+    aside {
+      background-color: var(--bg-sidebar) !important;
+      border: 1px solid var(--border-color);
+      border-radius: 1rem !important;
+      overflow: hidden !important;
+      padding: 1rem 0;
+      margin-top: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+     
+    .site-header {
+      background-color: var(--bg-header) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+    header nav ul,
+    header label[for="darkmode-toggle"] {
+      background-color: var(--bg-widget) !important;
+      border: 1px solid var(--border-color) !important;
+      box-shadow: none !important;
+    }
+    header a img {
+      background-color: transparent !important;
+    }
+
+     
+    .bg-slate-100, .bg-gray-100, .bg-zinc-100,
+    .bg-slate-200, .bg-gray-200, .bg-zinc-200 {
+      background-color: var(--bg-widget) !important;
+      border: 1px solid var(--border-light);
+      border-radius: 0.5rem;
+    }
+
+     
+    .dark .bg-white, .dark .bg-gray-700,
+    .dark article, .dark .content-glass, .dark aside {
+      background-color: var(--bg-card) !important;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+     
+    .bg-white .bg-white,
+    .content-glass .bg-white,
+    .dark .bg-gray-700 .dark\:bg-gray-700 {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+     
+    .prose pre, .highlight {
+      background-color: var(--bg-code) !important;
+      opacity: 1 !important;
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+    }
+
+     
+    a:hover {
+      color: var(--accent);
+    }
+    .prose a {
+      color: var(--accent);
+    }
+    .prose a:hover {
+      color: var(--accent-hover);
+    }
+  </style>
+</head>
+
+<body class="flex flex-col min-h-screen w-full text-slate-900 dark:text-slate-100" style="padding-bottom: 100px;">
+
+  <header class="flex flex-none justify-center z-10 site-header sticky top-0">
+    <div class="w-full max-w-7xl flex justify-center"> 
+        <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3">
+  <div class="flex-none ml-2 md:ml-0">
+    <a href="/" class="">
+      <img class="h-12 w-12 rounded-full object-cover bg-gray-100" src="/images/avatar.jpg" alt="logo">
+    </a>
+  </div>
+  
+  <div class="flex-1"></div>
+  <div class="flex-none">
+    
+
+
+
+<nav class="h-full static">
+  <button id="navbar-menu-toggle" type="button" class="inline-flex items-center p-2 text-sm text-slate-800 dark:text-slate-200 rounded-lg md:hidden" aria-controls="navbar-menu" aria-expanded="false">
+    <span class="sr-only">Open main menu</span>
+    <i class="w-8 h-8">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 6l16 0" />
+  <path d="M4 12l16 0" />
+  <path d="M4 18l16 0" />
+</svg>
+
+    </i>
+  </button>
+  <div class="absolute md:static top-16 left-0 right-0 z-50 hidden w-full md:block md:w-auto" id="navbar-menu">
+    <ul class="flex flex-col mx-2 md:mx-0 md:flex-row md:border-0 rounded-xs md:rounded-full px-3 text-base font-medium text-slate-800 dark:text-slate-200 shadow-lg bg-white dark:bg-gray-600 shadow-slate-800/5 dark:shadow-slate-200/5 ring-1 ring-slate-900/5 dark:ring-slate-100/5">
+    
+        <li id="home" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/" title="首页">首页</a>
+        </li>
+      
+    
+        <li id="posts" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600 text-emerald-600"
+            href="/post/" title="文章">文章</a>
+        </li>
+      
+    
+        <li id="categories" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/categories/" title="分类">分类</a>
+        </li>
+      
+    
+        <li id="tags" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/tags/" title="标签">标签</a>
+        </li>
+      
+    
+        <li id="about" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/about/" title="关于">关于</a>
+        </li>
+      
+    
+    </ul>
+  </div>
+</nav>
+
+
+  </div>
+  
+  <div class="flex-none mx-1"></div>
+  
+  <div class="flex-none md:hidden">
+    <a href=/search/ class="inline-flex items-center p-2 text-sm text-slate-800 dark:text-slate-200 rounded-lg" aria-controls="navbar-menu" aria-expanded="false">
+      <span class="sr-only">Search</span>
+      <i class="w-8 h-8">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+    <path d="M21 21l-6 -6" />
+</svg>
+
+      </i>
+    </a>
+  </div>
+  <div class="darkmode-toggle flex flex-none mr-2 md:mr-0">
+    <label for="darkmode-toggle" class="relative flex items-center gap-1 px-3 cursor-pointer rounded-full bg-gray-100 dark:bg-gray-600" title="Toggle dark mode">
+      <input name="darkmode-toggle" id="darkmode-toggle" type="checkbox" class="sr-only peer" aria-label="Toggle dark mode">
+      <div class="absolute z-10 w-15 h-8 rounded-full bg-white dark:bg-gray-700"></div>
+      <i class="h-6 w-6 z-20 ml-1 flex-none rounded-full bg-yellow-400 place-self-center peer-checked:invisible">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brightness-down" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+   <path d="M12 5l0 .01"></path>
+   <path d="M17 7l0 .01"></path>
+   <path d="M19 12l0 .01"></path>
+   <path d="M17 17l0 .01"></path>
+   <path d="M12 19l0 .01"></path>
+   <path d="M7 17l0 .01"></path>
+   <path d="M5 12l0 .01"></path>
+   <path d="M7 7l0 .01"></path>
+</svg>
+
+      </i>
+      <i class="h-6 w-6 z-20 mr-1 flex-none rounded-full place-self-center invisible peer-checked:visible">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+   <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path>
+   <path d="M19 11h2m-1 -1v2"></path>
+</svg>
+
+      </i>
+    </label>
+  </div>
+</div>
+
+    </div>
+  </header>
+  
+  <main class="flex-grow w-full py-8 px-4">
+    <div class="relative w-full max-w-7xl mx-auto flex flex-col items-center">
+      
+<div id="progress" class="fixed top-0 left-0 w-full h-1 bg-blue-500 z-50"></div>
+
+<div class="w-full max-w-4xl lg:max-w-5xl">
+  
+  <div class="content-glass flex flex-col mt-6 mx-2 md:mx-0 rounded-lg overflow-hidden mb-8">
+    
+    <div>
+      <a href="/post/%E5%AD%A6%E4%B9%A0quaternion/">
+        
+      </a>
+    </div>
+
+    <div class="flex flex-col gap-y-3 p-6">
+      
+      <h1 class="text-4xl font-semibold text-slate-800 dark:text-slate-100">
+        <a href="/post/%E5%AD%A6%E4%B9%A0quaternion/">学习Quaternion</a>
+      </h1>
+
+      
+
+      
+  <ul class="flex flex-row flex-wrap text-slate-500 dark:text-slate-300">
+    
+      
+      <li>
+        <a href="/categories/c%23/"
+          class="text-sm mr-2 px-2 py-1 rounded-sm border border-emerald-800 bg-emerald-800 text-slate-50">
+          C#
+        </a>
+      </li>
+      
+    
+    
+      
+      <li>
+        <a href="/tags/csharp/"
+          class="flex flex-row text-sm mr-2 py-1">
+          <i class="h-5 w-5 flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M5 9l14 0"></path>
+   <path d="M5 15l14 0"></path>
+   <path d="M11 4l-4 16"></path>
+   <path d="M17 4l-4 16"></path>
+</svg>
+
+          </i>
+          <span class="ml-0">CSharp</span>
+        </a>
+      </li>
+      
+    
+  </ul>
+
+
+      <div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-slate-500 dark:text-slate-300">
+  
+  
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"></path>
+   <path d="M16 3v4"></path>
+   <path d="M8 3v4"></path>
+   <path d="M4 11h16"></path>
+   <path d="M11 15h1"></path>
+   <path d="M12 15v3"></path>
+</svg>
+
+    </i>
+    <time datetime="2025-12-29T17:27:29&#43;08:00">
+      2025-12-29
+    </time>
+  </div>
+
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hourglass-high" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M6.5 7h11"></path>
+   <path d="M6 20v-2a6 6 0 1 1 12 0v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1z"></path>
+   <path d="M6 4v2a6 6 0 1 0 12 0v-2a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1z"></path>
+</svg>
+
+    </i>
+    <span>
+      One minute to read
+    </span>
+  </div>
+</div>
+
+      <div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-slate-500 dark:text-slate-300">
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+    class="icon icon-tabler icons-tabler-outline icon-tabler-user">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+    </i>
+    <span>Lucas</span>
+  </div>
+</div>
+
+      
+        
+        <section class="prose prose-slate dark:prose-invert w-full max-w-none mt-6 bg-transparent">
+          <h2 class="text-xl font-bold mb-2">Table of Contents</h2>
+          <aside class="bg-transparent"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-创建四元数">1.1. 创建四元数</a></li>
+    <li><a href="#12-主要属性">1.2. 主要属性</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#21-通过欧拉角床脚">2.1. 通过欧拉角床脚</a></li>
+    <li><a href="#22-通过轴角创建">2.2. 通过轴角创建</a></li>
+    <li><a href="#23-注视旋转">2.3. 注视旋转</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#31-组合旋转">3.1. 组合旋转</a></li>
+    <li><a href="#32-旋转向量">3.2. 旋转向量</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#41-线性插值lerp">4.1. 线性插值(Lerp)</a></li>
+    <li><a href="#42-球面线性插值slerp">4.2. 球面线性插值(Slerp)</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#51-从from方向到to方向的旋转">5.1. 从from方向到to方向的旋转</a></li>
+    <li><a href="#52-点乘相似度">5.2. 点乘（相似度）</a></li>
+    <li><a href="#53-逆旋转">5.3. 逆旋转</a></li>
+  </ul>
+</nav></aside>
+        </section>
+        
+      
+
+      <article class="mt-6 w-full max-w-none prose prose-slate dark:prose-invert prose-quoteless post-content bg-transparent">
+        <h1 id="1-什么是四元数">1. 什么是四元数？</h1>
+<p>四元数是一种<strong>表示三维空间旋转</strong>的数学工具，与欧拉角相比，它可以避免&quot;万向节锁&quot;问题，并且插值更平滑。</p>
+<h2 id="11-创建四元数">1.1. 创建四元数</h2>
+<pre tabindex="0"><code>using UnityEngine;
+// 创建四元数
+Quaternion rotation = new Quaternion(x, y, z, w);
+</code></pre><h2 id="12-主要属性">1.2. 主要属性</h2>
+<pre tabindex="0"><code>// 单位四元数（无旋转）
+Quaternion.identity
+
+// 四元数的四个分量（x, y, z, w）
+rotation.x
+rotation.y
+rotation.z
+rotation.w
+
+// 四元数的欧拉角表示
+Vector3 euler = rotation.eulerAngles;
+</code></pre><h1 id="2-创建四元数">2. 创建四元数</h1>
+<h2 id="21-通过欧拉角床脚">2.1. 通过欧拉角床脚</h2>
+<pre tabindex="0"><code>Quaternion rot = Quaternion.Euler(30f,45f,0f);
+</code></pre><h2 id="22-通过轴角创建">2.2. 通过轴角创建</h2>
+<pre tabindex="0"><code>Quternion rot =Quaternion.AngleAxis(90f,Vector3.up);
+</code></pre><h2 id="23-注视旋转">2.3. 注视旋转</h2>
+<pre tabindex="0"><code>Vector3 direction =terget.position-transform.position
+Quaternion rot =Quaternion.LookRotation(direction);
+</code></pre><h1 id="3-旋转运算">3. 旋转运算</h1>
+<h2 id="31-组合旋转">3.1. 组合旋转</h2>
+<pre tabindex="0"><code>Quaternion rot1 =Quaternion.Euler(0,90,0);
+Quaternion rot2 =Quaternion.Euler(30,0,0);
+Quaternion combined= rot1 * rot2 ;//顺序不同会产生不同结果
+</code></pre><h2 id="32-旋转向量">3.2. 旋转向量</h2>
+<pre tabindex="0"><code>Vector3 original =Vector3.forward;
+Vector3 rotated = rotation * original;
+</code></pre><h1 id="4-插值方法">4. 插值方法</h1>
+<h2 id="41-线性插值lerp">4.1. 线性插值(Lerp)</h2>
+<pre tabindex="0"><code>// 线性插值，参数t会被钳制在[0,1]
+Quaternion current = transform.rotation;
+Quaternion target = Quaternion.Euler(0, 90, 0);
+transform.rotation = Quaternion.Lerp(current, target, Time.deltaTime * speed);
+</code></pre><h2 id="42-球面线性插值slerp">4.2. 球面线性插值(Slerp)</h2>
+<pre tabindex="0"><code>// 沿球面最短路径插值，效果更平滑
+transform.rotation = Quaternion.Slerp(current, target, Time.deltaTime * speed);
+</code></pre><h1 id="5-实用方法">5. 实用方法</h1>
+<h2 id="51-从from方向到to方向的旋转">5.1. 从from方向到to方向的旋转</h2>
+<pre tabindex="0"><code>// 计算从from方向到to方向的旋转
+Quaternion rot = Quaternion.FromToRotation(Vector3.up, surfaceNormal);
+</code></pre><h2 id="52-点乘相似度">5.2. 点乘（相似度）</h2>
+<pre tabindex="0"><code>// 返回两个旋转的相似度（1表示相同，-1表示相反）
+float similarity = Quaternion.Dot(rot1, rot2);
+</code></pre><h2 id="53-逆旋转">5.3. 逆旋转</h2>
+<pre tabindex="0"><code>Quaternion inverse = Quaternion.Inverse(rotation);
+</code></pre><h1 id="6-与transform的关系">6. 与Transform的关系</h1>
+<pre tabindex="0"><code>// 获取旋转
+Quaternion rot = transform.rotation;      // 世界空间旋转
+Quaternion localRot = transform.localRotation; // 局部空间旋转
+
+// 设置旋转
+transform.rotation = newRotation;
+</code></pre><h1 id="7-注意事项">7. 注意事项</h1>
+<ol>
+<li><strong>四元数需要规范化</strong>：Unity会自动处理，但自定义四元数时需要注意</li>
+<li><strong>乘法顺序</strong>：四元数乘法不满足交换律</li>
+<li><strong>避免直接修改eulerAngles</strong>：直接修改可能导致意外行为</li>
+<li><strong>插值选择</strong>：小角度旋转用Lerp，大角度用Slerp</li>
+</ol>
+
+      </article>
+
+      <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+         
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+  
+  <footer style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 50; display: flex; justify-content: center; padding-bottom: 16px; pointer-events: none;">
+    <div class="w-full max-w-7xl px-4 flex justify-center" style="pointer-events: auto;">
+       <div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color: var(--bg-footer) !important; backdrop-filter: blur(12px); border: 1px solid var(--border-color);">
+          <section class="flex flex-col md:flex-row mx-2 md:mx-0 gap-2 md:gap-0 justify-between w-full max-w-4xl lg:max-w-5xl py-6 text-slate-500 dark:text-slate-300">
+  <div class="flex flex-row">
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+  <div class="grow"></div>
+  <div class="flex flex-row">
+    <i class="h-6 w-6 flex-none"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+   <path d="M14 9.75a3.016 3.016 0 0 0 -4.163 .173a2.993 2.993 0 0 0 0 4.154a3.016 3.016 0 0 0 4.163 .173"></path>
+</svg>
+</i> 2024 - 2026 Lucas
+    
+  </div>
+  
+  <div class="flex flex-row">
+    <span class="ml-0 pl-0 md:ml-2 md:pl-2 border-l-0 md:border-l border-slate-300 dark:border-slate-400">
+      Powered by <a href="https://gohugo.io" target="_blank" rel="noopener" class="underline">Hugo</a> <span class="text-red-600">&hearts;</span> <a href="https://github.com/tomowang/hugo-theme-tailwind" target="_blank" rel="noopener" class="underline">Tailwind</a>
+    </span>
+  </div>
+  
+</section>
+
+       </div>
+    </div>
+  </footer>
+  
+  <script src="/main.js"></script>
+
+<div class="hidden top-1 right-1" id="code-copy">
+  <i class="h-6 w-6 block">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
+  <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
+</svg>
+
+  </i>
+</div>
+<div class="hidden top-1 right-1" id="code-copy-done">
+  <i class="h-6 w-6 block">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M5 12l5 5l10 -10" />
+</svg>
+
+  </i>
+</div><script src="/code-copy.js"></script>
+
+
+
+
+
+
+</body>
+</html>

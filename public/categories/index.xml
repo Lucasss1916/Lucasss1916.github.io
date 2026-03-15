@@ -9,27 +9,34 @@
     <managingEditor>user@example.com (Lucas)</managingEditor>
     <webMaster>user@example.com (Lucas)</webMaster>
     <copyright>Lucas</copyright>
-    <lastBuildDate>Tue, 23 Dec 2025 12:51:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 28 Jan 2026 15:25:01 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C#</title>
       <link>http://localhost:1313/categories/c%23/</link>
-      <pubDate>Tue, 23 Dec 2025 12:51:00 +0800</pubDate><author>user@example.com (Lucas)</author>
+      <pubDate>Wed, 28 Jan 2026 15:25:01 +0800</pubDate><author>user@example.com (Lucas)</author>
       <guid>http://localhost:1313/categories/c%23/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Blog</title>
-      <link>http://localhost:1313/categories/blog/</link>
-      <pubDate>Sun, 31 Aug 2025 17:04:19 +0800</pubDate><author>user@example.com (Lucas)</author>
-      <guid>http://localhost:1313/categories/blog/</guid>
       <description></description>
     </item>
     <item>
       <title>Unity</title>
       <link>http://localhost:1313/categories/unity/</link>
-      <pubDate>Thu, 14 Aug 2025 15:25:30 +0800</pubDate><author>user@example.com (Lucas)</author>
+      <pubDate>Wed, 28 Jan 2026 15:25:01 +0800</pubDate><author>user@example.com (Lucas)</author>
       <guid>http://localhost:1313/categories/unity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>学习</title>
+      <link>http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Wed, 28 Jan 2026 15:25:01 +0800</pubDate><author>user@example.com (Lucas)</author>
+      <guid>http://localhost:1313/categories/%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blog</title>
+      <link>http://localhost:1313/categories/blog/</link>
+      <pubDate>Sat, 03 May 2025 17:04:19 +0800</pubDate><author>user@example.com (Lucas)</author>
+      <guid>http://localhost:1313/categories/blog/</guid>
       <description></description>
     </item>
   </channel>

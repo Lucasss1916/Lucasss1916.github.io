@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>Async和Await :: Lucas的博客 - Example site for hugo-theme-tailwind</title>
+  
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <link rel="stylesheet" href="/css/index.css" />
+  
+  
+  
+  
+
+  
+  <style>
+     
+    .fixed.right-0.top-0, .tailwind-size-indicator { display: none !important; }
+
+     
+    :root {
+      --bg-page: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-header: rgba(255, 255, 255, 0.85);
+      --bg-footer: rgba(255, 255, 255, 0.9);
+      --bg-sidebar: #ffffff;
+      --bg-widget: #f8fafc;
+      --bg-code: #1e293b;
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --border-color: #e2e8f0;
+      --border-light: #f1f5f9;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+    }
+    .dark {
+      --bg-page: #0f172a;
+      --bg-card: #1e293b;
+      --bg-header: rgba(15, 23, 42, 0.9);
+      --bg-footer: rgba(15, 23, 42, 0.95);
+      --bg-sidebar: #1e293b;
+      --bg-widget: #162032;
+      --bg-code: #0d1424;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --border-color: #334155;
+      --border-light: #1e293b;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --accent: #60a5fa;
+      --accent-hover: #93c5fd;
+    }
+
+     
+    body, header, footer, article, aside, main,
+    .content-glass, .bg-white, .bg-gray-700,
+    nav ul, label[for="darkmode-toggle"],
+    h1, h2, h3, h4, p, a, span, li, div,
+    .tag-solid-btn, .prose pre, .highlight {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body {
+      background-color: var(--bg-page) !important;
+      color: var(--text-primary);
+      position: relative;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+     
+    .bg-white, .bg-slate-50, .bg-gray-50,
+    .bg-zinc-50, .bg-neutral-50,
+    article, .content-glass {
+      background-color: var(--bg-card) !important;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      border-radius: 0.75rem;
+    }
+
+     
+    aside {
+      background-color: var(--bg-sidebar) !important;
+      border: 1px solid var(--border-color);
+      border-radius: 1rem !important;
+      overflow: hidden !important;
+      padding: 1rem 0;
+      margin-top: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+     
+    .site-header {
+      background-color: var(--bg-header) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+    header nav ul,
+    header label[for="darkmode-toggle"] {
+      background-color: var(--bg-widget) !important;
+      border: 1px solid var(--border-color) !important;
+      box-shadow: none !important;
+    }
+    header a img {
+      background-color: transparent !important;
+    }
+
+     
+    .bg-slate-100, .bg-gray-100, .bg-zinc-100,
+    .bg-slate-200, .bg-gray-200, .bg-zinc-200 {
+      background-color: var(--bg-widget) !important;
+      border: 1px solid var(--border-light);
+      border-radius: 0.5rem;
+    }
+
+     
+    .dark .bg-white, .dark .bg-gray-700,
+    .dark article, .dark .content-glass, .dark aside {
+      background-color: var(--bg-card) !important;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+     
+    .bg-white .bg-white,
+    .content-glass .bg-white,
+    .dark .bg-gray-700 .dark\:bg-gray-700 {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+     
+    .prose pre, .highlight {
+      background-color: var(--bg-code) !important;
+      opacity: 1 !important;
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+    }
+
+     
+    a:hover {
+      color: var(--accent);
+    }
+    .prose a {
+      color: var(--accent);
+    }
+    .prose a:hover {
+      color: var(--accent-hover);
+    }
+  </style>
+</head>
+
+<body class="flex flex-col min-h-screen w-full text-slate-900 dark:text-slate-100" style="padding-bottom: 100px;">
+
+  <header class="flex flex-none justify-center z-10 site-header sticky top-0">
+    <div class="w-full max-w-7xl flex justify-center"> 
+        <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3">
+  <div class="flex-none ml-2 md:ml-0">
+    <a href="/" class="">
+      <img class="h-12 w-12 rounded-full object-cover bg-gray-100" src="/images/avatar.jpg" alt="logo">
+    </a>
+  </div>
+  
+  <div class="flex-1"></div>
+  <div class="flex-none">
+    
+
+
+
+<nav class="h-full static">
+  <button id="navbar-menu-toggle" type="button" class="inline-flex items-center p-2 text-sm text-slate-800 dark:text-slate-200 rounded-lg md:hidden" aria-controls="navbar-menu" aria-expanded="false">
+    <span class="sr-only">Open main menu</span>
+    <i class="w-8 h-8">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 6l16 0" />
+  <path d="M4 12l16 0" />
+  <path d="M4 18l16 0" />
+</svg>
+
+    </i>
+  </button>
+  <div class="absolute md:static top-16 left-0 right-0 z-50 hidden w-full md:block md:w-auto" id="navbar-menu">
+    <ul class="flex flex-col mx-2 md:mx-0 md:flex-row md:border-0 rounded-xs md:rounded-full px-3 text-base font-medium text-slate-800 dark:text-slate-200 shadow-lg bg-white dark:bg-gray-600 shadow-slate-800/5 dark:shadow-slate-200/5 ring-1 ring-slate-900/5 dark:ring-slate-100/5">
+    
+        <li id="home" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/" title="首页">首页</a>
+        </li>
+      
+    
+        <li id="posts" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600 text-emerald-600"
+            href="/post/" title="文章">文章</a>
+        </li>
+      
+    
+        <li id="categories" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/categories/" title="分类">分类</a>
+        </li>
+      
+    
+        <li id="tags" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/tags/" title="标签">标签</a>
+        </li>
+      
+    
+        <li id="about" class="">
+          <a class="block px-3 py-3 hover:text-emerald-600"
+            href="/about/" title="关于">关于</a>
+        </li>
+      
+    
+    </ul>
+  </div>
+</nav>
+
+
+  </div>
+  
+  <div class="flex-none mx-1"></div>
+  
+  <div class="flex-none md:hidden">
+    <a href=/search/ class="inline-flex items-center p-2 text-sm text-slate-800 dark:text-slate-200 rounded-lg" aria-controls="navbar-menu" aria-expanded="false">
+      <span class="sr-only">Search</span>
+      <i class="w-8 h-8">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+    <path d="M21 21l-6 -6" />
+</svg>
+
+      </i>
+    </a>
+  </div>
+  <div class="darkmode-toggle flex flex-none mr-2 md:mr-0">
+    <label for="darkmode-toggle" class="relative flex items-center gap-1 px-3 cursor-pointer rounded-full bg-gray-100 dark:bg-gray-600" title="Toggle dark mode">
+      <input name="darkmode-toggle" id="darkmode-toggle" type="checkbox" class="sr-only peer" aria-label="Toggle dark mode">
+      <div class="absolute z-10 w-15 h-8 rounded-full bg-white dark:bg-gray-700"></div>
+      <i class="h-6 w-6 z-20 ml-1 flex-none rounded-full bg-yellow-400 place-self-center peer-checked:invisible">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brightness-down" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+   <path d="M12 5l0 .01"></path>
+   <path d="M17 7l0 .01"></path>
+   <path d="M19 12l0 .01"></path>
+   <path d="M17 17l0 .01"></path>
+   <path d="M12 19l0 .01"></path>
+   <path d="M7 17l0 .01"></path>
+   <path d="M5 12l0 .01"></path>
+   <path d="M7 7l0 .01"></path>
+</svg>
+
+      </i>
+      <i class="h-6 w-6 z-20 mr-1 flex-none rounded-full place-self-center invisible peer-checked:visible">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+   <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path>
+   <path d="M19 11h2m-1 -1v2"></path>
+</svg>
+
+      </i>
+    </label>
+  </div>
+</div>
+
+    </div>
+  </header>
+  
+  <main class="flex-grow w-full py-8 px-4">
+    <div class="relative w-full max-w-7xl mx-auto flex flex-col items-center">
+      
+<div id="progress" class="fixed top-0 left-0 w-full h-1 bg-blue-500 z-50"></div>
+
+<div class="w-full max-w-4xl lg:max-w-5xl">
+  
+  <div class="content-glass flex flex-col mt-6 mx-2 md:mx-0 rounded-lg overflow-hidden mb-8">
+    
+    <div>
+      <a href="/post/async%E5%92%8Cawait/">
+        
+      </a>
+    </div>
+
+    <div class="flex flex-col gap-y-3 p-6">
+      
+      <h1 class="text-4xl font-semibold text-slate-800 dark:text-slate-100">
+        <a href="/post/async%E5%92%8Cawait/">Async和Await</a>
+      </h1>
+
+      
+
+      
+  <ul class="flex flex-row flex-wrap text-slate-500 dark:text-slate-300">
+    
+      
+      <li>
+        <a href="/categories/%E5%AD%A6%E4%B9%A0/"
+          class="text-sm mr-2 px-2 py-1 rounded-sm border border-emerald-800 bg-emerald-800 text-slate-50">
+          学习
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories/c%23/"
+          class="text-sm mr-2 px-2 py-1 rounded-sm border border-emerald-800 bg-emerald-800 text-slate-50">
+          C#
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories/unity/"
+          class="text-sm mr-2 px-2 py-1 rounded-sm border border-emerald-800 bg-emerald-800 text-slate-50">
+          Unity
+        </a>
+      </li>
+      
+    
+    
+      
+      <li>
+        <a href="/tags/%E5%AD%A6%E4%B9%A0/"
+          class="flex flex-row text-sm mr-2 py-1">
+          <i class="h-5 w-5 flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M5 9l14 0"></path>
+   <path d="M5 15l14 0"></path>
+   <path d="M11 4l-4 16"></path>
+   <path d="M17 4l-4 16"></path>
+</svg>
+
+          </i>
+          <span class="ml-0">学习</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tags/csharp/"
+          class="flex flex-row text-sm mr-2 py-1">
+          <i class="h-5 w-5 flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M5 9l14 0"></path>
+   <path d="M5 15l14 0"></path>
+   <path d="M11 4l-4 16"></path>
+   <path d="M17 4l-4 16"></path>
+</svg>
+
+          </i>
+          <span class="ml-0">CSharp</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tags/unity/"
+          class="flex flex-row text-sm mr-2 py-1">
+          <i class="h-5 w-5 flex-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M5 9l14 0"></path>
+   <path d="M5 15l14 0"></path>
+   <path d="M11 4l-4 16"></path>
+   <path d="M17 4l-4 16"></path>
+</svg>
+
+          </i>
+          <span class="ml-0">Unity</span>
+        </a>
+      </li>
+      
+    
+  </ul>
+
+
+      <div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-slate-500 dark:text-slate-300">
+  
+  
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"></path>
+   <path d="M16 3v4"></path>
+   <path d="M8 3v4"></path>
+   <path d="M4 11h16"></path>
+   <path d="M11 15h1"></path>
+   <path d="M12 15v3"></path>
+</svg>
+
+    </i>
+    <time datetime="2026-01-28T15:25:01&#43;08:00">
+      2026-01-28
+    </time>
+  </div>
+
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hourglass-high" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M6.5 7h11"></path>
+   <path d="M6 20v-2a6 6 0 1 1 12 0v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1z"></path>
+   <path d="M6 4v2a6 6 0 1 0 12 0v-2a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1z"></path>
+</svg>
+
+    </i>
+    <span>
+      3 minutes to read
+    </span>
+  </div>
+</div>
+
+      <div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-slate-500 dark:text-slate-300">
+  <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+    class="icon icon-tabler icons-tabler-outline icon-tabler-user">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+    </i>
+    <span>Lucas</span>
+  </div>
+</div>
+
+      
+        
+        <section class="prose prose-slate dark:prose-invert w-full max-w-none mt-6 bg-transparent">
+          <h2 class="text-xl font-bold mb-2">Table of Contents</h2>
+          <aside class="bg-transparent"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-c中的async和await">1. C#中的Async和Await</a></li>
+    <li><a href="#2-unity的特殊性">2. unity的特殊性</a></li>
+    <li><a href="#3-unity解决方案">3. Unity解决方案</a>
+      <ul>
+        <li><a href="#31-awaitable语法">3.1. awaitable语法</a></li>
+        <li><a href="#32-awaitable返回值处理">3.2. awaitable返回值处理</a></li>
+        <li><a href="#33-awaitable异常处理">3.3. awaitable异常处理</a></li>
+        <li><a href="#34-awaitable取消操作">3.4. awaitable取消操作</a></li>
+        <li><a href="#35-awaitable-的并行执行">3.5. Awaitable 的并行执行</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></aside>
+        </section>
+        
+      
+
+      <article class="mt-6 w-full max-w-none prose prose-slate dark:prose-invert prose-quoteless post-content bg-transparent">
+        <h2 id="1-c中的async和await">1. C#中的Async和Await</h2>
+<p>async和await是c#中用于简化异步编程的语法糖。</p>
+<ul>
+<li>async主要用于标记，告诉编译器这是异步方法。</li>
+<li>在async的方法中才能使用await。</li>
+<li>普通方法返回T，async方法返回Task&lt; T &gt;</li>
+</ul>
+<pre tabindex="0"><code>public async Task ProcessDataAsync()
+{
+    Console.WriteLine(&#34;步骤1：开始&#34;);
+    
+    // 这行代码会被编译器&#34;切割&#34;
+    string data = await DownloadAsync(&#34;url&#34;); // &lt;-- 切割点
+    
+    //将方法进行切割，等待任务执行完成后，再继续执行
+    Console.WriteLine(&#34;步骤2：完成，数据=&#34; + data);
+}
+</code></pre><h2 id="2-unity的特殊性">2. unity的特殊性</h2>
+<p>在unity中不能直接使用c#的异步，因为Unity API必须在主线程中调用
+考虑到：性能和稳定性以及避免多线程的复杂性以及bug。</p>
+<h2 id="3-unity解决方案">3. Unity解决方案</h2>
+<p>对比传统的coroutine，新方案Awaitable有更多的有点</p>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>协程 (Coroutine)</th>
+          <th>Awaitable (Unity 2023+)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>引入时间</strong></td>
+          <td>Unity 早期就有</td>
+          <td>Unity 2023.1+</td>
+      </tr>
+      <tr>
+          <td><strong>语法风格</strong></td>
+          <td><code>yield return</code></td>
+          <td><code>async/await</code></td>
+      </tr>
+      <tr>
+          <td><strong>返回类型</strong></td>
+          <td><code>IEnumerator</code></td>
+          <td><code>Awaitable</code> / <code>Awaitable&lt;T&gt;</code></td>
+      </tr>
+      <tr>
+          <td><strong>返回值</strong></td>
+          <td>❌ 不支持直接返回</td>
+          <td>✅ 支持 <code>Awaitable&lt;T&gt;</code></td>
+      </tr>
+      <tr>
+          <td><strong>异常处理</strong></td>
+          <td>❌ 困难（需要try-catch包裹整个方法）</td>
+          <td>✅ 标准的 try-catch</td>
+      </tr>
+      <tr>
+          <td><strong>取消操作</strong></td>
+          <td>❌ 需要手动实现</td>
+          <td>✅ 支持 CancellationToken</td>
+      </tr>
+      <tr>
+          <td><strong>性能</strong></td>
+          <td>⚡ 轻量（少量GC）</td>
+          <td>⚡⚡ 更优化（几乎零GC）</td>
+      </tr>
+      <tr>
+          <td><strong>学习曲线</strong></td>
+          <td>🔷 Unity特有概念</td>
+          <td>🔷 标准C#知识</td>
+      </tr>
+      <tr>
+          <td><strong>代码可读性</strong></td>
+          <td>👎 较差（嵌套复杂）</td>
+          <td>👍 很好（线性流程）</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="31-awaitable语法">3.1. awaitable语法</h3>
+<pre tabindex="0"><code>// ========== Awaitable 写法 ==========
+//可以直接调用，不需要通过startcoroutine启动
+public class AwaitableVersion : MonoBehaviour
+{
+    async void Start()
+    {
+        Debug.Log(&#34;等待开始&#34;);
+        
+        await Awaitable.WaitForSecondsAsync(2f);
+        
+        Debug.Log(&#34;2秒后执行&#34;);
+    }
+}
+</code></pre><pre tabindex="0"><code>// ========== Awaitable 顺序执行多个操作 ==========
+async Awaitable SequenceAwaitable()
+{
+    // 移动到位置1
+    await MoveToAsync(position1);
+    
+    // 等待2秒
+    await Awaitable.WaitForSecondsAsync(2f);
+    
+    // 移动到位置2
+    await MoveToAsync(position2);
+    
+    Debug.Log(&#34;全部完成&#34;);
+}
+async Awaitable MoveToAsync(Vector3 target)
+{
+    while (Vector3.Distance(transform.position, target) &gt; 0.1f)
+    {
+        transform.position = Vector3.MoveTowards(
+            transform.position, 
+            target, 
+            Time.deltaTime * 5f
+        );
+        await Awaitable.NextFrameAsync(); // 等待下一帧
+    }
+}
+</code></pre><h3 id="32-awaitable返回值处理">3.2. awaitable返回值处理</h3>
+<pre tabindex="0"><code>// ========== Awaitable（直接返回）==========
+public class AwaitableReturn : MonoBehaviour
+{
+    async void Start()
+    {
+        // ✅ 直接获取返回值
+        string data = await DownloadDataAsync();
+        Debug.Log(&#34;收到数据：&#34; + data);
+        
+        // ✅ 继续处理，代码线性流畅
+        bool success = await ProcessDataAsync(data);
+        Debug.Log(&#34;处理完成：&#34; + success);
+        
+        // ✅ 所有逻辑在一个方法里，清晰明了
+    }
+    
+    async Awaitable&lt;string&gt; DownloadDataAsync()
+    {
+        await Awaitable.WaitForSecondsAsync(2f);
+        return &#34;下载的数据&#34;; // ✅ 直接返回
+    }
+    
+    async Awaitable&lt;bool&gt; ProcessDataAsync(string data)
+    {
+        await Awaitable.WaitForSecondsAsync(1f);
+        return true; // ✅ 直接返回
+    }
+}
+</code></pre><h3 id="33-awaitable异常处理">3.3. awaitable异常处理</h3>
+<pre tabindex="0"><code>// ========== Awaitable 的错误处理 ==========
+public class AwaitableError : MonoBehaviour
+{
+    async void Start()
+    {
+        // ✅ 标准的 try-catch，像普通方法一样
+        try
+        {
+            await RiskyOperationAsync();
+            Debug.Log(&#34;操作成功&#34;);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(&#34;捕获错误：&#34; + e.Message);
+            // ✅ 可以在这里处理错误
+        }
+        finally
+        {
+            Debug.Log(&#34;清理资源&#34;);
+        }
+    }
+    
+    async Awaitable RiskyOperationAsync()
+    {
+        await Awaitable.WaitForSecondsAsync(1f);
+        
+        // 抛出异常
+        throw new System.Exception(&#34;出错了！&#34;);
+        
+        // 异常会自动传递给调用者
+    }
+    
+    // ✅ 多层调用也能正确传递异常
+    async Awaitable ChainedOperation()
+    {
+        try
+        {
+            await RiskyOperationAsync(); // 异常会向上传递
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(&#34;在链式调用中捕获：&#34; + e.Message);
+            throw; // 可以选择继续向上抛出
+        }
+    }
+}
+</code></pre><h3 id="34-awaitable取消操作">3.4. awaitable取消操作</h3>
+<pre tabindex="0"><code>// ========== Awaitable 的取消（标准化）==========
+public class AwaitableCancel : MonoBehaviour
+{
+    private CancellationTokenSource cts;
+    
+    void Start()
+    {
+        cts = new CancellationTokenSource();
+        LongOperationAsync(cts.Token).Forget(); // 启动异步操作
+    }
+    
+    async Awaitable LongOperationAsync(CancellationToken token)
+    {
+        try
+        {
+            for (int i = 0; i &lt; 10; i++)
+            {
+                // ✅ 自动检查取消请求
+                token.ThrowIfCancellationRequested();
+                
+                Debug.Log(&#34;步骤 &#34; + i);
+                
+                // ✅ 等待时也会响应取消
+                await Awaitable.WaitForSecondsAsync(1f, token);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            Debug.Log(&#34;操作被取消&#34;);
+        }
+        finally
+        {
+            // ✅ finally 块保证执行，可以清理资源
+            Debug.Log(&#34;清理资源&#34;);
+        }
+    }
+    
+    // 取消操作
+    public void Cancel()
+    {
+        cts?.Cancel(); // ✅ 一行代码取消所有相关操作
+    }
+    
+    void OnDestroy()
+    {
+        // ✅ 对象销毁时自动取消
+        cts?.Cancel();
+        cts?.Dispose();
+        
+        // 或者使用 Unity 的扩展方法
+        // var token = this.GetCancellationTokenOnDestroy();
+    }
+}
+
+// 扩展方法：Forget() 用于不需要等待的异步操作
+public static class AwaitableExtensions
+{
+    public static async void Forget(this Awaitable awaitable)
+    {
+        try
+        {
+            await awaitable;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogException(e);
+        }
+    }
+}
+</code></pre><h3 id="35-awaitable-的并行执行">3.5. Awaitable 的并行执行</h3>
+<pre tabindex="0"><code>// ========== Awaitable 并行（简单）==========
+public class AwaitableParallel : MonoBehaviour
+{
+    async void Start()
+    {
+        // ✅ 方法1：使用 WhenAll 等待所有任务
+        await Awaitable.WhenAll(
+            Task1Async(),
+            Task2Async(),
+            Task3Async()
+        );
+        
+        Debug.Log(&#34;所有任务完成&#34;);
+        
+        // ✅ 方法2：获取所有任务的返回值
+        var results = await Awaitable.WhenAll(
+            DownloadAsync(&#34;url1&#34;),
+            DownloadAsync(&#34;url2&#34;),
+            DownloadAsync(&#34;url3&#34;)
+        );
+        
+        foreach (var result in results)
+        {
+            Debug.Log(&#34;结果：&#34; + result);
+        }
+    }
+    
+    async Awaitable Task1Async()
+    {
+        await Awaitable.WaitForSecondsAsync(1f);
+        Debug.Log(&#34;任务1完成&#34;);
+    }
+    
+    async Awaitable Task2Async()
+    {
+        await Awaitable.WaitForSecondsAsync(2f);
+        Debug.Log(&#34;任务2完成&#34;);
+    }
+    
+    async Awaitable Task3Async()
+    {
+        await Awaitable.WaitForSecondsAsync(1.5f);
+        Debug.Log(&#34;任务3完成&#34;);
+    }
+    
+    async Awaitable&lt;string&gt; DownloadAsync(string url)
+    {
+        await Awaitable.WaitForSecondsAsync(1f);
+        return $&#34;数据来自 {url}&#34;;
+    }
+}
+</code></pre>
+      </article>
+
+      <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+         
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+  
+  <footer style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 50; display: flex; justify-content: center; padding-bottom: 16px; pointer-events: none;">
+    <div class="w-full max-w-7xl px-4 flex justify-center" style="pointer-events: auto;">
+       <div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color: var(--bg-footer) !important; backdrop-filter: blur(12px); border: 1px solid var(--border-color);">
+          <section class="flex flex-col md:flex-row mx-2 md:mx-0 gap-2 md:gap-0 justify-between w-full max-w-4xl lg:max-w-5xl py-6 text-slate-500 dark:text-slate-300">
+  <div class="flex flex-row">
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+  <div class="grow"></div>
+  <div class="flex flex-row">
+    <i class="h-6 w-6 flex-none"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+   <path d="M14 9.75a3.016 3.016 0 0 0 -4.163 .173a2.993 2.993 0 0 0 0 4.154a3.016 3.016 0 0 0 4.163 .173"></path>
+</svg>
+</i> 2024 - 2026 Lucas
+    
+  </div>
+  
+  <div class="flex flex-row">
+    <span class="ml-0 pl-0 md:ml-2 md:pl-2 border-l-0 md:border-l border-slate-300 dark:border-slate-400">
+      Powered by <a href="https://gohugo.io" target="_blank" rel="noopener" class="underline">Hugo</a> <span class="text-red-600">&hearts;</span> <a href="https://github.com/tomowang/hugo-theme-tailwind" target="_blank" rel="noopener" class="underline">Tailwind</a>
+    </span>
+  </div>
+  
+</section>
+
+       </div>
+    </div>
+  </footer>
+  
+  <script src="/main.js"></script>
+
+<div class="hidden top-1 right-1" id="code-copy">
+  <i class="h-6 w-6 block">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
+  <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
+</svg>
+
+  </i>
+</div>
+<div class="hidden top-1 right-1" id="code-copy-done">
+  <i class="h-6 w-6 block">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M5 12l5 5l10 -10" />
+</svg>
+
+  </i>
+</div><script src="/code-copy.js"></script>
+
+
+
+
+
+
+</body>
+</html>
