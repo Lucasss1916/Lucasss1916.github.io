@@ -1,18 +1,15 @@
 /* =========================================
-   统一主题色彩系统
-   基于 Slate 色调，深浅模式一致
+   Liquid Glass 液态玻璃 - 辅助样式
    ========================================= */
 
 /* 1. 基础变量 */
 :root {
   --primary-color: #1e293b;
   --secondary-color: #3b82f6;
-  --border-color: #e2e8f0;
 }
 .dark {
   --primary-color: #f1f5f9;
   --secondary-color: #60a5fa;
-  --border-color: #334155;
 }
 
 /* 2. 代码块溢出修复 */
@@ -36,7 +33,7 @@
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 12px;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -91,15 +88,18 @@ code {
   box-sizing: border-box !important;
 }
 
-/* 6. 引用块 */
+/* 6. 引用块 - 液态玻璃风格 */
 blockquote {
-  border-left: 4px solid var(--secondary-color);
-  padding-left: 1em;
+  border-left: 3px solid var(--secondary-color);
+  padding: 0.75em 1em;
   color: #64748b;
   margin-left: 0;
+  background: rgba(99, 145, 255, 0.06);
+  border-radius: 0 12px 12px 0;
 }
 .dark blockquote {
   color: #94a3b8;
+  background: rgba(99, 145, 255, 0.08);
 }
 
 /* 7. 移动端保护 */

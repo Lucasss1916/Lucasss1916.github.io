@@ -1,0 +1,20 @@
+<section class="pl-6 mt-6 w-full max-w-4xl lg:max-w-5xl">
+  <form action={{ relLangURL "search/" }} method="get">
+    <div class="flex search-box">
+      <input type="text" name="search" id="search-input" required placeholder="{{ T "search.placeholder" }}"
+        class="search-input block flex-1 min-w-0 w-full text-sm p-3">
+      <button class="search-btn inline-flex items-center px-3 text-sm">
+        <i class="h-6 w-6 flex-none">
+          {{ partial "icon.html" "search" }}
+        </i>
+      </button>
+    </div>
+  </form>
+</section>
+
+{{ range $taxonomy, $terms := site.Taxonomies }}
+  {{ if $terms }}
+  {{- $limit := site.Params.sidebar.limit | default 10 -}}
+  {{ partial "block/sidebar_section.html" (dict "Context" $terms "Taxonomy" $taxonomy "Limit" $limit) }}
+  {{ end }}
+{{ end }}

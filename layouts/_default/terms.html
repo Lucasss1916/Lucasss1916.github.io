@@ -7,29 +7,31 @@
 
 <style>
   .tag-solid-btn {
-    background-color: var(--bg-widget, #f8fafc) !important;
-    border: 1px solid var(--border-color, #e2e8f0) !important;
+    background-color: rgba(255, 255, 255, 0.35) !important;
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.75) !important;
     color: var(--text-primary, #334155) !important;
-    opacity: 1 !important;
-    backdrop-filter: none !important;
-    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.06)) !important;
-    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5) !important;
+    transition: all 0.3s ease;
   }
-
   .tag-solid-btn:hover {
-    background-color: var(--border-light, #f1f5f9) !important;
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.08)) !important;
+    background-color: rgba(255, 255, 255, 0.55) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.7) !important;
     color: var(--accent, #3b82f6) !important;
   }
-
   .dark .tag-solid-btn {
-    background-color: var(--bg-widget, #162032) !important;
-    border: 1px solid var(--border-color, #334155) !important;
+    background-color: rgba(15, 23, 42, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
     color: var(--text-primary, #e2e8f0) !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05) !important;
   }
   .dark .tag-solid-btn:hover {
-    background-color: #253348 !important;
+    background-color: rgba(30, 41, 59, 0.6) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08) !important;
     color: var(--accent, #60a5fa) !important;
   }
 </style>

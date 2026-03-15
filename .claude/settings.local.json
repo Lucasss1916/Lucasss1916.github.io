@@ -9,7 +9,9 @@
       "Bash(git -C /Users/lucas/Documents/Lucasss1916.github.io ls-tree -r HEAD)",
       "Bash(git -C /Users/lucas/Documents/Lucasss1916.github.io config --file .gitmodules --get-regexp \"path\")",
       "Bash(find /Users/lucas/Documents/Lucasss1916.github.io -type f \\\\\\(-name *.html -o -name *.js -o -name *.json \\\\\\) -path */layouts/* -o -path */static/*)",
-      "Bash(git submodule:*)"
+      "Bash(git submodule:*)",
+      "Bash(hugo --minify)",
+      "Bash(curl -s http://localhost:1313/)"
     ]
   }
 }

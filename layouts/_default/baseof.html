@@ -32,40 +32,49 @@
     /* 隐藏干扰元素 */
     .fixed.right-0.top-0, .tailwind-size-indicator { display: none !important; }
 
+    /* ========================================
+       Liquid Glass 液态玻璃设计系统
+       ======================================== */
+
     /* === 颜色变量 === */
     :root {
-      --bg-page: #f1f5f9;
-      --bg-card: #ffffff;
-      --bg-header: rgba(255, 255, 255, 0.85);
-      --bg-footer: rgba(255, 255, 255, 0.9);
-      --bg-sidebar: #ffffff;
-      --bg-widget: #f8fafc;
-      --bg-code: #1e293b;
+      --glass-bg: rgba(255, 255, 255, 0.22);
+      --glass-border: rgba(255, 255, 255, 0.45);
+      --glass-border-top: rgba(255, 255, 255, 0.7);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+      --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      --glass-blur: blur(20px) saturate(180%);
+
+      --header-bg: rgba(255, 255, 255, 0.35);
+      --footer-bg: rgba(255, 255, 255, 0.3);
+      --widget-bg: rgba(255, 255, 255, 0.2);
+      --code-bg: rgba(15, 23, 42, 0.88);
+
       --text-primary: #1e293b;
       --text-secondary: #475569;
       --text-muted: #94a3b8;
-      --border-color: #e2e8f0;
-      --border-light: #f1f5f9;
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --border-color: rgba(255, 255, 255, 0.45);
       --accent: #3b82f6;
       --accent-hover: #2563eb;
     }
+
     .dark {
-      --bg-page: #0f172a;
-      --bg-card: #1e293b;
-      --bg-header: rgba(15, 23, 42, 0.9);
-      --bg-footer: rgba(15, 23, 42, 0.95);
-      --bg-sidebar: #1e293b;
-      --bg-widget: #162032;
-      --bg-code: #0d1424;
+      --glass-bg: rgba(15, 23, 42, 0.35);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-border-top: rgba(255, 255, 255, 0.15);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
+      --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      --glass-blur: blur(20px) saturate(150%);
+
+      --header-bg: rgba(15, 23, 42, 0.4);
+      --footer-bg: rgba(15, 23, 42, 0.35);
+      --widget-bg: rgba(30, 41, 59, 0.3);
+      --code-bg: rgba(2, 6, 18, 0.85);
+
       --text-primary: #f1f5f9;
       --text-secondary: #cbd5e1;
       --text-muted: #64748b;
-      --border-color: #334155;
-      --border-light: #1e293b;
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --border-color: rgba(255, 255, 255, 0.07);
       --accent: #60a5fa;
       --accent-hover: #93c5fd;
     }
@@ -74,101 +83,428 @@
     body, header, footer, article, aside, main,
     .content-glass, .bg-white, .bg-gray-700,
     nav ul, label[for="darkmode-toggle"],
-    h1, h2, h3, h4, p, a, span, li, div,
     .tag-solid-btn, .prose pre, .highlight {
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: background-color 0.4s ease, color 0.3s ease,
+                  border-color 0.4s ease, box-shadow 0.4s ease,
+                  backdrop-filter 0.4s ease;
     }
 
+    /* === 渐变网格背景 === */
     body {
-      background-color: var(--bg-page) !important;
-      color: var(--text-primary);
       position: relative;
       width: 100%;
       overflow-x: hidden;
+      color: var(--text-primary);
+      background-color: #dce3f0 !important;
+      background-image:
+        radial-gradient(ellipse at 10% 20%, rgba(72, 120, 255, 0.35) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 10%, rgba(160, 100, 255, 0.28) 0%, transparent 45%),
+        radial-gradient(ellipse at 45% 90%, rgba(50, 190, 230, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 65%, rgba(255, 110, 160, 0.18) 0%, transparent 45%),
+        radial-gradient(ellipse at 30% 60%, rgba(100, 220, 180, 0.15) 0%, transparent 40%) !important;
+      background-attachment: fixed !important;
+    }
+    .dark body, body.dark {
+      background-color: #060b18 !important;
+      background-image:
+        radial-gradient(ellipse at 10% 20%, rgba(30, 50, 160, 0.45) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 10%, rgba(110, 30, 170, 0.3) 0%, transparent 45%),
+        radial-gradient(ellipse at 45% 90%, rgba(15, 70, 140, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 65%, rgba(150, 30, 80, 0.18) 0%, transparent 45%),
+        radial-gradient(ellipse at 30% 60%, rgba(20, 120, 100, 0.15) 0%, transparent 40%) !important;
+      background-attachment: fixed !important;
     }
 
-    /* === 卡片/内容区域 === */
+    /* === 液态玻璃 mixin（通用） === */
     .bg-white, .bg-slate-50, .bg-gray-50,
     .bg-zinc-50, .bg-neutral-50,
     article, .content-glass {
-      background-color: var(--bg-card) !important;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow-sm);
-      border-radius: 0.75rem;
+      background-color: var(--glass-bg) !important;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-top: 1px solid var(--glass-border-top);
+      box-shadow: var(--glass-shadow), var(--glass-inset);
+      border-radius: 16px;
     }
 
-    /* 侧边栏 */
+    /* === 侧边栏玻璃 === */
     aside {
-      background-color: var(--bg-sidebar) !important;
-      border: 1px solid var(--border-color);
-      border-radius: 1rem !important;
+      background-color: var(--glass-bg) !important;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-top: 1px solid var(--glass-border-top);
+      box-shadow: var(--glass-shadow), var(--glass-inset);
+      border-radius: 20px !important;
       overflow: hidden !important;
       padding: 1rem 0;
       margin-top: 2rem;
-      box-shadow: var(--shadow-sm);
     }
 
-    /* === Header === */
+    /* === Header 玻璃 === */
     .site-header {
-      background-color: var(--bg-header) !important;
+      background-color: var(--header-bg) !important;
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 1px 0 var(--glass-border-top), 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+    .dark .site-header {
+      box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Header 内部元素 */
+    header nav ul {
+      background-color: var(--widget-bg) !important;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
-      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--glass-border) !important;
+      border-top: 1px solid var(--glass-border-top) !important;
+      box-shadow: var(--glass-inset), 0 2px 8px rgba(0,0,0,0.04) !important;
+      border-radius: 12px !important;
     }
-    header nav ul,
     header label[for="darkmode-toggle"] {
-      background-color: var(--bg-widget) !important;
-      border: 1px solid var(--border-color) !important;
-      box-shadow: none !important;
+      background-color: var(--widget-bg) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border) !important;
+      box-shadow: var(--glass-inset) !important;
+      border-radius: 10px !important;
     }
     header a img {
       background-color: transparent !important;
     }
 
-    /* === 小组件 === */
+    /* === 小组件玻璃 === */
     .bg-slate-100, .bg-gray-100, .bg-zinc-100,
-    .bg-slate-200, .bg-gray-200, .bg-zinc-200 {
-      background-color: var(--bg-widget) !important;
-      border: 1px solid var(--border-light);
-      border-radius: 0.5rem;
+    .bg-gray-200, .bg-zinc-200 {
+      background-color: var(--widget-bg) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
     }
 
-    /* === 深色模式卡片 === */
+    /* === 深色模式覆盖 === */
     .dark .bg-white, .dark .bg-gray-700,
     .dark article, .dark .content-glass, .dark aside {
-      background-color: var(--bg-card) !important;
-      border: 1px solid var(--border-color);
+      background-color: var(--glass-bg) !important;
+      border: 1px solid var(--glass-border);
+      border-top: 1px solid var(--glass-border-top);
       color: var(--text-primary);
     }
 
-    /* 嵌套元素透明 */
+    /* 嵌套元素透明化 */
     .bg-white .bg-white,
     .content-glass .bg-white,
     .dark .bg-gray-700 .dark\:bg-gray-700 {
       background-color: transparent !important;
       border: none !important;
       box-shadow: none !important;
+      backdrop-filter: none !important;
     }
 
-    /* === 代码块 === */
-    .prose pre, .highlight {
-      background-color: var(--bg-code) !important;
+    /* === 代码块玻璃 === */
+    .prose pre, .highlight, .chroma,
+    .highlight .chroma {
+      background-color: rgba(230, 235, 248, 0.65) !important;
+      backdrop-filter: blur(10px) saturate(130%);
+      -webkit-backdrop-filter: blur(10px) saturate(130%);
       opacity: 1 !important;
-      border: 1px solid var(--border-color);
-      border-radius: 0.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 8px rgba(0,0,0,0.05);
+    }
+    /* 覆盖 Tailwind prose 的近白色代码文字 */
+    .prose pre code,
+    .prose pre {
+      color: #2d3748 !important;
+      --tw-prose-pre-code: #2d3748 !important;
+      --tw-prose-pre-bg: transparent !important;
+    }
+    .prose code {
+      color: #4a3563 !important;
+      --tw-prose-code: #4a3563 !important;
+    }
+    .chroma .lntable,
+    .chroma .lntd {
+      background-color: transparent !important;
+    }
+    .chroma .hl {
+      background-color: rgba(59, 130, 246, 0.12) !important;
+    }
+    /* 浅色模式代码文字加深 */
+    .chroma { color: #3b4559 !important; }
+    .chroma .ln, .chroma .lnt { color: #8893a7 !important; }
+    .chroma .k, .chroma .kd, .chroma .kc { color: #7c3aed !important; }
+    .chroma .kn { color: #be185d !important; }
+    .chroma .kr, .chroma .kp { color: #7c3aed !important; }
+    .chroma .kt { color: #0d9488 !important; }
+    .chroma .s, .chroma .s1, .chroma .s2,
+    .chroma .sa, .chroma .sb, .chroma .sc,
+    .chroma .se, .chroma .sh, .chroma .si,
+    .chroma .dl, .chroma .sx { color: #b45309 !important; }
+    .chroma .m, .chroma .mi, .chroma .mf,
+    .chroma .mh, .chroma .mo, .chroma .mb,
+    .chroma .il { color: #0369a1 !important; }
+    .chroma .c, .chroma .c1, .chroma .ch,
+    .chroma .cm, .chroma .cp, .chroma .cpf,
+    .chroma .cs { color: #6b7280 !important; font-style: italic; }
+    .chroma .n, .chroma .na { color: #1d4ed8 !important; }
+    .chroma .nb { color: #0d9488 !important; }
+    .chroma .nc, .chroma .no { color: #0d9488 !important; }
+    .chroma .nd { color: #b45309 !important; }
+    .chroma .ne { color: #be185d !important; }
+    .chroma .nf { color: #1d4ed8 !important; }
+    .chroma .nt { color: #be185d !important; }
+    .chroma .o, .chroma .p { color: #3b4559 !important; }
+
+    /* 深色模式代码块 */
+    .dark .prose pre, .dark .highlight,
+    .dark .chroma, .dark .highlight .chroma {
+      background-color: rgba(10, 15, 35, 0.6) !important;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .dark .prose pre code,
+    .dark .prose pre {
+      color: #c9d1d9 !important;
+      --tw-prose-pre-code: #c9d1d9 !important;
+      --tw-prose-pre-bg: transparent !important;
+    }
+    .dark .prose code {
+      color: #c4b5fd !important;
+      --tw-prose-code: #c4b5fd !important;
+    }
+    .dark .chroma .hl {
+      background-color: rgba(59, 130, 246, 0.12) !important;
+    }
+    .dark .chroma { color: #c9d1d9 !important; }
+    .dark .chroma .ln, .dark .chroma .lnt { color: #586e75 !important; }
+    .dark .chroma .k, .dark .chroma .kd, .dark .chroma .kc { color: #c792ea !important; }
+    .dark .chroma .kn { color: #f07178 !important; }
+    .dark .chroma .kr, .dark .chroma .kp { color: #c792ea !important; }
+    .dark .chroma .kt { color: #82aaff !important; }
+    .dark .chroma .s, .dark .chroma .s1, .dark .chroma .s2,
+    .dark .chroma .sa, .dark .chroma .sb, .dark .chroma .sc,
+    .dark .chroma .se, .dark .chroma .sh, .dark .chroma .si,
+    .dark .chroma .dl, .dark .chroma .sx { color: #c3e88d !important; }
+    .dark .chroma .m, .dark .chroma .mi, .dark .chroma .mf,
+    .dark .chroma .mh, .dark .chroma .mo, .dark .chroma .mb,
+    .dark .chroma .il { color: #f78c6c !important; }
+    .dark .chroma .c, .dark .chroma .c1, .dark .chroma .ch,
+    .dark .chroma .cm, .dark .chroma .cp, .dark .chroma .cpf,
+    .dark .chroma .cs { color: #676e95 !important; font-style: italic; }
+    .dark .chroma .n, .dark .chroma .na { color: #82aaff !important; }
+    .dark .chroma .nb { color: #89ddff !important; }
+    .dark .chroma .nc, .dark .chroma .no { color: #ffcb6b !important; }
+    .dark .chroma .nd { color: #82aaff !important; }
+    .dark .chroma .ne { color: #ffcb6b !important; }
+    .dark .chroma .nf { color: #82aaff !important; }
+    .dark .chroma .nt { color: #f07178 !important; }
+    .dark .chroma .o, .dark .chroma .p { color: #89ddff !important; }
+
+    /* === 链接 === */
+    a:hover { color: var(--accent); }
+    .prose a { color: var(--accent); }
+    .prose a:hover { color: var(--accent-hover); }
+
+    /* === 暗色模式切换按钮 === */
+    .darkmode-toggle label {
+      background-color: var(--widget-bg) !important;
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border: 1px solid var(--glass-border) !important;
+      border-top: 1px solid var(--glass-border-top) !important;
+      box-shadow: var(--glass-inset), 0 2px 8px rgba(0,0,0,0.04) !important;
+    }
+    .darkmode-toggle label > div {
+      background-color: rgba(255, 255, 255, 0.7) !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .dark .darkmode-toggle label > div {
+      background-color: rgba(51, 65, 85, 0.8) !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+    .darkmode-toggle i.bg-yellow-400 {
+      background-color: #fbbf24 !important;
+      box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
     }
 
-    /* === 链接颜色 === */
-    a:hover {
-      color: var(--accent);
+    /* === 搜索框（自定义 partial） === */
+    .search-input {
+      background-color: var(--glass-bg) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border) !important;
+      border-right: none !important;
+      color: var(--text-primary) !important;
+      border-radius: 12px 0 0 12px !important;
+      outline: none;
     }
-    .prose a {
-      color: var(--accent);
+    .search-input:focus {
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
     }
-    .prose a:hover {
-      color: var(--accent-hover);
+    .search-input::placeholder {
+      color: var(--text-muted) !important;
     }
+    .search-btn {
+      background-color: var(--widget-bg) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border) !important;
+      border-left: none !important;
+      color: var(--text-secondary) !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .search-btn:hover {
+      background-color: var(--glass-bg) !important;
+      color: var(--accent) !important;
+    }
+
+    /* === 分类标签玻璃（自定义 partial） === */
+    .category-glass {
+      background: linear-gradient(135deg, rgba(5, 150, 105, 0.7), rgba(16, 185, 129, 0.55)) !important;
+      backdrop-filter: blur(10px) saturate(140%);
+      -webkit-backdrop-filter: blur(10px) saturate(140%);
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      border-top-color: rgba(255, 255, 255, 0.5) !important;
+      box-shadow: 0 2px 10px rgba(5, 150, 105, 0.2), inset 0 1px 0 rgba(255,255,255,0.25);
+      transition: all 0.25s ease;
+    }
+    .category-glass:hover {
+      background: linear-gradient(135deg, rgba(5, 150, 105, 0.85), rgba(16, 185, 129, 0.7)) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+      color: #fff !important;
+    }
+    .dark .category-glass {
+      background: linear-gradient(135deg, rgba(5, 150, 105, 0.45), rgba(16, 185, 129, 0.35)) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      border-top-color: rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 2px 10px rgba(5, 150, 105, 0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    /* === Tag 玻璃 === */
+    .tag-glass {
+      background-color: var(--widget-bg) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-inset);
+      color: var(--text-secondary) !important;
+      transition: all 0.25s ease;
+    }
+    .tag-glass:hover {
+      background-color: var(--glass-bg) !important;
+      color: var(--accent) !important;
+      transform: translateY(-1px);
+    }
+
+    /* === 侧边栏标签玻璃（自定义 partial） === */
+    .sidebar-tag {
+      background-color: var(--widget-bg) !important;
+      backdrop-filter: blur(10px) saturate(140%);
+      -webkit-backdrop-filter: blur(10px) saturate(140%);
+      border: 1px solid var(--glass-border) !important;
+      border-top: 1px solid var(--glass-border-top) !important;
+      box-shadow: var(--glass-inset), 0 1px 4px rgba(0,0,0,0.04) !important;
+      transition: all 0.25s ease;
+    }
+    .sidebar-tag:hover {
+      background-color: var(--glass-bg) !important;
+      color: var(--accent) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08), var(--glass-inset) !important;
+    }
+
+    /* === 分页按钮玻璃 === */
+    .pagination-btn {
+      background-color: var(--glass-bg) !important;
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border: 1px solid var(--glass-border) !important;
+      border-top: 1px solid var(--glass-border-top) !important;
+      box-shadow: var(--glass-shadow), var(--glass-inset) !important;
+      border-radius: 12px !important;
+      transition: all 0.25s ease;
+    }
+    .pagination-btn:hover {
+      background-color: rgba(255, 255, 255, 0.6) !important;
+      transform: translateY(-1px);
+      color: var(--accent) !important;
+    }
+    .dark .pagination-btn:hover {
+      background-color: rgba(30, 41, 59, 0.6) !important;
+    }
+
+    /* === Logo 头像 === */
+    img.bg-gray-100 {
+      background-color: transparent !important;
+    }
+
+    /* === 404 按钮 === */
+    .bg-indigo-600 {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.8), rgba(99, 102, 241, 0.7)) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3), inset 0 1px 0 rgba(255,255,255,0.2) !important;
+      border-radius: 12px !important;
+    }
+    .bg-indigo-600:hover {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.9), rgba(99, 102, 241, 0.8)) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4), inset 0 1px 0 rgba(255,255,255,0.25) !important;
+    }
+
+    /* === 进度条 === */
+    #progress {
+      background: linear-gradient(90deg, var(--accent), rgba(99, 102, 241, 0.8)) !important;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+    }
+
+    /* === 计数徽章 === */
+    .bg-red-400 {
+      background: linear-gradient(135deg, rgba(248, 113, 113, 0.85), rgba(239, 68, 68, 0.75)) !important;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.25);
+    }
+
+    /* === 菜单 hover 颜色 === */
+    .hover\:text-emerald-600:hover {
+      color: var(--accent) !important;
+    }
+    .text-emerald-600 {
+      color: var(--accent) !important;
+    }
+
+    /* === 语言切换下拉 === */
+    #navbar-lang > ul {
+      background-color: var(--glass-bg) !important;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border) !important;
+      border-top: 1px solid var(--glass-border-top) !important;
+      box-shadow: var(--glass-shadow), var(--glass-inset) !important;
+      border-radius: 12px !important;
+    }
+
+    /* === 滚动条玻璃化 === */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.3);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.5); }
+    .dark ::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.3); }
+    .dark ::-webkit-scrollbar-thumb:hover { background: rgba(100, 116, 139, 0.5); }
   </style>
 </head>
 
@@ -188,7 +524,7 @@
   
   <footer style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 50; display: flex; justify-content: center; padding-bottom: 16px; pointer-events: none;">
     <div class="w-full max-w-7xl px-4 flex justify-center" style="pointer-events: auto;">
-       <div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color: var(--bg-footer) !important; backdrop-filter: blur(12px); border: 1px solid var(--border-color);">
+       <div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color: var(--footer-bg) !important; backdrop-filter: blur(28px) saturate(190%); -webkit-backdrop-filter: blur(28px) saturate(190%); border: 1px solid var(--glass-border); border-top: 1px solid var(--glass-border-top); box-shadow: var(--glass-shadow), var(--glass-inset);">
           {{ partial "footer.html" . }}
        </div>
     </div>
