@@ -1,0 +1,15 @@
+# Hugo build artifacts
+public/
+resources/_gen/
+.hugo_build.lock
+
+# Local editor/workspace files
+.obsidian/
+.claude/
+content/.obsidian/
+
+# Node dependencies
+node_modules/
+
+# OS files
+.DS_Store
