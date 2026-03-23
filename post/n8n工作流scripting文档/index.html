@@ -6,8 +6,8 @@
 </i><span class=ml-1>学习</span></a></li><li><a href=/tags/n8n/ class="tag-glass flex flex-row text-sm py-1 px-2 rounded-lg items-center"><i class="h-4 w-4 flex-none"><svg class="icon icon-tabler icon-tabler-hash" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 9h14"/><path d="M5 15h14"/><path d="M11 4 7 20"/><path d="M17 4l-4 16"/></svg>
 </i><span class=ml-1>N8n</span></a></li></ul><div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-slate-500 dark:text-slate-300"><div class="flex flex-row text-base gap-x-1"><i class="h-6 w-6 flex-none"><svg class="icon icon-tabler icon-tabler-calendar" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V7z"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/><path d="M11 15h1"/><path d="M12 15v3"/></svg>
 </i><time datetime=2026-03-19T14:05:21+08:00>2026-03-19</time></div><div class="flex flex-row text-base gap-x-1"><i class="h-6 w-6 flex-none"><svg class="icon icon-tabler icon-tabler-hourglass-high" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6.5 7h11"/><path d="M6 20v-2a6 6 0 1112 0v2a1 1 0 01-1 1H7a1 1 0 01-1-1z"/><path d="M6 4v2a6 6 0 1012 0V4a1 1 0 00-1-1H7A1 1 0 006 4z"/></svg>
-</i><span>阅读时长1分钟</span></div></div><div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-slate-500 dark:text-slate-300"><div class="flex flex-row text-base gap-x-1"><i class="h-6 w-6 flex-none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 108 0A4 4 0 008 7"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
-</i><span>Lucas</span></div></div><section class="prose prose-slate dark:prose-invert w-full max-w-none mt-6 bg-transparent"><h2 class="text-xl font-bold mb-2">目录</h2><aside class=bg-transparent><nav id=TableOfContents><ul><li><a href=#1-创建相应文件夹并配置环境>1. 创建相应文件夹并配置环境</a><ul><li><a href=#11-为什么要配置虚拟python环境>1.1. 为什么要配置虚拟python环境</a></li></ul></li></ul></nav></aside></section><article class="mt-6 w-full max-w-none prose prose-slate dark:prose-invert prose-quoteless post-content bg-transparent"><h2 id=1-创建相应文件夹并配置环境>1. 创建相应文件夹并配置环境</h2><pre tabindex=0><code>//创建文件夹
+</i><span>阅读时长3分钟</span></div></div><div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-slate-500 dark:text-slate-300"><div class="flex flex-row text-base gap-x-1"><i class="h-6 w-6 flex-none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 108 0A4 4 0 008 7"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+</i><span>Lucas</span></div></div><section class="prose prose-slate dark:prose-invert w-full max-w-none mt-6 bg-transparent"><h2 class="text-xl font-bold mb-2">目录</h2><aside class=bg-transparent><nav id=TableOfContents><ul><li><a href=#1-创建相应文件夹并配置环境>1. 创建相应文件夹并配置环境</a><ul><li><a href=#11-为什么要配置虚拟python环境>1.1. 为什么要配置虚拟python环境</a></li></ul></li><li><a href=#编写python脚本>编写Python脚本</a></li></ul></nav></aside></section><article class="mt-6 w-full max-w-none prose prose-slate dark:prose-invert prose-quoteless post-content bg-transparent"><h2 id=1-创建相应文件夹并配置环境>1. 创建相应文件夹并配置环境</h2><pre tabindex=0><code>//创建文件夹
 mkdir -p /scripting-knowledge/{scripts,data,logs}
 cd /scripting-knowledge &amp;&amp; ls -la
 //配置python虚拟环境
@@ -15,5 +15,400 @@ cd /scripting-knowledge &amp;&amp; python3 -m venv venv
 source venv/bin/activate &amp;&amp; pip install --upgrade pip
 //安装必要的包
 pip install chromadb llama-index beautifulsoup4 requests lxml
-</code></pre><h3 id=11-为什么要配置虚拟python环境>1.1. 为什么要配置虚拟python环境</h3><ul><li>避免依赖冲突</li><li>不影响系统自带python（因为是在mac中，mac系统自带的比较重要）</li><li>依赖管理清晰</li><li>权限问题，虚拟环境不需要sudo</li></ul></article><div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700"></div></div></div></div></div></main><footer style=position:fixed;bottom:0;left:0;width:100%;z-index:50;display:flex;justify-content:center;padding-bottom:16px;pointer-events:none><div class="w-full max-w-7xl px-4 flex justify-center" style=pointer-events:auto><div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color:var(--footer-bg)!important;backdrop-filter:blur(28px)saturate(190%);-webkit-backdrop-filter:blur(28px)saturate(190%);border:1px solid var(--glass-border);border-top:1px solid var(--glass-border-top);box-shadow:var(--glass-shadow),var(--glass-inset)"><section class="flex flex-col md:flex-row mx-2 md:mx-0 gap-2 md:gap-0 justify-between w-full max-w-4xl lg:max-w-5xl py-6 text-slate-500 dark:text-slate-300"><div class="flex flex-row"></div><div class=grow></div><div class="flex flex-row"><i class="h-6 w-6 flex-none"><svg class="icon icon-tabler icon-tabler-copyright" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1018 0A9 9 0 103 12"/><path d="M14 9.75a3.016 3.016.0 00-4.163.173 2.993 2.993.0 000 4.154A3.016 3.016.0 0014 14.25"/></svg>
+</code></pre><h3 id=11-为什么要配置虚拟python环境>1.1. 为什么要配置虚拟python环境</h3><ul><li>避免依赖冲突</li><li>不影响系统自带python（因为是在mac中，mac系统自带的比较重要）</li><li>依赖管理清晰</li><li>权限问题，虚拟环境不需要sudo</li></ul><h2 id=编写python脚本>编写Python脚本</h2><pre tabindex=0><code>#!/usr/bin/env python3
+
+&#34;&#34;&#34;
+
+Scripting.fun 文档抓取器
+
+从 https://scripting.fun/doc_v2/zh/guide/ 抓取所有文档内容
+
+策略：
+
+1. 用 Playwright 加载一次页面，从侧边栏提取所有文档链接
+
+2. 用 requests + .html 后缀批量抓取 SSR 内容（快速）
+
+&#34;&#34;&#34;
+
+import requests
+
+from bs4 import BeautifulSoup
+
+import json
+
+import hashlib
+
+import time
+
+from pathlib import Path
+
+  
+
+class ScriptingDocScraper:
+
+def __init__(self, output_path=None):
+
+self.site_root = &#34;https://scripting.fun&#34;
+
+self.entry_url = &#34;https://scripting.fun/doc_v2/zh/guide/Quick%20Start&#34;
+
+self.sidebar_selector = &#34;#__rspress_root &gt; div.rp-doc-layout__container &gt; aside.rp-doc-layout__sidebar&#34;
+
+self.visited = set()
+
+self.docs = []
+
+self.output_path = output_path
+
+  
+
+# 加载已有数据，建立 url -&gt; {doc, content_hash} 的索引
+
+self.existing = {}
+
+if output_path and Path(output_path).exists():
+
+with open(output_path, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
+
+for doc in json.load(f):
+
+h = hashlib.md5(doc[&#34;content&#34;].encode()).hexdigest()
+
+self.existing[doc[&#34;url&#34;]] = {&#34;doc&#34;: doc, &#34;hash&#34;: h}
+
+print(f&#34;已加载 {len(self.existing)} 篇已有文档&#34;)
+
+  
+
+def discover_urls(self):
+
+&#34;&#34;&#34;用 Playwright 加载页面，从侧边栏提取所有文档链接&#34;&#34;&#34;
+
+from playwright.sync_api import sync_playwright
+
+  
+
+discovered = set()
+
+print(&#34;正在用 Playwright 加载侧边栏...&#34;)
+
+  
+
+try:
+
+with sync_playwright() as p:
+
+browser = p.chromium.launch(headless=True)
+
+page = browser.new_page()
+
+page.goto(self.entry_url, wait_until=&#34;networkidle&#34;, timeout=30000)
+
+  
+
+sidebar = page.query_selector(self.sidebar_selector)
+
+if not sidebar:
+
+print(&#34; 未找到侧边栏元素，尝试等待...&#34;)
+
+page.wait_for_selector(self.sidebar_selector, timeout=10000)
+
+sidebar = page.query_selector(self.sidebar_selector)
+
+  
+
+if sidebar:
+
+links = sidebar.query_selector_all(&#34;a[href]&#34;)
+
+for link in links:
+
+href = link.get_attribute(&#34;href&#34;)
+
+if href and &#34;/guide/&#34; in href:
+
+# 将英文路径转为中文版路径
+
+path = href
+
+if &#34;/doc_v2/guide/&#34; in path and &#34;/doc_v2/zh/guide/&#34; not in path:
+
+path = path.replace(&#34;/doc_v2/guide/&#34;, &#34;/doc_v2/zh/guide/&#34;)
+
+# 构建 .html 后缀的完整 URL
+
+if path.endswith(&#34;/&#34;):
+
+html_path = path + &#34;index.html&#34;
+
+else:
+
+html_path = path + &#34;.html&#34;
+
+full_url = f&#34;{self.site_root}{html_path}&#34;
+
+discovered.add(full_url)
+
+print(f&#34; 从侧边栏发现 {len(discovered)} 个文档页面&#34;)
+
+else:
+
+print(&#34; 未找到侧边栏&#34;)
+
+  
+
+browser.close()
+
+except Exception as e:
+
+print(f&#34; Playwright 加载失败: {e}&#34;)
+
+  
+
+return discovered
+
+  
+
+def extract_content(self, soup):
+
+&#34;&#34;&#34;提取页面主要内容&#34;&#34;&#34;
+
+# 移除脚本和样式
+
+for script in soup([&#34;script&#34;, &#34;style&#34;, &#34;nav&#34;, &#34;footer&#34;]):
+
+script.decompose()
+
+  
+
+# 尝试找到主要内容区域
+
+main_content = (soup.find(&#34;main&#34;) or
+
+soup.find(&#34;article&#34;) or
+
+soup.find(class_=&#34;content&#34;) or
+
+soup.find(class_=&#34;markdown-body&#34;))
+
+  
+
+if main_content:
+
+text = main_content.get_text(separator=&#34;\n&#34;, strip=True)
+
+else:
+
+text = soup.get_text(separator=&#34;\n&#34;, strip=True)
+  
+
+# 清理空行
+
+lines = [line.strip() for line in text.split(&#34;\n&#34;) if line.strip()]
+
+return &#34;\n&#34;.join(lines)
+
+
+def scrape_page(self, url):
+
+&#34;&#34;&#34;抓取单个页面（增量：跳过内容未变化的页面）&#34;&#34;&#34;
+
+if url in self.visited:
+
+return False
+  
+
+self.visited.add(url)
+
+  
+try:
+
+response = requests.get(url, timeout=10)
+
+
+if response.status_code in (403, 404, 410):
+
+print(f&#34; 跳过 (HTTP {response.status_code}): {url}&#34;)
+
+return False
+
+response.raise_for_status()
+
+response.encoding = &#34;utf-8&#34;
+
+
+soup = BeautifulSoup(response.text, &#34;html.parser&#34;)
+
+
+title = soup.find(&#34;h1&#34;)
+
+title_text = title.get_text(strip=True) if title else url
+
+  
+
+content = self.extract_content(soup)
+
+  
+
+if not content or len(content) &lt; 10:
+
+print(f&#34; 跳过 (内容为空): {url}&#34;)
+
+return False
+
+  
+
+# 增量判断：内容哈希相同则跳过
+
+content_hash = hashlib.md5(content.encode()).hexdigest()
+
+if url in self.existing and self.existing[url][&#34;hash&#34;] == content_hash:
+
+# 内容未变，沿用旧数据
+
+self.docs.append(self.existing[url][&#34;doc&#34;])
+
+return False
+
+  
+
+doc = {
+
+&#34;url&#34;: url,
+
+&#34;title&#34;: title_text,
+
+&#34;content&#34;: content
+
+}
+
+self.docs.append(doc)
+
+return True # 标记为新增/更新
+
+  
+
+except Exception as e:
+
+print(f&#34; 错误 {url}: {e}&#34;)
+
+# 出错时保留旧数据
+
+if url in self.existing:
+
+self.docs.append(self.existing[url][&#34;doc&#34;])
+
+return False
+
+  
+
+def scrape_all(self):
+
+&#34;&#34;&#34;增量抓取所有页面&#34;&#34;&#34;
+
+urls = self.discover_urls()
+
+  
+
+if not urls:
+
+print(&#34;未发现任何文档页面，请检查网站是否可访问&#34;)
+
+return self.docs, False
+
+  
+
+url_list = sorted(urls)
+
+total = len(url_list)
+
+updated = 0
+
+skipped = 0
+
+  
+
+print(f&#34;\n开始抓取 {total} 个页面（已有 {len(self.existing)} 篇）...\n&#34;)
+
+  
+
+for i, url in enumerate(url_list, 1):
+
+is_new = self.scrape_page(url)
+
+if is_new:
+
+updated += 1
+
+print(f&#34; [{i}/{total}] 新增/更新: {url}&#34;)
+
+else:
+
+skipped += 1
+
+time.sleep(0.3)
+
+  
+
+# 检测已删除的页面（旧数据中有，但侧边栏中不再存在）
+
+removed = set(self.existing.keys()) - urls
+
+if removed:
+
+print(f&#34;\n检测到 {len(removed)} 篇已删除的页面&#34;)
+
+  
+
+has_changes = updated &gt; 0 or len(removed) &gt; 0
+
+print(f&#34;\n完成! 共 {len(self.docs)} 篇 | 新增/更新: {updated} | 未变化: {skipped} | 删除: {len(removed)}&#34;)
+
+  
+
+return self.docs, has_changes
+
+  
+
+def save_to_json(self, output_path):
+
+&#34;&#34;&#34;保存为 JSON 文件&#34;&#34;&#34;
+
+with open(output_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as f:
+
+json.dump(self.docs, f, ensure_ascii=False, indent=2)
+
+print(f&#34;已保存到: {output_path}&#34;)
+
+  
+  
+
+if __name__ == &#34;__main__&#34;:
+
+data_dir = Path(__file__).parent.parent / &#34;data&#34;
+
+data_dir.mkdir(exist_ok=True)
+
+output_file = data_dir / &#34;scripting_docs.json&#34;
+
+  
+
+scraper = ScriptingDocScraper(output_path=output_file)
+
+docs, has_changes = scraper.scrape_all()
+
+  
+
+if has_changes:
+
+scraper.save_to_json(output_file)
+
+print(&#34;文档已更新&#34;)
+
+else:
+
+print(&#34;无变化，跳过写入&#34;)
+</code></pre></article><div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700"></div></div></div></div></div></main><footer style=position:fixed;bottom:0;left:0;width:100%;z-index:50;display:flex;justify-content:center;padding-bottom:16px;pointer-events:none><div class="w-full max-w-7xl px-4 flex justify-center" style=pointer-events:auto><div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color:var(--footer-bg)!important;backdrop-filter:blur(28px)saturate(190%);-webkit-backdrop-filter:blur(28px)saturate(190%);border:1px solid var(--glass-border);border-top:1px solid var(--glass-border-top);box-shadow:var(--glass-shadow),var(--glass-inset)"><section class="flex flex-col md:flex-row mx-2 md:mx-0 gap-2 md:gap-0 justify-between w-full max-w-4xl lg:max-w-5xl py-6 text-slate-500 dark:text-slate-300"><div class="flex flex-row"></div><div class=grow></div><div class="flex flex-row"><i class="h-6 w-6 flex-none"><svg class="icon icon-tabler icon-tabler-copyright" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1018 0A9 9 0 103 12"/><path d="M14 9.75a3.016 3.016.0 00-4.163.173 2.993 2.993.0 000 4.154A3.016 3.016.0 0014 14.25"/></svg>
 </i>2024 - 2026 Lucas</div><div class="flex flex-row"><span class="ml-0 pl-0 md:ml-2 md:pl-2 border-l-0 md:border-l border-slate-300 dark:border-slate-400">Powered by <a href=https://gohugo.io target=_blank rel=noopener class=underline>Hugo</a> <span class=text-red-600>&#9829;</span> <a href=https://github.com/tomowang/hugo-theme-tailwind target=_blank rel=noopener class=underline>Tailwind</a></span></div></section></div></div></footer><script src=/main.min.65ca5b0808abf278fcec5d424701ebf0b4bc46a737129cd5e57fdb739f463e79.js></script><div class="hidden top-1 right-1" id=code-copy><i class="h-6 w-6 block"><svg class="icon icon-tabler icon-tabler-copy" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667A2.667 2.667.0 019.667 7h8.666A2.667 2.667.0 0121 9.667v8.666A2.667 2.667.0 0118.333 21H9.667A2.667 2.667.0 017 18.333z"/><path d="M4.012 16.737A2.005 2.005.0 013 15V5c0-1.1.9-2 2-2h10c.75.0 1.158.385 1.5 1"/></svg></i></div><div class="hidden top-1 right-1" id=code-copy-done><i class="h-6 w-6 block"><svg class="icon icon-tabler icon-tabler-check" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5L20 7"/></svg></i></div><script src=/code-copy.min.e7b2a74adef1ed474c335c8bd5e7832b2316b8842b0f9184d65286c5bd64f51a.js></script></body></html>
