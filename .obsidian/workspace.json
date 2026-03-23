@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/工作流搭建的基础思想.md",
+                "file": "content/post/n8n工作流(scripting文档).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "工作流搭建的基础思想"
+              "title": "n8n工作流(scripting文档)"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 207.5
   },
   "right": {
     "id": "add18fe99934f9eb",
@@ -174,30 +174,31 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:新建数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "bases:创建新数据库": false
+      "command-palette:打开命令面板": false
     }
   },
   "active": "602f889620b5343a",
   "lastOpenFiles": [
+    "public/tags/n8n/index.xml",
+    "public/tags/n8n/page/1/index.html",
+    "public/tags/n8n/page/1",
+    "public/tags/n8n/index.html",
+    "public/tags/n8n/page",
+    "public/tags/n8n",
+    "content/post/工作流搭建的基础思想.md",
+    "public/post/n8n工作流scripting文档/index.html",
+    "public/post/n8n工作流scripting文档",
+    "content/post/n8n工作流(scripting文档).md",
     "public/categories/工作流/index.xml",
     "public/categories/工作流/page/1/index.html",
     "public/categories/工作流/page/1",
-    "public/categories/工作流/page",
-    "public/categories/工作流/index.html",
-    "public/categories/工作流",
     "content/post/GC.md",
-    "public/post/工作流搭建的基础思想/index.html",
-    "public/post/工作流搭建的基础思想",
-    "content/post/工作流搭建的基础思想.md",
-    "layouts/partials/pagination.html",
-    "layouts/partials/block/sidebar_section.html",
-    "layouts/partials/block/taxonomies.html",
     "themes/tailwind/static/logo.svg",
     "themes/tailwind/images/tn.png",
     "themes/tailwind/images/screenshot.png",
@@ -229,7 +230,6 @@
     "themes/tailwind/exampleSite/content/about.zh-cn.md",
     "themes/tailwind/exampleSite/content/about.md",
     "themes/tailwind/exampleSite/content/_index.md",
-    "themes/tailwind/exampleSite/README.md",
-    "themes/tailwind/content/search/_index.zh-cn.md"
+    "themes/tailwind/exampleSite/README.md"
   ]
 }
