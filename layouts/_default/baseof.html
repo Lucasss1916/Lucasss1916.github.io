@@ -93,23 +93,30 @@
       overflow-x: hidden;
       color: var(--text-primary);
       background-color: #dce3f0 !important;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -1;
       background-image:
         radial-gradient(ellipse at 10% 20%, rgba(72, 120, 255, 0.35) 0%, transparent 50%),
         radial-gradient(ellipse at 90% 10%, rgba(160, 100, 255, 0.28) 0%, transparent 45%),
         radial-gradient(ellipse at 45% 90%, rgba(50, 190, 230, 0.25) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 65%, rgba(255, 110, 160, 0.18) 0%, transparent 45%),
-        radial-gradient(ellipse at 30% 60%, rgba(100, 220, 180, 0.15) 0%, transparent 40%) !important;
-      background-attachment: fixed !important;
+        radial-gradient(ellipse at 30% 60%, rgba(100, 220, 180, 0.15) 0%, transparent 40%);
+      will-change: transform;
     }
     .dark body, body.dark {
       background-color: #060b18 !important;
+    }
+    .dark body::before, body.dark::before {
       background-image:
         radial-gradient(ellipse at 10% 20%, rgba(30, 50, 160, 0.45) 0%, transparent 50%),
         radial-gradient(ellipse at 90% 10%, rgba(110, 30, 170, 0.3) 0%, transparent 45%),
         radial-gradient(ellipse at 45% 90%, rgba(15, 70, 140, 0.3) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 65%, rgba(150, 30, 80, 0.18) 0%, transparent 45%),
-        radial-gradient(ellipse at 30% 60%, rgba(20, 120, 100, 0.15) 0%, transparent 40%) !important;
-      background-attachment: fixed !important;
+        radial-gradient(ellipse at 30% 60%, rgba(20, 120, 100, 0.15) 0%, transparent 40%);
     }
 
     /* === 液态玻璃 mixin（通用） === */
@@ -117,19 +124,20 @@
     .bg-zinc-50, .bg-neutral-50,
     article, .content-glass {
       background-color: var(--glass-bg) !important;
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
       border: 1px solid var(--glass-border);
       border-top: 1px solid var(--glass-border-top);
       box-shadow: var(--glass-shadow), var(--glass-inset);
       border-radius: 16px;
+      will-change: transform;
     }
 
     /* === 侧边栏玻璃 === */
     aside {
       background-color: var(--glass-bg) !important;
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
       border: 1px solid var(--glass-border);
       border-top: 1px solid var(--glass-border-top);
       box-shadow: var(--glass-shadow), var(--glass-inset);
@@ -137,15 +145,17 @@
       overflow: hidden !important;
       padding: 1rem 0;
       margin-top: 2rem;
+      will-change: transform;
     }
 
     /* === Header 玻璃 === */
     .site-header {
       background-color: var(--header-bg) !important;
-      backdrop-filter: blur(28px) saturate(190%);
-      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
       border-bottom: 1px solid var(--glass-border);
       box-shadow: 0 1px 0 var(--glass-border-top), 0 4px 20px rgba(0, 0, 0, 0.06);
+      will-change: transform;
     }
     .dark .site-header {
       box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -154,8 +164,6 @@
     /* Header 内部元素 */
     header nav ul {
       background-color: var(--widget-bg) !important;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border) !important;
       border-top: 1px solid var(--glass-border-top) !important;
       box-shadow: var(--glass-inset), 0 2px 8px rgba(0,0,0,0.04) !important;
@@ -163,8 +171,6 @@
     }
     header label[for="darkmode-toggle"] {
       background-color: var(--widget-bg) !important;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border) !important;
       box-shadow: var(--glass-inset) !important;
       border-radius: 10px !important;
@@ -177,8 +183,6 @@
     .bg-slate-100, .bg-gray-100, .bg-zinc-100,
     .bg-gray-200, .bg-zinc-200 {
       background-color: var(--widget-bg) !important;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border);
       border-radius: 12px;
     }
@@ -206,8 +210,6 @@
     .prose pre, .highlight, .chroma,
     .highlight .chroma {
       background-color: rgba(230, 235, 248, 0.65) !important;
-      backdrop-filter: blur(10px) saturate(130%);
-      -webkit-backdrop-filter: blur(10px) saturate(130%);
       opacity: 1 !important;
       border: 1px solid rgba(0, 0, 0, 0.06);
       border-top: 1px solid rgba(255, 255, 255, 0.5);
@@ -312,8 +314,6 @@
     /* === 暗色模式切换按钮 === */
     .darkmode-toggle label {
       background-color: var(--widget-bg) !important;
-      backdrop-filter: blur(16px) saturate(160%);
-      -webkit-backdrop-filter: blur(16px) saturate(160%);
       border: 1px solid var(--glass-border) !important;
       border-top: 1px solid var(--glass-border-top) !important;
       box-shadow: var(--glass-inset), 0 2px 8px rgba(0,0,0,0.04) !important;
@@ -334,8 +334,6 @@
     /* === 搜索框（自定义 partial） === */
     .search-input {
       background-color: var(--glass-bg) !important;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border) !important;
       border-right: none !important;
       color: var(--text-primary) !important;
@@ -351,8 +349,6 @@
     }
     .search-btn {
       background-color: var(--widget-bg) !important;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border) !important;
       border-left: none !important;
       color: var(--text-secondary) !important;
@@ -366,8 +362,6 @@
     /* === 分类标签玻璃（自定义 partial） === */
     .category-glass {
       background: linear-gradient(135deg, rgba(5, 150, 105, 0.7), rgba(16, 185, 129, 0.55)) !important;
-      backdrop-filter: blur(10px) saturate(140%);
-      -webkit-backdrop-filter: blur(10px) saturate(140%);
       border: 1px solid rgba(255, 255, 255, 0.3) !important;
       border-top-color: rgba(255, 255, 255, 0.5) !important;
       box-shadow: 0 2px 10px rgba(5, 150, 105, 0.2), inset 0 1px 0 rgba(255,255,255,0.25);
@@ -387,8 +381,6 @@
     /* === Tag 玻璃 === */
     .tag-glass {
       background-color: var(--widget-bg) !important;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
       border: 1px solid var(--glass-border);
       box-shadow: var(--glass-inset);
       color: var(--text-secondary) !important;
@@ -401,8 +393,6 @@
     /* === 侧边栏标签玻璃（自定义 partial） === */
     .sidebar-tag {
       background-color: var(--widget-bg) !important;
-      backdrop-filter: blur(10px) saturate(140%);
-      -webkit-backdrop-filter: blur(10px) saturate(140%);
       border: 1px solid var(--glass-border) !important;
       border-top: 1px solid var(--glass-border-top) !important;
       box-shadow: var(--glass-inset), 0 1px 4px rgba(0,0,0,0.04) !important;
@@ -415,8 +405,6 @@
     /* === 分页按钮玻璃 === */
     .pagination-btn {
       background-color: var(--glass-bg) !important;
-      backdrop-filter: blur(16px) saturate(160%);
-      -webkit-backdrop-filter: blur(16px) saturate(160%);
       border: 1px solid var(--glass-border) !important;
       border-top: 1px solid var(--glass-border-top) !important;
       box-shadow: var(--glass-shadow), var(--glass-inset) !important;
@@ -438,15 +426,12 @@
     /* === 404 按钮 === */
     .bg-indigo-600 {
       background: linear-gradient(135deg, rgba(79, 70, 229, 0.8), rgba(99, 102, 241, 0.7)) !important;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.25) !important;
       box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3), inset 0 1px 0 rgba(255,255,255,0.2) !important;
       border-radius: 12px !important;
     }
     .bg-indigo-600:hover {
       background: linear-gradient(135deg, rgba(79, 70, 229, 0.9), rgba(99, 102, 241, 0.8)) !important;
-      transform: translateY(-1px);
       box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4), inset 0 1px 0 rgba(255,255,255,0.25) !important;
     }
 
@@ -459,7 +444,6 @@
     /* === 计数徽章 === */
     .bg-red-400 {
       background: linear-gradient(135deg, rgba(248, 113, 113, 0.85), rgba(239, 68, 68, 0.75)) !important;
-      backdrop-filter: blur(4px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 2px 6px rgba(239, 68, 68, 0.25);
     }
@@ -475,8 +459,6 @@
     /* === 语言切换下拉 === */
     #navbar-lang > ul {
       background-color: var(--glass-bg) !important;
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
       border: 1px solid var(--glass-border) !important;
       border-top: 1px solid var(--glass-border-top) !important;
       box-shadow: var(--glass-shadow), var(--glass-inset) !important;
@@ -541,8 +523,6 @@
       line-height: 1.4;
       color: var(--text-muted);
       background-color: var(--widget-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border);
       border-radius: 8px;
       cursor: pointer;
@@ -663,7 +643,7 @@
 
   <footer style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 50; display: flex; justify-content: center; padding-bottom: 16px; pointer-events: none;">
     <div class="w-full max-w-7xl px-4 flex justify-center" style="pointer-events: auto;">
-       <div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color: var(--footer-bg) !important; backdrop-filter: blur(28px) saturate(190%); -webkit-backdrop-filter: blur(28px) saturate(190%); border: 1px solid var(--glass-border); border-top: 1px solid var(--glass-border-top); box-shadow: var(--glass-shadow), var(--glass-inset);">
+       <div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color: var(--footer-bg) !important; backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); border: 1px solid var(--glass-border); border-top: 1px solid var(--glass-border-top); box-shadow: var(--glass-shadow), var(--glass-inset); will-change: transform;">
           {{ partial "footer.html" . }}
        </div>
     </div>
