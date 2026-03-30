@@ -108,4 +108,35 @@ blockquote {
     padding: 0 15px;
     overflow-x: hidden;
   }
+  body {
+    padding-bottom: 80px !important;
+  }
+  .content-glass .p-6 {
+    padding: 1rem !important;
+  }
+  footer .px-6 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  footer .py-3 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  /* 移动端列表页标题 */
+  .text-4xl {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* 8. 代码块桌面端横向滚动（替代强制换行） */
+.highlight pre,
+.prose pre {
+  overflow-x: auto;
+  white-space: pre;
+}
+.highlight pre code,
+.prose pre code {
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
 }

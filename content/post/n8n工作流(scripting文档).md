@@ -10,7 +10,7 @@ categories:
   - 工作流
 summary: 使用n8n定时抓取scripting网页文档，并生成相应的数据库
 featured_image: ""
-lastmod: 2026-03-23T13:41:47+08:00
+lastmod: 2026-03-31T02:01:16+08:00
 ---
 ## 1. 创建相应文件夹并配置环境
 ```
@@ -28,7 +28,7 @@ pip install chromadb llama-index beautifulsoup4 requests lxml
 - 不影响系统自带python（因为是在mac中，mac系统自带的比较重要）
 - 依赖管理清晰
 - 权限问题，虚拟环境不需要sudo
-## 编写Python脚本
+## 2. 编写Python脚本
 ```
 #!/usr/bin/env python3
 

@@ -56,6 +56,8 @@
       --border-color: rgba(255, 255, 255, 0.45);
       --accent: #3b82f6;
       --accent-hover: #2563eb;
+
+      --font-sans: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
     }
 
     .dark {
@@ -79,14 +81,9 @@
       --accent-hover: #93c5fd;
     }
 
-    /* === 全局过渡动画 === */
-    body, header, footer, article, aside, main,
-    .content-glass, .bg-white, .bg-gray-700,
-    nav ul, label[for="darkmode-toggle"],
-    .tag-solid-btn, .prose pre, .highlight {
-      transition: background-color 0.4s ease, color 0.3s ease,
-                  border-color 0.4s ease, box-shadow 0.4s ease,
-                  backdrop-filter 0.4s ease;
+    /* === 全局字体 === */
+    body, .prose, article {
+      font-family: var(--font-sans);
     }
 
     /* === 渐变网格背景 === */
@@ -374,11 +371,9 @@
       border: 1px solid rgba(255, 255, 255, 0.3) !important;
       border-top-color: rgba(255, 255, 255, 0.5) !important;
       box-shadow: 0 2px 10px rgba(5, 150, 105, 0.2), inset 0 1px 0 rgba(255,255,255,0.25);
-      transition: all 0.25s ease;
     }
     .category-glass:hover {
       background: linear-gradient(135deg, rgba(5, 150, 105, 0.85), rgba(16, 185, 129, 0.7)) !important;
-      transform: translateY(-1px);
       box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3), inset 0 1px 0 rgba(255,255,255,0.3);
       color: #fff !important;
     }
@@ -397,12 +392,10 @@
       border: 1px solid var(--glass-border);
       box-shadow: var(--glass-inset);
       color: var(--text-secondary) !important;
-      transition: all 0.25s ease;
     }
     .tag-glass:hover {
       background-color: var(--glass-bg) !important;
       color: var(--accent) !important;
-      transform: translateY(-1px);
     }
 
     /* === 侧边栏标签玻璃（自定义 partial） === */
@@ -413,13 +406,10 @@
       border: 1px solid var(--glass-border) !important;
       border-top: 1px solid var(--glass-border-top) !important;
       box-shadow: var(--glass-inset), 0 1px 4px rgba(0,0,0,0.04) !important;
-      transition: all 0.25s ease;
     }
     .sidebar-tag:hover {
       background-color: var(--glass-bg) !important;
       color: var(--accent) !important;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08), var(--glass-inset) !important;
     }
 
     /* === 分页按钮玻璃 === */
@@ -431,11 +421,9 @@
       border-top: 1px solid var(--glass-border-top) !important;
       box-shadow: var(--glass-shadow), var(--glass-inset) !important;
       border-radius: 12px !important;
-      transition: all 0.25s ease;
     }
     .pagination-btn:hover {
       background-color: rgba(255, 255, 255, 0.6) !important;
-      transform: translateY(-1px);
       color: var(--accent) !important;
     }
     .dark .pagination-btn:hover {
@@ -495,6 +483,157 @@
       border-radius: 12px !important;
     }
 
+    /* === 字体层次 === */
+    .prose h1 { font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; margin-top: 2.5em; margin-bottom: 0.8em; }
+    .prose h2 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 2em; margin-bottom: 0.6em; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.4em; }
+    .prose h3 { font-size: 1.375rem; font-weight: 600; margin-top: 1.8em; margin-bottom: 0.5em; }
+    .prose h4 { font-size: 1.125rem; font-weight: 600; margin-top: 1.5em; margin-bottom: 0.4em; }
+    .prose p { line-height: 1.9; margin-bottom: 1.5em; }
+    .prose li { line-height: 1.8; }
+    .prose > ul, .prose > ol { margin-bottom: 1.5em; }
+
+    /* === 中文排版优化 === */
+    .prose {
+      font-family: var(--font-sans);
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* === 图片增强 === */
+    .prose img {
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      cursor: zoom-in;
+    }
+    .dark .prose img {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    /* === 图片 Lightbox === */
+    .lightbox-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4);
+    }
+
+    /* === 代码块复制按钮 === */
+    .highlight, .prose pre {
+      position: relative;
+    }
+    .code-copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 10;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      line-height: 1.4;
+      color: var(--text-muted);
+      background-color: var(--widget-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      cursor: pointer;
+      opacity: 0;
+    }
+    .highlight:hover .code-copy-btn,
+    .prose pre:hover .code-copy-btn {
+      opacity: 1;
+    }
+    .code-copy-btn:hover {
+      background-color: var(--glass-bg);
+      color: var(--accent);
+    }
+    .code-copy-btn.copied {
+      color: #10b981;
+      opacity: 1;
+    }
+
+    /* === 代码块行号优化 === */
+    .chroma .lntd:first-child {
+      border-right: 1px solid var(--glass-border);
+      padding-right: 12px;
+      user-select: none;
+    }
+    .chroma .lntd:last-child {
+      padding-left: 12px;
+    }
+
+    /* === 代码块横向滚动条 === */
+    .highlight pre::-webkit-scrollbar,
+    .prose pre::-webkit-scrollbar {
+      height: 4px;
+    }
+    .highlight pre::-webkit-scrollbar:hover,
+    .prose pre::-webkit-scrollbar:hover {
+      height: 6px;
+    }
+    .highlight pre::-webkit-scrollbar-track,
+    .prose pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .highlight pre::-webkit-scrollbar-thumb,
+    .prose pre::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.25);
+      border-radius: 3px;
+    }
+    .highlight pre::-webkit-scrollbar-thumb:hover,
+    .prose pre::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.45);
+    }
+
+    /* === 目录导航高亮 === */
+    .table-of-contents a {
+      border-left: 2px solid transparent;
+      padding-left: 8px;
+    }
+    .table-of-contents a.toc-active {
+      color: var(--accent) !important;
+      border-left-color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* === 移动端响应式 === */
+    @media (max-width: 768px) {
+      article, .content-glass {
+        border-radius: 12px;
+      }
+      article .p-6,
+      .content-glass .p-6 {
+        padding: 1rem;
+      }
+      aside {
+        border-radius: 16px !important;
+        margin-top: 1rem;
+      }
+      .prose h1 { font-size: 1.75rem; }
+      .prose h2 { font-size: 1.375rem; }
+      .prose h3 { font-size: 1.125rem; }
+      .prose p { font-size: 0.9375rem; line-height: 1.85; }
+      .prose pre, .highlight pre {
+        font-size: 0.8rem;
+        white-space: pre;
+        overflow-x: auto;
+      }
+      .code-copy-btn {
+        opacity: 1;
+        padding: 3px 8px;
+        font-size: 0.7rem;
+      }
+    }
+
     /* === 滚动条玻璃化 === */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -511,17 +650,17 @@
 <body class="flex flex-col min-h-screen w-full text-slate-900 dark:text-slate-100" style="padding-bottom: 100px;">
 
   <header class="flex flex-none justify-center z-10 site-header sticky top-0">
-    <div class="w-full max-w-7xl flex justify-center"> 
+    <div class="w-full max-w-7xl flex justify-center">
         {{ partial "header.html" . }}
     </div>
   </header>
-  
+
   <main class="flex-grow w-full py-8 px-4">
     <div class="relative w-full max-w-7xl mx-auto flex flex-col items-center">
       {{ block "main" . }}{{ end }}
     </div>
   </main>
-  
+
   <footer style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 50; display: flex; justify-content: center; padding-bottom: 16px; pointer-events: none;">
     <div class="w-full max-w-7xl px-4 flex justify-center" style="pointer-events: auto;">
        <div class="content-glass px-6 py-3 w-full max-w-5xl text-center" style="background-color: var(--footer-bg) !important; backdrop-filter: blur(28px) saturate(190%); -webkit-backdrop-filter: blur(28px) saturate(190%); border: 1px solid var(--glass-border); border-top: 1px solid var(--glass-border-top); box-shadow: var(--glass-shadow), var(--glass-inset);">
@@ -529,8 +668,85 @@
        </div>
     </div>
   </footer>
-  
+
   {{ partial "extended_footer.html" . }}
 
-</body>
+  <script>
+    // 代码块复制按钮
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.highlight, .prose pre').forEach(function(block) {
+        if (block.closest('.table-of-contents')) return;
+        if (block.querySelector('.code-copy-btn')) return;
+        var btn = document.createElement('button');
+        btn.className = 'code-copy-btn';
+        btn.textContent = 'Copy';
+        btn.addEventListener('click', function() {
+          var code = block.querySelector('code');
+          var text = code ? code.textContent : block.textContent;
+          navigator.clipboard.writeText(text).then(function() {
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+          });
+        });
+        block.appendChild(btn);
+      });
+
+      // 图片 Lightbox
+      document.querySelectorAll('.prose img').forEach(function(img) {
+        img.addEventListener('click', function() {
+          var overlay = document.createElement('div');
+          overlay.className = 'lightbox-overlay';
+          var clone = img.cloneNode();
+          clone.style.cursor = 'zoom-out';
+          clone.removeAttribute('width');
+          clone.removeAttribute('height');
+          overlay.appendChild(clone);
+          document.body.appendChild(overlay);
+          overlay.addEventListener('click', function() {
+            overlay.remove();
+          });
+        });
+      });
+
+      // 目录滚动高亮
+      var tocLinks = document.querySelectorAll('.table-of-contents a');
+      if (tocLinks.length > 0) {
+        var headings = [];
+        tocLinks.forEach(function(link) {
+          var id = link.getAttribute('href');
+          if (id && id.startsWith('#')) {
+            var el = document.getElementById(id.substring(1));
+            if (el) headings.push({ el: el, link: link });
+          }
+        });
+        if (headings.length > 0) {
+          var onScroll = function() {
+            var scrollY = window.scrollY + 120;
+            var current = headings[0];
+            for (var i = 0; i < headings.length; i++) {
+              if (headings[i].el.offsetTop <= scrollY) current = headings[i];
+            }
+            tocLinks.forEach(function(l) { l.classList.remove('toc-active'); });
+            if (current) current.link.classList.add('toc-active');
+          };
+          window.addEventListener('scroll', onScroll, { passive: true });
+          onScroll();
+        }
+      }
+
+      // 进度条
+      var progress = document.getElementById('progress');
+      if (progress) {
+        var updateProgress = function() {
+          var scrollTop = window.scrollY;
+          var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          progress.style.width = pct + '%';
+        };
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+      }
+    });
+  </script>
 </html>

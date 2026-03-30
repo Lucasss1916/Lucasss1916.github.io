@@ -5,8 +5,14 @@ resources/_gen/
 
 # Local editor/workspace files
 .obsidian/
-.claude/
 content/.obsidian/
+
+# AI context (auto-generated, not needed in repo)
+.claude/
+CLAUDE.md
+content/CLAUDE.md
+layouts/CLAUDE.md
+.ace-tool/
 
 # Node dependencies
 node_modules/
